@@ -1,0 +1,6 @@
+{
+  "name": "Agri-VoiceLink",
+  "description": "An academic research landing page showcasing conversational AI for empowering farmers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
