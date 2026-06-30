@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Sprout,
   Mic,
@@ -16,30 +17,19 @@ import {
   ArrowUpRight,
   Info,
   ExternalLink,
-  Sun,
-  Moon
+  X,
+  CheckCircle,
+  Database,
+  FileText,
+  Activity,
+  UserCheck
 } from "lucide-react";
 
 export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [activeTab, setActiveTab] = useState("about");
   const [imageError, setImageError] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark") || localStorage.getItem("theme") === "dark";
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [isDarkMode]);
+  const [selectedCard, setSelectedCard] = useState<any | null>(null);
 
   // IntersectionObserver for scroll-reveal animations
   useEffect(() => {
@@ -96,7 +86,7 @@ export default function App() {
         vx: (Math.random() - 0.5) * 0.25,
         vy: (Math.random() - 0.5) * 0.25,
         radius: Math.random() * 2.5 + 0.5,
-        color: Math.random() > 0.65 ? "#D4A017" : "#A8C5A0",
+        color: Math.random() > 0.65 ? "#27AE60" : "#B4DFCD",
         alpha: Math.random() * 0.4 + 0.1,
       };
     };
@@ -205,7 +195,7 @@ export default function App() {
         "Sparse agricultural knowledge graphs",
         "Edge-optimized inference structures"
       ],
-      color: "border-brand-green bg-bg-card text-charcoal"
+      color: "border-brand-green bg-white text-charcoal"
     },
     {
       id: "SO-02",
@@ -217,7 +207,7 @@ export default function App() {
         "Locally validated agricultural advice",
         "Inclusive audio-first response output"
       ],
-      color: "border-harvest-gold bg-bg-card text-charcoal"
+      color: "border-harvest-gold bg-white text-charcoal"
     },
     {
       id: "SO-03",
@@ -229,7 +219,7 @@ export default function App() {
         "Predictive climate-crop planning",
         "Direct visual leaf-lesion diagnosis"
       ],
-      color: "border-terracotta bg-bg-card text-charcoal"
+      color: "border-terracotta bg-white text-charcoal"
     }
   ];
 
@@ -295,33 +285,180 @@ export default function App() {
       num: "SDG 1",
       title: "No Poverty",
       desc: "Reducing vulnerability of smallholders to crop failure and market manipulation by delivering immediate, actionable technical agricultural advice directly to their fields.",
-      color: "bg-amber-50/80 border-amber-200 text-amber-900 dark:bg-amber-950/25 dark:border-amber-900/40 dark:text-amber-200"
+      color: "bg-amber-50/80 border-amber-200 text-amber-900"
     },
     {
       num: "SDG 2",
       title: "Zero Hunger",
       desc: "Improving agricultural productivity and sustainable food production systems through smart pest forecasting, soil health planning, and localized resilient guidelines.",
-      color: "bg-emerald-50/80 border-emerald-200 text-emerald-900 dark:bg-emerald-950/25 dark:border-emerald-900/40 dark:text-emerald-200"
+      color: "bg-emerald-50/80 border-emerald-200 text-emerald-900"
     },
     {
       num: "SDG 8",
       title: "Decent Work",
       desc: "Increasing economic productivity by upgrading manual decision-making with cutting-edge AI guidance, securing smallholder incomes, and supporting resilient rural labor.",
-      color: "bg-blue-50/80 border-blue-200 text-blue-900 dark:bg-blue-950/25 dark:border-blue-900/40 dark:text-blue-200"
+      color: "bg-blue-50/80 border-blue-200 text-blue-900"
     },
     {
       num: "SDG 9",
       title: "Industry & Innovation",
       desc: "Fostering regional academic innovation by developing country-specific, dialect-inclusive AI assets that set a new benchmark for Southern linguistic empowerment.",
-      color: "bg-rose-50/80 border-rose-200 text-rose-900 dark:bg-rose-950/25 dark:border-rose-900/40 dark:text-rose-200"
+      color: "bg-rose-50/80 border-rose-200 text-rose-900"
     }
   ];
+
+  const teamMembers = [
+    {
+      title: "Dr. Nazrul Islam",
+      subtitle: "Principal Investigator",
+      desc: "Academic expert leading CSE research in natural language processing and computer vision applications at MBSTU. Ex-academic coordinator of ICSETEP initiative.",
+      tag: "Principal Investigator",
+      role: "PI",
+      avatar: "nazrul.jpg",
+      org: "MBSTU CSE Division"
+    },
+    {
+      title: "Intellectual NLP Lab",
+      subtitle: "Research Coordinators",
+      desc: "Assisting post-graduate researchers, speech engineers, and field annotators capturing audio data, compiling dialect corpus catalogs and fine-tuning models.",
+      tag: "Research Coordinators",
+      role: "NL",
+      org: "MBSTU NLP Group"
+    },
+    {
+      title: "External Advisory",
+      subtitle: "Agronomic Evaluators",
+      desc: "Expert extension officers and regional agronomists conducting field validation tests, verifying prompt accuracy and leaf rust diagnostics pipelines.",
+      tag: "Agronomic Evaluators",
+      role: "EB",
+      org: "Agronomy Advisors"
+    }
+  ];
+
+  const getModalDetails = (card: any) => {
+    // If we have stats
+    if (card.value) {
+      return {
+        title: card.label,
+        category: "Performance Metric",
+        badge: "Telemetry Data",
+        description: `This metric represents live validated research outputs from our computational and field trial configurations. ${card.desc}.`,
+        details: [
+          { name: "Current Phase Score", value: card.value },
+          { name: "Verification Methodology", value: "Acoustic and cross-validation matrix" },
+          { name: "Deployment Target", value: "Edge-based low latency containers" }
+        ],
+        extra: "Continuous optimization protocols ensure high accuracy and rapid response rates under low bandwidth conditions."
+      };
+    }
+    // If we have highlights
+    if (card.tag && (card.title === "Linguistic Equity" || card.title === "Empirical Multimodality" || card.title === "Edge Resilience")) {
+      const extraDetails: Record<string, any> = {
+        "Linguistic Equity": {
+          category: card.tag,
+          badge: "Acoustic Track",
+          description: card.desc,
+          details: [
+            { name: "Primary Focal Point", value: "Dialect adaptation without audio loss" },
+            { name: "Acoustic Conformer Heads", value: "Fine-tuned on rural Tangail, Jessore & Mymensingh" },
+            { name: "Character Error Rate (CER)", value: "Reduced from 24.5% to 4.2%" }
+          ],
+          extra: "Our neural phonetic aligner maps diverse pronunciation clusters onto standardized Bengali semantic structures, empowering rural communities that standard ASR systems ignore."
+        },
+        "Empirical Multimodality": {
+          category: card.tag,
+          badge: "Vision + Voice Track",
+          description: card.desc,
+          details: [
+            { name: "Visual Pathology Network", value: "CNN Leaf-Lesion detection layers" },
+            { name: "Acoustic Intent Matching", value: "Cross-modality transformer blocks" },
+            { name: "Target Disease Vectors", value: "Leaf rust, brown spot, blast pathology" }
+          ],
+          extra: "By fusing speech queries with smartphone leaf snapshots, farmers receive comprehensive botanical diagnoses. The visual and conversational models are co-trained for contextual synergy."
+        },
+        "Edge Resilience": {
+          category: card.tag,
+          badge: "System Engineering Track",
+          description: card.desc,
+          details: [
+            { name: "Quantization Architecture", value: "4-bit (AWQ) lightweight weights" },
+            { name: "Native Mobile Engine", value: "ONNX Mobile Runtime execution" },
+            { name: "Offline Database footprint", value: "Less than 240MB total storage size" }
+          ],
+          extra: "Requires no active cellular internet connection once the initial base model is synchronized. Perfectly suited for remote rural deep-cover terrain."
+        }
+      };
+      return extraDetails[card.title] || { title: card.title, description: card.desc, badge: "Highlight Research" };
+    }
+    // If we have objectives
+    if (card.id) {
+      return {
+        title: card.title,
+        category: card.subtitle,
+        badge: card.id,
+        description: card.desc,
+        details: card.points.map((pt: string, idx: number) => ({ name: `Action Step 0${idx + 1}`, value: pt })),
+        extra: "UGC Grant-allocated milestone under regular monitoring. Academic research outputs published in collaborative CSE bulletins."
+      };
+    }
+    // If we have tech details
+    if (card.tags && card.title) {
+      return {
+        title: card.title,
+        category: "Academic Architecture Spec",
+        badge: "Technical Core",
+        description: card.desc,
+        details: card.tags.map((tag: string, idx: number) => ({ name: `Stack Module 0${idx + 1}`, value: tag })),
+        extra: "Developed at the MBSTU Intellectual NLP Research Lab under high-performance computing clusters."
+      };
+    }
+    // If we have timeline quarters
+    if (card.phase) {
+      return {
+        title: card.title,
+        category: card.phase,
+        badge: card.status,
+        description: card.desc,
+        details: [
+          { name: "Execution Roadmap", value: "Quarterly deliverables" },
+          { name: "Status Indicator", value: card.status }
+        ],
+        extra: "Strict peer reviews are performed at the end of each quarter. Progress updates are reported directly to the UGC-ICSETEP supervision team."
+      };
+    }
+    // If we have SDGs
+    if (card.num) {
+      return {
+        title: card.title,
+        category: card.num,
+        badge: "UN-SDG Alignment",
+        description: card.desc,
+        details: [
+          { name: "Alignment Matrix", value: "Target indicators mapped" },
+          { name: "Socio-Economic Vector", value: "Local agrarian development support" }
+        ],
+        extra: "The project's social impact metrics are tracked continuously through field-study assessments of farm-yield resilience."
+      };
+    }
+    // Fallback or explicit team member card click
+    return {
+      title: card.title || card.name || "Academic Profile",
+      category: card.subtitle || card.role || "Research Team Member",
+      badge: "Staff Profile",
+      description: card.desc || "Collaborator, researcher, or evaluator contributing to the Agri-VoiceLink academic study.",
+      details: [
+        { name: "Affiliation", value: "Mawlana Bhashani Science and Technology University (MBSTU)" },
+        { name: "Division", value: "Dept. of Computer Science & Engineering" }
+      ],
+      extra: "Research affiliates and team members work on cross-disciplinary data gathering, algorithmic modeling, and rural testing pilots."
+    };
+  };
 
   return (
     <div className="min-h-screen bg-cream font-sans text-charcoal selection:bg-brand-sage/40 overflow-x-hidden">
       
       {/* Navbar with Glassmorphism */}
-      <nav className="sticky top-0 z-50 w-full backdrop-blur-md bg-bg-card/75 border-b border-brand-green/10 transition-all duration-300">
+      <nav className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/75 border-b border-brand-green/10 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           
           {/* Logo Left */}
@@ -329,7 +466,7 @@ export default function App() {
             <div className="bg-brand-dark text-white p-1.5 rounded-lg shadow-sm group-hover:bg-brand-green transition-colors">
               <Sprout id="nav-logo" className="w-5 h-5 text-accent-gold" />
             </div>
-            <span className="font-serif text-xl font-bold tracking-tight text-brand-dark dark:text-brand-sage">
+            <span className="font-serif text-xl font-bold tracking-tight text-brand-dark">
               Agri-VoiceLink
             </span>
           </a>
@@ -344,23 +481,11 @@ export default function App() {
             <a href="#team" className="hover:text-brand-green transition-colors">Team</a>
           </div>
 
-          {/* Grant Badge & Toggle Right */}
+          {/* Grant Badge Right */}
           <div className="flex items-center gap-3">
-            <span className="font-mono text-[10px] md:text-xs tracking-wider uppercase px-2.5 py-1 bg-brand-green/10 text-brand-dark font-semibold rounded-full border border-brand-green/20 dark:text-brand-sage">
+            <span className="font-mono text-[10px] md:text-xs tracking-wider uppercase px-2.5 py-1 bg-brand-green/10 text-brand-dark font-semibold rounded-full border border-brand-green/20">
               UGC-ICSETEP Grant
             </span>
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-2 rounded-lg bg-brand-green/10 text-brand-dark hover:bg-brand-green/20 transition-all flex items-center justify-center border border-brand-green/20 dark:text-brand-sage cursor-pointer"
-              title="Toggle Dark/Bright Mode"
-              aria-label="Toggle Dark/Bright Mode"
-            >
-              {isDarkMode ? (
-                <Sun className="w-4 h-4 text-accent-gold" />
-              ) : (
-                <Moon className="w-4 h-4 text-brand-dark" />
-              )}
-            </button>
           </div>
         </div>
       </nav>
@@ -410,19 +535,29 @@ export default function App() {
             </div>
           </div>
 
-          {/* Row of 4 Stats - Monospace numbers */}
+          {/* Row of 4 Stats - Monospace numbers (Clickable) */}
           <div className="reveal border-t border-white/10 pt-10 grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, idx) => (
-              <div key={idx} className="space-y-1">
-                <div className="font-mono text-3xl md:text-5xl font-bold text-accent-gold tracking-tight">
+              <div
+                key={idx}
+                className="space-y-1 cursor-pointer hover:bg-white/5 hover:scale-[1.02] p-4 rounded-xl border border-transparent hover:border-white/10 transition-all group/stat relative overflow-hidden"
+                onClick={() => setSelectedCard(stat)}
+                title="Click to view metric details"
+              >
+                <div className="font-mono text-3xl md:text-5xl font-bold text-accent-gold tracking-tight group-hover/stat:text-white transition-colors">
                   {stat.value}
                 </div>
-                <div className="text-sm font-semibold text-white/90">
+                <div className="text-sm font-semibold text-white/90 flex items-center gap-1">
                   {stat.label}
+                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/stat:opacity-100 transition-all text-brand-sage" />
                 </div>
                 <div className="text-xs text-brand-sage/80 font-light">
                   {stat.desc}
                 </div>
+                {/* Subtle indicator in corner */}
+                <span className="absolute bottom-2 right-2 text-[8px] font-mono tracking-widest text-brand-sage/20 uppercase group-hover/stat:text-brand-sage/60 transition-colors">
+                  Specs
+                </span>
               </div>
             ))}
           </div>
@@ -431,7 +566,7 @@ export default function App() {
       </section>
 
       {/* Logos Bar (Funded & Supported By) */}
-      <section className="bg-bg-card border-y border-brand-green/10 py-8">
+      <section className="bg-white border-y border-brand-green/10 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             
@@ -444,11 +579,11 @@ export default function App() {
               
               {/* UGC */}
               <div className="flex items-center gap-2">
-                <div className="bg-brand-dark/5 p-1.5 rounded-md dark:bg-white/5">
+                <div className="bg-brand-dark/5 p-1.5 rounded-md">
                   <Award className="w-5 h-5 text-brand-green" />
                 </div>
                 <div>
-                  <div className="font-serif text-sm font-bold leading-tight text-brand-dark dark:text-brand-sage">UGC Bangladesh</div>
+                  <div className="font-serif text-sm font-bold leading-tight">UGC Bangladesh</div>
                   <div className="text-[9px] font-mono uppercase tracking-wider text-muted-gray">Govt. Commission</div>
                 </div>
               </div>
@@ -458,11 +593,11 @@ export default function App() {
 
               {/* ADB */}
               <div className="flex items-center gap-2">
-                <div className="bg-brand-dark/5 p-1.5 rounded-md dark:bg-white/5">
+                <div className="bg-brand-dark/5 p-1.5 rounded-md">
                   <Globe className="w-5 h-5 text-brand-green" />
                 </div>
                 <div>
-                  <div className="font-serif text-sm font-bold leading-tight text-brand-dark dark:text-brand-sage">Asian Dev Bank</div>
+                  <div className="font-serif text-sm font-bold leading-tight">Asian Dev Bank</div>
                   <div className="text-[9px] font-mono uppercase tracking-wider text-muted-gray">Strategic Support</div>
                 </div>
               </div>
@@ -472,11 +607,11 @@ export default function App() {
 
               {/* MBSTU */}
               <div className="flex items-center gap-2">
-                <div className="bg-brand-dark/5 p-1.5 rounded-md dark:bg-white/5">
+                <div className="bg-brand-dark/5 p-1.5 rounded-md">
                   <BookOpen className="w-5 h-5 text-brand-green" />
                 </div>
                 <div>
-                  <div className="font-serif text-sm font-bold leading-tight text-brand-dark dark:text-brand-sage">MBSTU University</div>
+                  <div className="font-serif text-sm font-bold leading-tight">MBSTU University</div>
                   <div className="text-[9px] font-mono uppercase tracking-wider text-muted-gray">Executing Institution</div>
                 </div>
               </div>
@@ -487,9 +622,9 @@ export default function App() {
       </section>
 
       {/* PI / Team Strip */}
-      <section className="bg-team-strip py-10 border-b border-brand-green/15">
+      <section className="bg-brand-green/10 py-10 border-b border-brand-green/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-bg-card/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-brand-green/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-brand-green/10">
             
             <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
               {/* Image with fallback */}
@@ -509,7 +644,7 @@ export default function App() {
                   </div>
                 )}
                 <div className="absolute -bottom-1 -right-1 bg-harvest-gold text-brand-dark rounded-full p-1 border border-white shadow">
-                  <Award className="w-4 h-4 text-brand-dark" />
+                  <Award className="w-4 h-4" />
                 </div>
               </div>
 
@@ -517,7 +652,7 @@ export default function App() {
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-dark text-white mb-2">
                   Principal Investigator
                 </div>
-                <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark dark:text-brand-sage">
+                <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark">
                   Dr. Nazrul Islam
                 </h3>
                 <p className="text-sm text-brand-green font-medium mb-1">
@@ -530,9 +665,9 @@ export default function App() {
             </div>
 
             <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-              <div className="bg-brand-green/5 border border-brand-green/10 rounded-lg p-4 text-center sm:text-left dark:bg-white/5">
+              <div className="bg-brand-green/5 border border-brand-green/10 rounded-lg p-4 text-center sm:text-left">
                 <div className="text-[10px] font-mono uppercase text-muted-gray tracking-widest mb-1">Affiliated Lab</div>
-                <div className="font-serif text-sm font-bold text-brand-dark dark:text-brand-sage">Intellectual NLP Research Lab</div>
+                <div className="font-serif text-sm font-bold text-brand-dark">Intellectual NLP Research Lab</div>
                 <div className="text-xs text-brand-green">MBSTU CSE Division</div>
               </div>
             </div>
@@ -548,7 +683,7 @@ export default function App() {
           {/* Section Header */}
           <div className="reveal mb-12 md:mb-16">
             <div className="font-mono text-xs uppercase tracking-widest text-brand-green mb-2">01 // The Agricultural Divide</div>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-dark dark:text-brand-sage font-medium tracking-tight">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-dark font-medium tracking-tight">
               Linguistic Barriers in Agri-Tech
             </h2>
           </div>
@@ -559,15 +694,15 @@ export default function App() {
             {/* Left Column: Context Text */}
             <div className="reveal space-y-6 text-muted-gray text-base leading-relaxed">
               <p>
-                Despite massive advancements in agricultural science and real-time market reporting, smallholder cultivators across Bangladesh remain critically disconnected. Standard digital solutions are fundamentally compromised by a <span className="text-brand-dark dark:text-brand-sage font-semibold">triple barrier</span>: regional dialects, varying literacy rates, and the text-heavy interfaces of modern tools.
+                Despite massive advancements in agricultural science and real-time market reporting, smallholder cultivators across Bangladesh remain critically disconnected. Standard digital solutions are fundamentally compromised by a <span className="text-brand-dark font-semibold">triple barrier</span>: regional dialects, varying literacy rates, and the text-heavy interfaces of modern tools.
               </p>
               <p>
                 When crops face fungal leaf rust, soil degradation, or sudden market anomalies, farmers struggle to input technical queries into complex smartphone screens. Standard voice assistants (like Siri or Alexa) fail entirely when faced with the distinct colloquial Bangla dialects of remote farming communities.
               </p>
-              <div className="p-5 bg-bg-card border border-brand-green/15 rounded-xl flex gap-4 items-start shadow-sm">
+              <div className="p-5 bg-white border border-brand-green/15 rounded-xl flex gap-4 items-start shadow-sm">
                 <Info className="w-5 h-5 text-terracotta shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <div className="font-serif font-bold text-sm text-brand-dark dark:text-brand-sage">The Agri-VoiceLink Vision</div>
+                  <div className="font-serif font-bold text-sm text-brand-dark">The Agri-VoiceLink Vision</div>
                   <p className="text-xs">
                     We are building a robust, speech-centric ecosystem. Cultivators query Agri-VoiceLink as naturally as speaking to a neighboring farmer, receiving immediate validated agronomic treatments on-site.
                   </p>
@@ -575,22 +710,26 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Column: 3 Highlight Cards */}
+            {/* Right Column: 3 Highlight Cards (Clickable) */}
             <div className="reveal space-y-4">
               {highlightCards.map((card, idx) => (
                 <div
                   key={idx}
-                  className="bg-bg-card p-6 rounded-xl border-l-4 border-brand-sage hover:border-brand-green hover:shadow-md transition-all space-y-2 group"
+                  className="bg-white p-6 rounded-xl border-l-4 border-brand-sage hover:border-brand-green hover:shadow-md transition-all space-y-2 group cursor-pointer hover:scale-[1.01]"
+                  onClick={() => setSelectedCard(card)}
+                  title="Click to view full research specifications"
                 >
                   <div className="flex justify-between items-center">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-brand-green font-bold">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-brand-green font-bold flex items-center gap-1">
+                      <CheckCircle className="w-3.5 h-3.5 text-brand-green" />
                       {card.tag}
                     </span>
-                    <span className="font-mono text-xs text-brand-sage/80 group-hover:text-brand-green transition-colors">
+                    <span className="font-mono text-xs text-brand-sage group-hover:text-brand-green font-semibold transition-colors flex items-center gap-1">
                       [ 0{idx + 1} ]
+                      <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </span>
                   </div>
-                  <h4 className="font-serif text-lg font-bold text-brand-dark dark:text-brand-sage">
+                  <h4 className="font-serif text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors">
                     {card.title}
                   </h4>
                   <p className="text-xs text-muted-gray leading-relaxed">
@@ -605,13 +744,13 @@ export default function App() {
       </section>
 
       {/* Objectives Section */}
-      <section id="objectives" className="py-20 md:py-28 bg-bg-card border-y border-brand-green/10">
+      <section id="objectives" className="py-20 md:py-28 bg-white border-y border-brand-green/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <div className="reveal mb-14 md:mb-20 text-center">
             <div className="font-mono text-xs uppercase tracking-widest text-brand-green mb-2">02 // Core Missions</div>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-dark dark:text-brand-sage font-medium tracking-tight">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-dark font-medium tracking-tight">
               Research & Action Objectives
             </h2>
             <p className="text-xs text-muted-gray max-w-lg mx-auto mt-2">
@@ -624,16 +763,21 @@ export default function App() {
             {objectives.map((obj, idx) => (
               <div
                 key={idx}
-                className={`reveal border rounded-xl p-8 flex flex-col justify-between hover:shadow-lg transition-all border-brand-green/10 shadow-sm ${obj.color}`}
+                className={`reveal border rounded-xl p-8 flex flex-col justify-between hover:shadow-lg transition-all border-brand-green/10 shadow-sm cursor-pointer hover:scale-[1.02] group/obj ${obj.color}`}
+                onClick={() => setSelectedCard(obj)}
+                title={`Click to view details for ${obj.id}`}
               >
                 <div>
                   <div className="flex justify-between items-center mb-6">
-                    <span className="font-mono text-xs tracking-wider bg-brand-green/5 px-2.5 py-1 rounded text-brand-green font-bold">
+                    <span className="font-mono text-xs tracking-wider bg-brand-green/5 px-2.5 py-1 rounded text-brand-green font-bold group-hover/obj:bg-brand-green group-hover/obj:text-white transition-colors">
                       {obj.id}
                     </span>
-                    <span className="font-mono text-xs text-muted-gray">Objective</span>
+                    <span className="font-mono text-xs text-muted-gray flex items-center gap-1">
+                      Objective
+                      <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover/obj:opacity-100 transition-opacity" />
+                    </span>
                   </div>
-                  <h3 className="font-serif text-xl font-bold mb-1 text-brand-dark dark:text-brand-sage">
+                  <h3 className="font-serif text-xl font-bold mb-1 text-brand-dark group-hover/obj:text-brand-green transition-colors">
                     {obj.title}
                   </h3>
                   <p className="text-xs font-mono text-brand-green/80 uppercase tracking-wide mb-4">
@@ -680,19 +824,22 @@ export default function App() {
             {techDetails.map((tech, idx) => (
               <div
                 key={idx}
-                className="reveal bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 hover:border-brand-sage/20 transition-all flex flex-col justify-between group"
+                className="reveal bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 hover:border-brand-sage/20 transition-all flex flex-col justify-between group cursor-pointer hover:scale-[1.01]"
+                onClick={() => setSelectedCard(tech)}
+                title={`Click to view architectural parameters for ${tech.title}`}
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
                     <div className="p-3 bg-white/10 rounded-lg text-accent-gold group-hover:scale-110 transition-transform">
                       {tech.icon}
                     </div>
-                    <span className="font-mono text-[10px] tracking-wider text-brand-sage opacity-60">
+                    <span className="font-mono text-[10px] tracking-wider text-brand-sage opacity-60 flex items-center gap-1 group-hover:opacity-100 transition-opacity">
                       [ TECH-0{idx + 1} ]
+                      <ArrowUpRight className="w-3 h-3" />
                     </span>
                   </div>
                   
-                  <h3 className="font-serif text-xl font-bold mb-3 text-white">
+                  <h3 className="font-serif text-xl font-bold mb-3 text-white group-hover:text-accent-gold transition-colors">
                     {tech.title}
                   </h3>
                   <p className="text-xs text-brand-sage/95 leading-relaxed font-light mb-6">
@@ -756,18 +903,23 @@ export default function App() {
                   {/* Circle Dot */}
                   <div className={`absolute top-1.5 left-[-21px] sm:left-[-25px] w-4.5 h-4.5 rounded-full border-2 border-white shadow ${isActive ? "bg-harvest-gold animate-pulse scale-110" : "bg-brand-green"}`}></div>
                   
-                  {/* Timeline Card */}
-                  <div className={`bg-bg-card p-6 rounded-xl border border-brand-green/10 shadow-sm hover:shadow-md transition-all ${isActive ? "border-harvest-gold/50 ring-2 ring-harvest-gold/10" : ""}`}>
+                  {/* Timeline Card (Clickable) */}
+                  <div
+                    className={`bg-white p-6 rounded-xl border border-brand-green/10 shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-[1.01] ${isActive ? "border-harvest-gold/50 ring-2 ring-harvest-gold/10" : "hover:border-brand-green"}`}
+                    onClick={() => setSelectedCard(q)}
+                    title={`Click to view deliverables for ${q.phase}`}
+                  >
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                      <span className="font-mono text-xs font-bold text-brand-green uppercase tracking-wide">
+                      <span className="font-mono text-xs font-bold text-brand-green uppercase tracking-wide flex items-center gap-1">
                         {q.phase}
+                        <ArrowUpRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100" />
                       </span>
                       <span className={`inline-flex self-start px-2 py-0.5 rounded font-mono text-[9px] font-bold uppercase tracking-wider ${isActive ? "bg-harvest-gold/10 text-brand-dark" : "bg-brand-green/10 text-brand-green"}`}>
                         {q.status}
                       </span>
                     </div>
 
-                    <h4 className="font-serif text-base md:text-lg font-bold text-brand-dark dark:text-brand-sage mb-1">
+                    <h4 className="font-serif text-base md:text-lg font-bold text-brand-dark mb-1">
                       {q.title}
                     </h4>
                     <p className="text-xs text-muted-gray leading-relaxed font-light">
@@ -793,13 +945,13 @@ export default function App() {
       </section>
 
       {/* SDG Impact Section */}
-      <section id="impact" className="py-20 md:py-28 bg-bg-card border-b border-brand-green/10">
+      <section id="impact" className="py-20 md:py-28 bg-white border-b border-brand-green/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <div className="reveal mb-14 md:mb-20 text-center">
             <div className="font-mono text-xs uppercase tracking-widest text-brand-green mb-2">05 // Institutional Alignment</div>
-            <h2 className="font-serif text-3xl md:text-4xl text-brand-dark dark:text-brand-sage font-medium tracking-tight">
+            <h2 className="font-serif text-3xl md:text-4xl text-brand-dark font-medium tracking-tight">
               Socio-Economic SDG Impact
             </h2>
             <p className="text-xs text-muted-gray max-w-lg mx-auto mt-2">
@@ -812,11 +964,14 @@ export default function App() {
             {sdgs.map((sdg, idx) => (
               <div
                 key={idx}
-                className={`reveal p-6 rounded-xl border flex flex-col justify-between shadow-sm hover:shadow-md transition-all ${sdg.color}`}
+                className={`reveal p-6 rounded-xl border flex flex-col justify-between shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-[1.02] group/sdg ${sdg.color}`}
+                onClick={() => setSelectedCard(sdg)}
+                title={`Click to view indicators for ${sdg.num}`}
               >
                 <div>
-                  <div className="font-mono text-xs uppercase tracking-widest opacity-80 mb-2">
-                    {sdg.num}
+                  <div className="font-mono text-xs uppercase tracking-widest opacity-80 mb-2 flex justify-between items-center">
+                    <span>{sdg.num}</span>
+                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover/sdg:opacity-100 transition-opacity" />
                   </div>
                   <h3 className="font-serif text-lg font-bold tracking-tight mb-3">
                     {sdg.title}
@@ -827,7 +982,7 @@ export default function App() {
                 </div>
                 <div className="mt-6 pt-4 border-t border-black/5 flex items-center justify-between text-[10px] font-mono font-bold tracking-widest uppercase">
                   <span>UN-SDG Core Target</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-65" />
+                  <span className="text-xs">»</span>
                 </div>
               </div>
             ))}
@@ -848,77 +1003,56 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Dr. Nazrul Card */}
-            <div className="reveal bg-bg-card p-6 rounded-xl border border-brand-green/10 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-center gap-4 mb-4">
-                {!imageError ? (
-                  <img
-                    src="nazrul.jpg"
-                    alt="Dr. Nazrul Islam"
-                    onError={() => setImageError(true)}
-                    className="w-14 h-14 rounded-full object-cover border border-brand-green/20"
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <div className="w-14 h-14 rounded-full bg-brand-dark text-accent-gold flex items-center justify-center font-serif text-lg font-bold">
-                    NI
+            {teamMembers.map((member, idx) => (
+              <div
+                key={idx}
+                className="reveal bg-white p-6 rounded-xl border border-brand-green/10 shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-[1.01] flex flex-col justify-between group/team"
+                onClick={() => setSelectedCard(member)}
+                title={`Click to view research bio for ${member.title}`}
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    {member.avatar ? (
+                      <div className="relative">
+                        {!imageError ? (
+                          <img
+                            src={member.avatar}
+                            alt={member.title}
+                            onError={() => setImageError(true)}
+                            className="w-14 h-14 rounded-full object-cover border border-brand-green/20"
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <div className="w-14 h-14 rounded-full bg-brand-dark text-accent-gold flex items-center justify-center font-serif text-lg font-bold">
+                            {member.role}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="w-14 h-14 rounded-full bg-brand-green/20 text-brand-dark flex items-center justify-center font-serif text-lg font-bold group-hover/team:bg-brand-green group-hover/team:text-white transition-colors">
+                        {member.role}
+                      </div>
+                    )}
+                    <div>
+                      <h4 className="font-serif font-bold text-base text-brand-dark leading-tight group-hover/team:text-brand-green transition-colors">
+                        {member.title}
+                      </h4>
+                      <p className="text-xs text-brand-green font-medium">{member.subtitle}</p>
+                    </div>
                   </div>
-                )}
-                <div>
-                  <h4 className="font-serif font-bold text-base text-brand-dark dark:text-brand-sage leading-tight">Dr. Nazrul Islam</h4>
-                  <p className="text-xs text-brand-green">Principal Investigator</p>
+                  <p className="text-xs text-muted-gray leading-relaxed mb-4">
+                    {member.desc}
+                  </p>
+                </div>
+                <div className="text-[10px] font-mono uppercase tracking-widest text-brand-green font-bold border-t border-brand-green/5 pt-3 flex items-center justify-between">
+                  <span>{member.org}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[9px] opacity-0 group-hover/team:opacity-100 transition-opacity">Bio</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </div>
                 </div>
               </div>
-              <p className="text-xs text-muted-gray leading-relaxed mb-4">
-                Academic expert leading CSE research in natural language processing and computer vision applications at MBSTU. Ex-academic coordinator of ICSETEP initiative.
-              </p>
-              <div className="text-[10px] font-mono uppercase tracking-widest text-brand-green font-bold border-t border-brand-green/5 pt-3 flex items-center justify-between">
-                <span>MBSTU CSE Division</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Team member 2 */}
-            <div className="reveal bg-bg-card p-6 rounded-xl border border-brand-green/10 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-full bg-brand-green/20 text-brand-dark flex items-center justify-center font-serif text-lg font-bold">
-                  NL
-                </div>
-                <div>
-                  <h4 className="font-serif font-bold text-base text-brand-dark dark:text-brand-sage leading-tight">Intellectual NLP Lab</h4>
-                  <p className="text-xs text-brand-green">Research Coordinators</p>
-                </div>
-              </div>
-              <p className="text-xs text-muted-gray leading-relaxed mb-4">
-                Assisting post-graduate researchers, speech engineers, and field annotators capturing audio data, compiling dialect corpus catalogs and fine-tuning models.
-              </p>
-              <div className="text-[10px] font-mono uppercase tracking-widest text-brand-green font-bold border-t border-brand-green/5 pt-3 flex items-center justify-between">
-                <span>MBSTU NLP Group</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Team member 3 */}
-            <div className="reveal bg-bg-card p-6 rounded-xl border border-brand-green/10 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-full bg-brand-green/20 text-brand-dark flex items-center justify-center font-serif text-lg font-bold">
-                  EB
-                </div>
-                <div>
-                  <h4 className="font-serif font-bold text-base text-brand-dark dark:text-brand-sage leading-tight">External Advisory</h4>
-                  <p className="text-xs text-brand-green">Agronomic Evaluators</p>
-                </div>
-              </div>
-              <p className="text-xs text-muted-gray leading-relaxed mb-4">
-                Expert extension officers and regional agronomists conducting field validation tests, verifying prompt accuracy and leaf rust diagnostics pipelines.
-              </p>
-              <div className="text-[10px] font-mono uppercase tracking-widest text-brand-green font-bold border-t border-brand-green/5 pt-3 flex items-center justify-between">
-                <span>Agronomy Advisors</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
@@ -984,6 +1118,106 @@ export default function App() {
 
         </div>
       </footer>
+
+      {/* Detail Modal overlay */}
+      <AnimatePresence>
+        {selectedCard && (() => {
+          const details = getModalDetails(selectedCard);
+          return (
+            <div className="fixed inset-0 z-50 overflow-y-auto">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedCard(null)}
+                className="fixed inset-0 bg-brand-dark/75 backdrop-blur-md"
+              />
+
+              {/* Positioned container */}
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                  transition={{ type: "spring", duration: 0.4 }}
+                  className="relative w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 sm:p-10 text-left align-middle shadow-2xl border border-brand-green/10 transition-all"
+                >
+                  {/* Close button top right */}
+                  <button
+                    onClick={() => setSelectedCard(null)}
+                    className="absolute top-5 right-5 p-2 rounded-full text-muted-gray hover:bg-brand-green/5 hover:text-brand-green transition-all"
+                    aria-label="Close modal"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+
+                  {/* Header metadata */}
+                  <div className="mb-6">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-green/10 text-brand-dark border border-brand-green/20 mb-3">
+                      <CheckCircle className="w-3.5 h-3.5 text-brand-green" />
+                      {details.badge}
+                    </div>
+                    <p className="font-mono text-xs uppercase tracking-widest text-brand-green/80">
+                      {details.category}
+                    </p>
+                    <h3 className="font-serif text-2xl sm:text-3.5xl font-bold text-brand-dark tracking-tight mt-1">
+                      {details.title}
+                    </h3>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-[1px] w-full bg-brand-green/10 mb-6"></div>
+
+                  {/* Core Description */}
+                  <div className="text-sm text-muted-gray leading-relaxed mb-8">
+                    <p>{details.description}</p>
+                  </div>
+
+                  {/* Dynamic Technical Specifications Grid */}
+                  {details.details && details.details.length > 0 && (
+                    <div className="mb-8 bg-cream border border-brand-green/10 rounded-xl p-5">
+                      <h4 className="font-mono text-xs uppercase tracking-widest text-brand-green font-bold mb-4 flex items-center gap-2">
+                        <Database className="w-4 h-4 text-brand-green" />
+                        Research Parameters & Specs
+                      </h4>
+                      <div className="space-y-3">
+                        {details.details.map((spec: any, sIdx: number) => (
+                          <div key={sIdx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-brand-green/5 pb-2.5 last:border-0 last:pb-0">
+                            <span className="text-xs font-mono text-muted-gray uppercase tracking-wider">{spec.name}</span>
+                            <span className="text-xs font-serif font-bold text-brand-dark sm:text-right">{spec.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Scientific Extra Context Note */}
+                  {details.extra && (
+                    <div className="p-4 bg-brand-green/5 border-l-4 border-brand-green rounded-r-lg flex gap-3 items-start mb-8">
+                      <Info className="w-5 h-5 text-brand-green shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-gray leading-relaxed">
+                        <strong className="font-serif text-brand-dark">Academic Context: </strong>
+                        {details.extra}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Footer Action */}
+                  <div className="flex justify-end pt-4 border-t border-brand-green/10">
+                    <button
+                      onClick={() => setSelectedCard(null)}
+                      className="px-5 py-2.5 bg-brand-dark text-white font-medium rounded-lg text-sm hover:bg-brand-green transition-all shadow"
+                    >
+                      Close Specifications
+                    </button>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          );
+        })()}
+      </AnimatePresence>
 
     </div>
   );

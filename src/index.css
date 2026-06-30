@@ -1,61 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --brand-dark: #1B4332;
-  --brand-green: #2D6A4F;
-  --brand-sage: #81A67B;
-  --harvest-gold: #D4A017;
-  --accent-gold: #F0C040;
-  --terracotta: #C4622D;
-  --cream: #F5F0E8;
-  --charcoal: #1A1A1A;
-  --muted-gray: #4A4A4A;
-  --bg-card: #FFFFFF;
-  --bg-team-strip: rgba(45, 106, 79, 0.08);
-}
-
-.dark {
-  --brand-dark: #0D241B;
-  --brand-green: #378A62;
-  --brand-sage: #9EC097;
-  --harvest-gold: #E5AC25;
-  --accent-gold: #FAD161;
-  --terracotta: #E07A44;
-  --cream: #0B110E;
-  --charcoal: #EAEAEA;
-  --muted-gray: #9BB0A6;
-  --bg-card: #141C18;
-  --bg-team-strip: rgba(55, 138, 98, 0.15);
-}
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --font-mono: "Space Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Custom Palette mapped as Tailwind classes, reading CSS variables */
-  --color-brand-dark: var(--brand-dark);
-  --color-brand-green: var(--brand-green);
-  --color-brand-sage: var(--brand-sage);
-  --color-harvest-gold: var(--harvest-gold);
-  --color-accent-gold: var(--accent-gold);
-  --color-terracotta: var(--terracotta);
-  --color-cream: var(--cream);
-  --color-charcoal: var(--charcoal);
-  --color-muted-gray: var(--muted-gray);
-  
-  /* Additional tokens for full-dark overrides */
-  --color-bg-card: var(--bg-card);
-  --color-team-strip: var(--bg-team-strip);
+  /* Custom Palette mapped as Tailwind classes */
+  --color-brand-dark: #1A3025;
+  --color-brand-green: #27AE60;
+  --color-brand-sage: #B4DFCD;
+  --color-harvest-gold: #27AE60;
+  --color-accent-gold: #27AE60;
+  --color-terracotta: #34495E;
+  --color-cream: #FFFFFF;
+  --color-charcoal: #2C3E50;
+  --color-muted-gray: #5D6D7E;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: var(--cream);
-    color: var(--charcoal);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
   }
 
   body {
