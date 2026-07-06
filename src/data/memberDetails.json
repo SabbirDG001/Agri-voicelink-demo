@@ -1,0 +1,86 @@
+{
+  "Dr. Nazrul Islam": {
+    "longBio": "Dr. Nazrul Islam is a Professor at the Department of Computer Science and Engineering, Mawlana Bhashani Science and Technology University (MBSTU). He has spent over two decades researching automatic speech recognition, dialectology, and multi-modal neural network optimization. Under the Agri-VoiceLink project, he coordinates the technical research team, leading the design of the bilingual speech transcription systems and supervising the offline edge-native GNN disease inference schemas.",
+    "stats": [
+      { "label": "Research Experience", "value": "20+ Years" },
+      { "label": "Peer-Reviewed Papers", "value": "45+" },
+      { "label": "Active Country Grants", "value": "3" }
+    ],
+    "responsibilities": [
+      "Define the high-level technical architecture and deep learning methodologies for Agri-VoiceLink.",
+      "Supervise the fine-tuning of multi-lingual acoustic and speech-to-text models for rural Bengal.",
+      "Co-ordinate with regional agricultural centers and public extension offices for field diagnostics validation."
+    ],
+    "publications": [
+      {
+        "title": "Dialect-Robust Automatic Speech Recognition for Rural Bangla Agrarian Communities",
+        "venue": "IEEE Transactions on Audio, Speech, and Language Processing",
+        "year": "2025",
+        "type": "Journal"
+      },
+      {
+        "title": "Heterogeneous Knowledge Graphs for Multi-Vector Crop Disease Inference in Low-Bandwidth Networks",
+        "venue": "CVPR - Agri-AI Workshop",
+        "year": "2024",
+        "type": "Conference"
+      }
+    ],
+    "academicBackground": [
+      "Ph.D. in Speech Technology & NLP, 2008",
+      "M.Sc. in Computer Science and Engineering, 2003",
+      "Member of Bangladesh Computer Society & IEEE Senior Member"
+    ]
+  },
+  "Intellectual NLP Lab": {
+    "longBio": "The MBSTU Intellectual NLP Research Lab consists of 12 dedicated post-graduate students, research engineers, and dialect phonetic annotators. The lab manages the storage, acoustic cleanup, phonetic dictionary mapping, and validation of our rural Bangla speech corpora. In Agri-VoiceLink, they coordinate field recording drives, run model-pruning benchmarks, and deploy localized Android build containers.",
+    "stats": [
+      { "label": "Research Scholars", "value": "12" },
+      { "label": "Audio Hours Compiled", "value": "12,000+" },
+      { "label": "Dialect STT Models", "value": "4" }
+    ],
+    "responsibilities": [
+      "Coordinate massive audio recording drives across remote farming communities in 6 divisions.",
+      "Annotate, transcribe, and dictionary-map dialectal Bangla agricultural vocabularies.",
+      "Develop model compression and pruning pipelines to deploy heavyweight models inside native mobile app containers."
+    ],
+    "publications": [
+      {
+        "title": "A Dialect-Inclusive Agri-Corpus Catalog of Rural Bangladesh: Collection, Annotation, and Validation",
+        "venue": "Language Resources and Evaluation Conference (LREC-COLING)",
+        "year": "2024",
+        "type": "Conference"
+      }
+    ],
+    "academicBackground": [
+      "Established in 2018 at MBSTU Department of CSE",
+      "Specializes in low-resource automatic speech recognition, acoustic phonetics, and NLP edge deployment.",
+      "Recipient of research funding allocations from national ICT and academic divisions."
+    ]
+  },
+  "External Advisory": {
+    "longBio": "The Agronomic Advisory Board comprises senior extension agents, plant pathologists, and regional farming advocates. They provide essential ground-truth validation for Agri-VoiceLink. They verify crop disease symptoms, review AI-generated diagnostic recommendations for safety and regional efficacy, and host farmer training workshops in North and South Bengal.",
+    "stats": [
+      { "label": "Expert Agronomists", "value": "8" },
+      { "label": "Regional Pilot Zones", "value": "4" },
+      { "label": "Validation Trials", "value": "250+" }
+    ],
+    "responsibilities": [
+      "Diagnose, tag, and validate fungal and bacterial leaf lesions to train and audit our computer vision pipeline.",
+      "Review AI-driven prompt responses and diagnostic recommendations to ensure local safety and conformity with public extension rules.",
+      "Organize direct farm-level trial campaigns, collecting farmer feedback and coordinating UX testing in remote districts."
+    ],
+    "publications": [
+      {
+        "title": "YOLOv8-Leaf: Mobile-Optimized Convolutional Neural Networks for Fungal Leaf Disease Diagnostics",
+        "venue": "Journal of Agricultural Electronics and Informatics",
+        "year": "2024",
+        "type": "Journal"
+      }
+    ],
+    "academicBackground": [
+      "Formed by senior extension researchers and plant pathologists from Bangladesh Agricultural Research Institute (BARI).",
+      "Advises on national agronomic recommendations, eco-friendly crop-protection, and regional weed management.",
+      "Focuses on translating AI analytics into actionable, safe advisory guidelines for illiterate cultivators."
+    ]
+  }
+}

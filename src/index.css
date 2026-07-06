@@ -13,7 +13,7 @@
   --color-harvest-gold: #27AE60;
   --color-accent-gold: #27AE60;
   --color-terracotta: #34495E;
-  --color-cream: #FFFFFF;
+  --color-cream: #FAF8F5;
   --color-charcoal: #2C3E50;
   --color-muted-gray: #5D6D7E;
 }
@@ -30,11 +30,11 @@
   }
 }
 
-/* Scroll-triggered reveal animations */
+/* Scroll-triggered reveal animations - fallback to opacity 1 to prevent iframe-based IntersectionObserver bugs */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {

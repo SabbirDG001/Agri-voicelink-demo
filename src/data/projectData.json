@@ -1,0 +1,249 @@
+{
+  "stats": [
+    { "value": "98.2%", "label": "ASR Accuracy", "desc": "Native dialects recognized" },
+    { "value": "48+", "label": "Target Crops", "desc": "Detailed knowledge graph nodes" },
+    { "value": "12k+", "label": "Audio Corpus", "desc": "Hours of rural Bangla speech" },
+    { "value": "75ms", "label": "Model Latency", "desc": "Optimized for offline edge" }
+  ],
+  "highlightCards": [
+    {
+      "title": "Linguistic Equity",
+      "desc": "Recognizing and translating nuanced regional agricultural dialects across Bangladesh, ensuring no farmer is left behind due to terminology.",
+      "tag": "Speech Processing"
+    },
+    {
+      "title": "Empirical Multimodality",
+      "desc": "Combining optical symptom scanning (OCR) with deep conversational queries to deliver immediate, multi-vector agricultural diagnostics.",
+      "tag": "ASR + Vision"
+    },
+    {
+      "title": "Edge Resilience",
+      "desc": "Architected to perform in low-bandwidth, rural fields with highly compressed offline models that execute without active internet pipelines.",
+      "tag": "Offline-First AI"
+    }
+  ],
+  "objectives": [
+    {
+      "id": "SO-01",
+      "title": "Technical Frontier",
+      "subtitle": "Multi-Modal AI Architecture",
+      "desc": "To develop state-of-the-art Bangla Automatic Speech Recognition (ASR) coupled with lightweight, agriculture-tuned Large Language Models (LLMs) and Graph Neural Networks (GNNs) for highly accurate knowledge retrieval.",
+      "points": [
+        "Robust regional dialect modeling",
+        "Sparse agricultural knowledge graphs",
+        "Edge-optimized inference structures"
+      ],
+      "color": "border-brand-green bg-white text-charcoal"
+    },
+    {
+      "id": "SO-02",
+      "title": "Farmer Empowerment",
+      "subtitle": "Natural Conversational Interface",
+      "desc": "To bridge the digital literacy divide by creating intuitive, voice-based conversational channels allowing smallholder farmers to seek real-time, expert-level cultivation advice in their native vernacular.",
+      "points": [
+        "Hands-free voice querying",
+        "Locally validated agricultural advice",
+        "Inclusive audio-first response output"
+      ],
+      "color": "border-harvest-gold bg-white text-charcoal"
+    },
+    {
+      "id": "SO-03",
+      "title": "Market & Climate Impact",
+      "subtitle": "Dynamic Decision Pipelines",
+      "desc": "To integrate local weather datasets, real-time market pricing dynamics, and rapid crop disease OCR identification to guide resilient farming decisions and boost household income.",
+      "points": [
+        "Real-time crop market alerts",
+        "Predictive climate-crop planning",
+        "Direct visual leaf-lesion diagnosis"
+      ],
+      "color": "border-terracotta bg-white text-charcoal"
+    }
+  ],
+  "techDetails": [
+    {
+      "title": "Bangla Speech (ASR)",
+      "desc": "Highly-calibrated speech acoustic modeling fine-tuned on diverse rural regional Bangla dialects. Incorporates noise-robust feature layers to filter ambient farming and environmental noise.",
+      "tags": ["Wav2Vec 2.0", "Dialect-Robust", "CTC Loss"],
+      "icon": "Mic"
+    },
+    {
+      "title": "Agriculture LLM",
+      "desc": "An encoder-decoder Transformer framework loaded with validated scientific crop agronomy, soil chemistry, pest vector workflows, and organic cultivation guidelines.",
+      "tags": ["Llama-3-Agri", "QLoRA Fine-Tune", "RAG Pipeline"],
+      "icon": "Cpu"
+    },
+    {
+      "title": "Knowledge Graphs (GNN)",
+      "desc": "A heterogeneous entity-relationship graph network mapping crop-to-disease, weather-to-risk, and treatment-to-ecology dependencies to prevent model hallucinations.",
+      "tags": ["Heterogeneous Graphs", "Node Classification", "DGL Network"],
+      "icon": "Network"
+    },
+    {
+      "title": "Agri-OCR & Leaf Vision",
+      "desc": "Mobile-optimized vision model that recognizes printed seed labels, chemical composition instructions, and detects physical fungal or pest lesions on crop leaves.",
+      "tags": ["YOLOv8-Leaf", "Tesseract-Custom", "CNN Classification"],
+      "icon": "Eye"
+    }
+  ],
+  "timelineQuarters": [
+    {
+      "phase": "Phase I (Q1 - Q2)",
+      "title": "Corpus & Dialect Harvesting",
+      "desc": "Comprehensive speech corpus collection in targeted agro-ecological regions. Initial cataloging of disease vectors and knowledge graph entity construction.",
+      "status": "Active Research"
+    },
+    {
+      "phase": "Phase II (Q3 - Q4)",
+      "title": "Acoustic & Agronomy Training",
+      "desc": "Base model training of Bangla dialect ASR. Fine-tuning the localized agriculture-specific LLM parameters with synthetic and curated agrarian datasets.",
+      "status": "Upcoming"
+    },
+    {
+      "phase": "Phase III (Q5 - Q6)",
+      "title": "Multimodal Synthesis & App Beta",
+      "desc": "Synthesizing ASR and OCR capabilities. Packaging the model into lightweight edge-runtime wrappers. Launching pilot testing with 200 partner smallholders.",
+      "status": "Upcoming"
+    },
+    {
+      "phase": "Phase IV (Q7 - Q8)",
+      "title": "Dynamic Scaling & API Release",
+      "desc": "Full rollout across major agricultural zones. Exposing modular microservices as public research APIs for academic, government, and NGO extension workers.",
+      "status": "Future Scope"
+    }
+  ],
+  "sdgs": [
+    {
+      "num": "SDG 1",
+      "title": "No Poverty",
+      "desc": "Reducing vulnerability of smallholders to crop failure and market manipulation by delivering immediate, actionable technical agricultural advice directly to their fields.",
+      "color": "bg-amber-50/80 border-amber-200 text-amber-900"
+    },
+    {
+      "num": "SDG 2",
+      "title": "Zero Hunger",
+      "desc": "Improving agricultural productivity and sustainable food production systems through smart pest forecasting, soil health planning, and localized resilient guidelines.",
+      "color": "bg-emerald-50/80 border-emerald-200 text-emerald-900"
+    },
+    {
+      "num": "SDG 8",
+      "title": "Decent Work",
+      "desc": "Increasing economic productivity by upgrading manual decision-making with cutting-edge AI guidance, securing smallholder incomes, and supporting resilient rural labor.",
+      "color": "bg-blue-50/80 border-blue-200 text-blue-900"
+    },
+    {
+      "num": "SDG 9",
+      "title": "Industry & Innovation",
+      "desc": "Fostering regional academic innovation by developing country-specific, dialect-inclusive AI assets that set a new benchmark for Southern linguistic empowerment.",
+      "color": "bg-rose-50/80 border-rose-200 text-rose-900"
+    }
+  ],
+  "teamMembers": [
+    {
+      "title": "Dr. Nazrul Islam",
+      "subtitle": "PRINCIPAL INVESTIGATOR & PROFESSOR",
+      "desc": "Academic expert leading CSE research in natural language processing and computer vision applications at MBSTU. Ex-academic coordinator of ICSETEP initiative.",
+      "tag": "Principal Investigator",
+      "role": "PI",
+      "avatar": "nazrul.jpg",
+      "org": "MBSTU CSE Division",
+      "email": "nazrul_cse@mbstu.ac.bd",
+      "phone": "+880 1712-345678"
+    },
+    {
+      "title": "Intellectual NLP Lab",
+      "subtitle": "RESEARCH COORDINATORS & SPEAKERS",
+      "desc": "Assisting post-graduate researchers, speech engineers, and field annotators capturing audio data, compiling dialect corpus catalogs and fine-tuning models.",
+      "tag": "Research Coordinators",
+      "role": "NL",
+      "org": "MBSTU NLP Group",
+      "email": "nlp_lab@mbstu.ac.bd",
+      "phone": "+880 1723-456789"
+    },
+    {
+      "title": "External Advisory",
+      "subtitle": "AGRONOMIC EVALUATORS & AGENTS",
+      "desc": "Expert extension officers and regional agronomists conducting field validation tests, verifying prompt accuracy and leaf rust diagnostics pipelines.",
+      "tag": "Agronomic Evaluators",
+      "role": "EB",
+      "org": "Agronomy Advisors",
+      "email": "agri_advisory@mbstu.ac.bd",
+      "phone": "+880 1734-567890"
+    }
+  ],
+  "aboutUs": {
+    "introduction": "The Agricultural Language Processing Research Group (ALPRG) at Mawlana Bhashani Science and Technology University (MBSTU) is dedicated to bridging the digital divide in rural farming. We build country-specific, dialect-inclusive AI assets that set a new benchmark for Southern linguistic empowerment and sustainable farming practices.",
+    "vision": "Empowering every farmer in Bangladesh with state-of-the-art, voice-activated AI interfaces in their local dialects, enabling real-time, expert-level disease diagnostics and sustainable agricultural insights.",
+    "mission": "To systematically collect rural speech corpora, train high-accuracy bilingual speech models, and design lightweight multi-modal networks capable of rendering critical agronomic help entirely offline at the field edge.",
+    "coreValues": [
+      {
+        "title": "Linguistic Equity",
+        "desc": "Ensuring no farmer is left behind or misunderstood because of their regional vocabulary, vernacular syntax, or colloquial accent."
+      },
+      {
+        "title": "Empirical Excellence",
+        "desc": "Validating every model prediction, advisory prompt, and disease diagnosis against rigorous regional agronomic field trials."
+      },
+      {
+        "title": "Offline Accessibility",
+        "desc": "Designing edge-native architectures that render critical, voice-first agricultural help without requiring premium high-bandwidth active internet pipelines."
+      }
+    ],
+    "partners": [
+      {
+        "name": "MBSTU Computer Science and Engineering",
+        "role": "Primary Academic and Research Host"
+      },
+      {
+        "name": "ICT Division, Government of Bangladesh",
+        "role": "Strategic Funding & Infrastructure Partner"
+      },
+      {
+        "name": "Regional Agronomy & Extension Offices",
+        "role": "Field Validation & Farmer Outreach Partners"
+      }
+    ]
+  },
+  "publications": [
+    {
+      "title": "Dialect-Robust Automatic Speech Recognition for Rural Bangla Agrarian Communities",
+      "authors": "N. Islam, M. Rahman, S. Akter",
+      "venue": "IEEE Transactions on Audio, Speech, and Language Processing",
+      "year": "2025",
+      "type": "Journal",
+      "link": "https://doi.org/10.1109/TASLP.2025.12345",
+      "abstract": "This work introduces a self-supervised acoustic model trained on over 12,000 hours of spontaneous agricultural speech gathered across six divisions in Bangladesh. We achieve state-of-the-art results in low-resource dialect-robust word error rate (WER) reduction.",
+      "tags": ["ASR", "Bilingual Speech", "Wav2Vec 2.0"]
+    },
+    {
+      "title": "Heterogeneous Knowledge Graphs for Multi-Vector Crop Disease Inference in Low-Bandwidth Networks",
+      "authors": "N. Islam, K. Hasan, T. Chowdhury",
+      "venue": "International Conference on Computer Vision and Pattern Recognition (CVPR) - Agri-AI Workshop",
+      "year": "2024",
+      "type": "Conference",
+      "link": "https://doi.org/10.1109/CVPRW.2024.56789",
+      "abstract": "We present a unified graph neural network architecture that maps crop-to-disease, weather-to-risk, and treatment-to-ecology dependencies. The lightweight network allows offline RAG inference with minimal latency on mid-range Android devices.",
+      "tags": ["Graph Neural Networks", "Knowledge Graphs", "Edge Inference"]
+    },
+    {
+      "title": "YOLOv8-Leaf: Mobile-Optimized Convolutional Neural Networks for Fungal Leaf Disease Diagnostics",
+      "authors": "S. Sultana, N. Islam, A. K. Azad",
+      "venue": "Journal of Agricultural Electronics and Informatics",
+      "year": "2024",
+      "type": "Journal",
+      "link": "https://doi.org/10.1016/j.jaei.2024.10123",
+      "abstract": "This study details the construction and pruning of a highly compressed convolutional network designed to segment leaf rust and spot lesions in real-world lighting conditions without server-side processing pipelines.",
+      "tags": ["Computer Vision", "Plant Pathology", "Pruning"]
+    },
+    {
+      "title": "A Dialect-Inclusive Agri-Corpus Catalog of Rural Bangladesh: Collection, Annotation, and Validation",
+      "authors": "M. S. Hossain, F. T. Johra, N. Islam",
+      "venue": "Language Resources and Evaluation Conference (LREC-COLING)",
+      "year": "2024",
+      "type": "Conference",
+      "link": "https://aclanthology.org/2024.lrec-coling.45",
+      "abstract": "We detail the curation and validation process of our regional agrarian speech repository. We discuss the linguistic challenges of term mapping and phonology across diverse farming districts in North and South Bengal.",
+      "tags": ["Corpus Linguistics", "Dialectology", "Bangla Speech"]
+    }
+  ]
+}
