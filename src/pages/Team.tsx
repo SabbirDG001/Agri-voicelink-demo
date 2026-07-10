@@ -94,6 +94,11 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
   const [selectedMember, setSelectedMember] = useState<TeamMemberItem | null>(null);
   const [activeProfileTab, setActiveProfileTab] = useState<string>("about");
   const [profileSearchQuery, setProfileSearchQuery] = useState<string>("");
+  
+  const [queryName, setQueryName] = useState<string>("");
+  const [queryEmail, setQueryEmail] = useState<string>("");
+  const [queryMessage, setQueryMessage] = useState<string>("");
+  const [querySubmitted, setQuerySubmitted] = useState<boolean>(false);
 
   // Sync state when initialMemberName prop updates (e.g. on direct navigation)
   useEffect(() => {
@@ -104,6 +109,10 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
       if (found) {
         setSelectedMember(found);
         setActiveProfileTab("about");
+        setQueryName("");
+        setQueryEmail("");
+        setQueryMessage("");
+        setQuerySubmitted(false);
         return;
       }
     }
@@ -114,12 +123,20 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
     setSelectedMember(member);
     setActiveProfileTab("about");
     setProfileSearchQuery("");
+    setQueryName("");
+    setQueryEmail("");
+    setQueryMessage("");
+    setQuerySubmitted(false);
     const slug = encodeURIComponent(member.title.replace(/\s+/g, "-"));
     onNavigate(`team/${slug}`);
   };
 
   const handleBackToDirectory = () => {
     setSelectedMember(null);
+    setQueryName("");
+    setQueryEmail("");
+    setQueryMessage("");
+    setQuerySubmitted(false);
     if (onClearInitialMember) {
       onClearInitialMember();
     }
@@ -552,15 +569,34 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
       academicBackground: ["Graduate affiliation at Mawlana Bhashani Science and Technology University"]
     };
 
+    const scholarLink = `https://scholar.google.com/scholar?q=${encodeURIComponent(selectedMember.title)}`;
+    const researchGateLink = `https://www.researchgate.net/search?q=${encodeURIComponent(selectedMember.title)}`;
+    const linkedinLink = `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(selectedMember.title.split(' ')[0])}&lastName=${encodeURIComponent(selectedMember.title.split(' ').slice(1).join(' '))}`;
+
+    const profileTabs = [
+      { id: "about", label: "About Me" },
+      { id: "role", label: "Project Role" }
+    ];
+    if (extraDetails.publications && extraDetails.publications.length > 0) {
+      profileTabs.push({ id: "publications", label: `Publications (${extraDetails.publications.length})` });
+    }
+    profileTabs.push({ id: "contact", label: "Contact" });
+
+    const filteredPubs = (extraDetails.publications || []).filter((pub: any) => 
+      pub.title.toLowerCase().includes(profileSearchQuery.toLowerCase()) ||
+      (pub.venue && pub.venue.toLowerCase().includes(profileSearchQuery.toLowerCase())) ||
+      (pub.authors && pub.authors.toLowerCase().includes(profileSearchQuery.toLowerCase()))
+    );
+
     return (
       <div className="py-12 md:py-20 bg-cream text-charcoal min-h-screen">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Breadcrumbs and back button */}
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <button
               onClick={handleBackToDirectory}
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-slate-500 hover:text-brand-green transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-slate-500 hover:text-brand-green transition-colors cursor-pointer group self-start"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               <span>← Back to Team Directory</span>
@@ -568,173 +604,383 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
             <span className="text-xs font-mono text-slate-400">Researcher Profile // {selectedMember.title}</span>
           </div>
 
-          {/* Premium Profile Header Container */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm mb-10 overflow-hidden relative">
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-green via-brand-sage to-harvest-gold"></div>
+          {/* Main Profile Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left">
-              {/* Profile Avatar */}
-              <div className="relative">
-                <TeamAvatar member={selectedMember} size="w-52 h-52" />
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-brand-green text-white font-mono text-[10px] uppercase tracking-widest px-4 py-2 rounded-full font-extrabold shadow-md whitespace-nowrap z-10 border border-white">
-                  {selectedMember.tag || selectedMember.role}
+            {/* LEFT COLUMN: Profile info card */}
+            <div className="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-green via-brand-sage to-harvest-gold"></div>
+              
+              {/* Avatar with status indicator */}
+              <div className="relative mt-4">
+                <TeamAvatar member={selectedMember} size="w-44 h-44" />
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-brand-green text-white font-mono text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-full font-extrabold shadow-md whitespace-nowrap z-10 border border-white">
+                  {selectedMember.tag || selectedMember.role || "Research Assistant"}
                 </div>
               </div>
 
-              {/* Header Info */}
-              <div className="flex-grow space-y-4">
-                <div className="space-y-1">
-                  <span className="text-xs font-mono font-bold text-brand-green uppercase tracking-widest">{selectedMember.subtitle}</span>
-                  <h1 className="font-serif text-3xl md:text-4xl text-brand-dark font-extrabold tracking-tight">
-                    {selectedMember.title}
-                  </h1>
-                  <p className="text-sm text-slate-500 font-sans font-medium flex items-center justify-center md:justify-start gap-1.5">
-                    <Award className="w-4 h-4 text-brand-green" />
-                    {selectedMember.org || "Mawlana Bhashani Science & Tech University (MBSTU)"}
-                  </p>
-                </div>
-
-                <p className="text-sm text-muted-gray leading-relaxed max-w-2xl">
-                  {extraDetails.longBio}
+              {/* Profile Details */}
+              <div className="mt-6 space-y-2 w-full">
+                <h1 className="font-serif text-2xl font-extrabold text-brand-dark tracking-tight">
+                  {selectedMember.title}
+                </h1>
+                <p className="text-xs font-mono font-bold text-brand-green uppercase tracking-wider">
+                  {selectedMember.subtitle}
                 </p>
+                <p className="text-xs text-slate-500 font-sans font-medium">
+                  {selectedMember.org || "Mawlana Bhashani Science & Tech University (MBSTU)"}
+                </p>
+              </div>
 
-                {/* Direct Contact Links */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-100 text-xs text-slate-600 justify-center md:justify-start">
-                  <a href={`mailto:${selectedMember.email}`} className="flex items-center justify-center md:justify-start gap-2 hover:text-brand-green transition-colors">
-                    <Mail className="w-4 h-4 text-brand-green shrink-0" />
-                    <span className="font-mono font-bold uppercase">Email:</span>
-                    <span className="font-sans font-medium select-all">{selectedMember.email || "nazrul_cse@mbstu.ac.bd"}</span>
-                  </a>
-                  <div className="hidden sm:block text-slate-200">|</div>
-                  <a href={`tel:${selectedMember.phone}`} className="flex items-center justify-center md:justify-start gap-2 hover:text-brand-green transition-colors">
-                    <Phone className="w-4 h-4 text-brand-green shrink-0" />
-                    <span className="font-mono font-bold uppercase">Phone:</span>
-                    <span className="font-sans font-medium select-all">{selectedMember.phone || "+880 1712-345678"}</span>
-                  </a>
-                </div>
+              {/* Contact Card */}
+              <div className="w-full mt-6 pt-6 border-t border-slate-100 space-y-3.5 text-left text-xs text-slate-600">
+                <a href={`mailto:${selectedMember.email || "nagis_ict@mbstu.ac.bd"}`} className="flex items-center gap-3 hover:text-brand-green transition-colors group">
+                  <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-green group-hover:bg-brand-green/10 transition-colors shrink-0">
+                    <Mail className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-mono text-[9px] uppercase text-slate-400 font-bold">Email Address</div>
+                    <span className="font-sans font-semibold select-all text-slate-700 block truncate">{selectedMember.email || "nagis_ict@mbstu.ac.bd"}</span>
+                  </div>
+                </a>
 
-                {/* Social Networks Icons */}
-                <div className="flex items-center justify-center md:justify-start gap-3 pt-2">
-                  <a href="#facebook" title="Facebook Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#3B5998] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm">
-                    <Facebook className="w-4 h-4" />
-                  </a>
-                  <a href="#twitter" title="Twitter Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#1DA1F2] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm">
-                    <Twitter className="w-4 h-4" />
-                  </a>
-                  <a href="#google" title="Google Scholar" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm">
-                    <Globe className="w-4 h-4" />
-                  </a>
-                  <a href="#linkedin" title="LinkedIn Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#0077B5] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm">
-                    <Linkedin className="w-4 h-4" />
-                  </a>
+                <a href={`tel:${selectedMember.phone || "+8801701876194"}`} className="flex items-center gap-3 hover:text-brand-green transition-colors group">
+                  <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-green group-hover:bg-brand-green/10 transition-colors shrink-0">
+                    <Phone className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="font-mono text-[9px] uppercase text-slate-400 font-bold">Phone Connection</div>
+                    <span className="font-sans font-semibold select-all text-slate-700">{selectedMember.phone || "01701876194"}</span>
+                  </div>
+                </a>
+
+                <div className="flex items-center gap-3 group">
+                  <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-green shrink-0">
+                    <MapPin className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="font-mono text-[9px] uppercase text-slate-400 font-bold">Office Location</div>
+                    <span className="font-sans font-semibold text-slate-700">Room #213, 2nd Floor, 1st Academic Building, MBSTU</span>
+                  </div>
                 </div>
+              </div>
+
+              {/* Academic Networks Links */}
+              <div className="flex items-center justify-center gap-3 mt-6 pt-4 border-t border-slate-100 w-full">
+                <a href={scholarLink} target="_blank" rel="noopener noreferrer" title="Google Scholar Search" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <Globe className="w-4 h-4" />
+                </a>
+                <a href={researchGateLink} target="_blank" rel="noopener noreferrer" title="ResearchGate Search" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-brand-green hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <BookOpen className="w-4 h-4" />
+                </a>
+                <a href={linkedinLink} target="_blank" rel="noopener noreferrer" title="LinkedIn Search" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#0077B5] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <Linkedin className="w-4 h-4" />
+                </a>
               </div>
             </div>
-          </div>
 
-          {/* Profile Core Content Layout */}
-          <div className="max-w-4xl mx-auto space-y-8">
+            {/* RIGHT COLUMN: Interactive Tabs */}
+            <div className="lg:col-span-8 space-y-6">
               
-              {/* project role card */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 text-left">
-                <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100">
-                  <Sparkles className="w-5 h-5 text-brand-green" />
-                  <h3 className="font-serif text-lg font-bold text-brand-dark">Agri-VoiceLink Project Role</h3>
-                </div>
+              {/* Custom Tab Navigation */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-2 shadow-sm flex flex-wrap gap-1">
+                {profileTabs.map(tab => (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setActiveProfileTab(tab.id);
+                      setProfileSearchQuery("");
+                    }}
+                    className={`px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex-grow md:flex-grow-0 ${
+                      activeProfileTab === tab.id
+                        ? "bg-brand-green text-white shadow-sm"
+                        : "bg-transparent text-slate-600 hover:bg-slate-50"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Dynamic Tab Content rendering */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm text-left min-h-[400px]">
                 
-                {/* Responsibilities list */}
-                <div className="space-y-4">
-                  <p className="text-xs text-muted-gray">Specific tasks, deliverables, and investigative components managed by this member under our current research roadmap:</p>
-                  <ul className="space-y-3">
-                    {extraDetails.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="flex gap-3 items-start text-xs text-slate-700">
-                        <span className="w-5 h-5 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
-                          {idx + 1}
-                        </span>
-                        <span className="leading-relaxed font-medium">{resp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Mini Stats Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-                  {extraDetails.stats.map((st, idx) => (
-                    <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between">
-                      <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">{st.label}</span>
-                      <span className="font-serif text-lg font-bold text-brand-dark mt-1">{st.value}</span>
+                {activeProfileTab === "about" && (
+                  <div className="space-y-8">
+                    <div className="space-y-4">
+                      <h2 className="font-serif text-xl font-bold text-brand-dark pb-3 border-b border-slate-100">Academic & Research Bio</h2>
+                      <p className="text-sm text-slate-600 leading-relaxed font-sans font-medium whitespace-pre-line">
+                        {extraDetails.longBio}
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* academic background card */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm text-left space-y-4">
-                <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-                  <Users className="w-5 h-5 text-brand-green" />
-                  <h3 className="font-serif text-lg font-bold text-brand-dark">Academic & Scientific Affiliation</h3>
-                </div>
-                <ul className="space-y-2 text-xs text-slate-600">
-                  {extraDetails.academicBackground.map((bg, idx) => (
-                    <li key={idx} className="flex items-start gap-2 leading-relaxed">
-                      <span className="text-brand-green font-bold shrink-0 mt-0.5">•</span>
-                      <span>{bg}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* associated publications */}
-              {extraDetails.publications.length > 0 && (
-                <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm text-left space-y-4">
-                  <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-                    <BookOpen className="w-5 h-5 text-brand-green" />
-                    <h3 className="font-serif text-lg font-bold text-brand-dark">Primary Connected Research</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {extraDetails.publications.map((pub: any, idx: number) => {
-                      const paperLink = pub.link || `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}`;
-                      return (
-                        <a
-                          key={idx}
-                          href={paperLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-brand-green hover:bg-slate-100/50 transition-all duration-200 group/pub cursor-pointer"
-                          title={`Click to view paper on Google Scholar: ${pub.title}`}
-                        >
-                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                            <div className="space-y-1.5 flex-grow">
-                              <div className="flex items-center gap-2">
-                                <span className="text-[9px] font-mono font-bold bg-slate-200 text-slate-600 px-2 py-0.5 rounded group-hover/pub:bg-brand-green/10 group-hover/pub:text-brand-green transition-colors">
-                                  {pub.type}
-                                </span>
-                                <span className="text-[10px] font-mono text-slate-400">{pub.year}</span>
-                              </div>
-                              <h4 className="font-sans font-bold text-xs text-slate-900 leading-snug group-hover/pub:text-brand-green transition-colors">
-                                {pub.title}
-                              </h4>
-                              <p className="text-[10px] text-brand-green font-bold flex items-center gap-1">
-                                <BookOpen className="w-3 h-3" />
-                                {pub.venue}
-                              </p>
-                            </div>
-                            <div className="text-slate-400 group-hover/pub:text-brand-green group-hover/pub:translate-x-1 group-hover/pub:-translate-y-1 transition-all shrink-0">
-                              <ArrowUpRight className="w-4 h-4" />
-                            </div>
+                    {/* Education Details */}
+                    <div className="space-y-4">
+                      <h3 className="font-serif text-lg font-bold text-brand-dark pb-3 border-b border-slate-100 flex items-center gap-2">
+                        <Award className="w-4 h-4 text-brand-green" />
+                        Academic & Professional Background
+                      </h3>
+                      <div className="relative border-l border-slate-200 pl-6 ml-2 space-y-6">
+                        {extraDetails.academicBackground.map((bg: string, idx: number) => (
+                          <div key={idx} className="relative">
+                            <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-green border-4 border-white shadow-sm"></div>
+                            <h4 className="font-sans font-bold text-sm text-slate-900 leading-relaxed">
+                              {bg}
+                            </h4>
                           </div>
-                        </a>
-                      );
-                    })}
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              )}
-            {/* Research integrity notice */}
-            <div className="p-5 rounded-2xl bg-cream border border-slate-200/80 text-[11px] text-slate-500 leading-relaxed text-left flex gap-3">
-              <Award className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
-              <p>
-                As an academic group host at Mawlana Bhashani Science and Technology University, all scientific submissions are audited for data compliance and ethical human-annotation standards.
-              </p>
+                )}
+
+                {activeProfileTab === "role" && (
+                  <div className="space-y-8">
+                    <div className="space-y-6">
+                      <h2 className="font-serif text-xl font-bold text-brand-dark pb-3 border-b border-slate-100 flex items-center gap-2">
+                        <Sparkles className="w-4.5 h-4.5 text-brand-green" />
+                        Project Role & Responsibilities
+                      </h2>
+                      <div className="space-y-4">
+                        <p className="text-xs text-slate-500 leading-relaxed">
+                          Specific deliverables, investigative targets, and operations conducted by this researcher under our multi-modal research roadmap:
+                        </p>
+                        <ul className="space-y-3.5">
+                          {extraDetails.responsibilities.map((resp: string, idx: number) => (
+                            <li key={idx} className="flex gap-3.5 items-start text-xs text-slate-700 text-left">
+                              <span className="w-6 h-6 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                                {idx + 1}
+                              </span>
+                              <span className="leading-relaxed font-medium pt-0.5">{resp}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Stats details */}
+                    <div className="space-y-4 pt-4 border-t border-slate-100">
+                      <h3 className="text-xs font-mono font-bold text-brand-green uppercase tracking-widest">Key Academic & Research Metrics</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {extraDetails.stats.map((st: any, idx: number) => (
+                          <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between text-left">
+                            <span className="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider">{st.label}</span>
+                            <span className="font-serif text-base font-extrabold text-brand-dark mt-1.5 leading-snug">{st.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeProfileTab === "publications" && (
+                  <div className="space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-slate-100">
+                      <h2 className="font-serif text-xl font-bold text-brand-dark">Connected Publications & Thesis</h2>
+                      
+                      {/* Search input for filter */}
+                      <div className="relative w-full sm:max-w-xs">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5" />
+                        <input
+                          type="text"
+                          placeholder="Filter papers..."
+                          value={profileSearchQuery}
+                          onChange={(e) => setProfileSearchQuery(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl py-1.5 pl-9 pr-3 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 max-h-[550px] overflow-y-auto pr-2 custom-scrollbar">
+                      {filteredPubs.length > 0 ? (
+                        filteredPubs.map((pub: any, idx: number) => {
+                          const scholarLink = pub.link || `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}`;
+                          return (
+                            <a
+                              key={idx}
+                              href={scholarLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-brand-green hover:bg-slate-100/50 transition-all duration-200 group/pub cursor-pointer text-left"
+                              title={`Click to view paper on Google Scholar: ${pub.title}`}
+                            >
+                              <div className="flex justify-between items-start gap-4">
+                                <div className="space-y-1.5 flex-grow">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-[9px] font-mono font-bold bg-slate-200 text-slate-600 px-2 py-0.5 rounded group-hover/pub:bg-brand-green/10 group-hover/pub:text-brand-green transition-colors uppercase">
+                                      {pub.type || "Research"}
+                                    </span>
+                                    <span className="text-[10px] font-mono text-slate-400">{pub.year}</span>
+                                  </div>
+                                  <h4 className="font-sans font-bold text-xs text-slate-900 leading-snug group-hover/pub:text-brand-green transition-colors">
+                                    {pub.title}
+                                  </h4>
+                                  {pub.authors && (
+                                    <p className="text-[11px] text-slate-500 font-medium leading-relaxed">
+                                      {pub.authors}
+                                    </p>
+                                  )}
+                                  {pub.venue && (
+                                    <p className="text-[10px] text-brand-green font-bold flex items-center gap-1">
+                                      <BookOpen className="w-3 h-3" />
+                                      {pub.venue}
+                                    </p>
+                                  )}
+                                </div>
+                                <div className="text-slate-400 group-hover/pub:text-brand-green group-hover/pub:translate-x-1 group-hover/pub:-translate-y-1 transition-all shrink-0 mt-0.5">
+                                  <ArrowUpRight className="w-4 h-4" />
+                                </div>
+                              </div>
+                            </a>
+                          );
+                        })
+                      ) : (
+                        <div className="text-center py-12 text-slate-400 font-medium text-xs">
+                          No publications match your search query.
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeProfileTab === "contact" && (
+                  <div className="space-y-6">
+                    <h2 className="font-serif text-xl font-bold text-brand-dark pb-3 border-b border-slate-100">Contact & Affiliation Details</h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                      {/* Interactive Query Form */}
+                      <div>
+                        {querySubmitted ? (
+                          <div className="p-6 rounded-2xl bg-brand-green/10 border border-brand-green/20 text-center space-y-3 flex flex-col items-center justify-center h-full min-h-[280px]">
+                            <div className="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center shadow-md">
+                              <Check className="w-6 h-6" />
+                            </div>
+                            <h3 className="font-serif text-base font-bold text-brand-dark">Query Submitted Successfully</h3>
+                            <p className="text-xs text-slate-600 max-w-xs leading-relaxed">
+                              Thank you for your message. Your research query has been recorded and routed directly to <strong>{selectedMember.title}</strong>'s academic queue. A response will be issued soon.
+                            </p>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setQuerySubmitted(false);
+                                setQueryName("");
+                                setQueryEmail("");
+                                setQueryMessage("");
+                              }}
+                              className="text-xs font-mono font-bold text-brand-green hover:underline cursor-pointer pt-2"
+                            >
+                              Send another query
+                            </button>
+                          </div>
+                        ) : (
+                          <form 
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              if (queryName && queryEmail && queryMessage) {
+                                setQuerySubmitted(true);
+                              }
+                            }}
+                            className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4"
+                          >
+                            <div className="space-y-1 text-left">
+                              <h3 className="font-serif text-base font-bold text-slate-800">Submit a Research Query</h3>
+                              <p className="text-[11px] text-slate-500">Have a question or collaboration proposal for {selectedMember.title}? Send a direct message.</p>
+                            </div>
+
+                            <div className="space-y-3">
+                              <div className="space-y-1 text-left">
+                                <label className="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Full Name</label>
+                                <input
+                                  type="text"
+                                  required
+                                  value={queryName}
+                                  onChange={(e) => setQueryName(e.target.value)}
+                                  placeholder="e.g. John Doe"
+                                  className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
+                                />
+                              </div>
+
+                              <div className="space-y-1 text-left">
+                                <label className="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Email Address</label>
+                                <input
+                                  type="email"
+                                  required
+                                  value={queryEmail}
+                                  onChange={(e) => setQueryEmail(e.target.value)}
+                                  placeholder="e.g. john@example.com"
+                                  className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
+                                />
+                              </div>
+
+                              <div className="space-y-1 text-left">
+                                <label className="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Message / Proposal</label>
+                                <textarea
+                                  required
+                                  rows={3}
+                                  value={queryMessage}
+                                  onChange={(e) => setQueryMessage(e.target.value)}
+                                  placeholder="Describe your query, research request, or proposal..."
+                                  className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green resize-none"
+                                />
+                              </div>
+                            </div>
+
+                            <button
+                              type="submit"
+                              className="w-full bg-brand-green hover:bg-brand-green/90 text-white font-mono text-[10px] font-bold uppercase tracking-widest py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer hover:shadow"
+                            >
+                              <span>Send Query</span>
+                              <Send className="w-3.5 h-3.5" />
+                            </button>
+                          </form>
+                        )}
+                      </div>
+
+                      {/* Visual Location card with iframe Google Maps */}
+                      <div className="p-6 rounded-2xl bg-slate-50 border border-slate-150 flex flex-col justify-between self-stretch text-left">
+                        <div>
+                          <span className="font-mono text-[9px] text-slate-400 font-bold uppercase tracking-wider">Campus Geographic Coords</span>
+                          <h3 className="font-serif text-base font-bold text-slate-800 mt-1 leading-snug">1st Academic Building, MBSTU</h3>
+                          <p className="font-mono text-[10px] text-brand-green font-bold mt-1">24.237622° N, 89.890777° E</p>
+                          <p className="text-xs text-slate-500 mt-1">Located at Santosh, Tangail-1902, Bangladesh. 2nd Floor, Room #213.</p>
+                        </div>
+
+                        {/* Beautiful Interactive Google Maps iframe */}
+                        <div className="h-44 w-full rounded-xl overflow-hidden border border-slate-200 mt-4 relative bg-slate-100 shadow-inner group/map">
+                          <iframe
+                            title="MBSTU 1st Academic Building Map"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            src="https://maps.google.com/maps?q=24.237622071869325,89.890777008193&z=17&t=m&hl=en&output=embed"
+                            allowFullScreen
+                            loading="lazy"
+                          ></iframe>
+                          <a 
+                            href="https://www.google.com/maps/search/?api=1&query=24.237622071869325,89.890777008193"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-lg px-2.5 py-1 text-[10px] font-mono font-bold text-slate-700 hover:text-brand-green hover:bg-white transition-all shadow-sm flex items-center gap-1"
+                          >
+                            <span>Open in Maps</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+
+              {/* Research integrity notice */}
+              <div className="p-5 rounded-2xl bg-cream border border-slate-200/80 text-[11px] text-slate-500 leading-relaxed flex gap-3 text-left">
+                <Award className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
+                <p>
+                  All NLP dataset compilations, voice recording annotation phases, and field evaluation programs are conducted under direct supervisions of senior lab faculty in strict alignment with MBSTU academic evaluation rules.
+                </p>
+              </div>
+
             </div>
 
           </div>
