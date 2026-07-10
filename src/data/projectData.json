@@ -1,9 +1,9 @@
 {
   "stats": [
-    { "value": "98.2%", "label": "ASR Accuracy", "desc": "Native dialects recognized" },
-    { "value": "48+", "label": "Target Crops", "desc": "Detailed knowledge graph nodes" },
-    { "value": "12k+", "label": "Audio Corpus", "desc": "Hours of rural Bangla speech" },
-    { "value": "75ms", "label": "Model Latency", "desc": "Optimized for offline edge" }
+    { "value": ">95%", "label": "ASR / OCR Accuracy ", "desc": "" },
+    { "value": ">10%", "label": "Income Increase Goal", "desc": "" },
+    { "value": "5000+", "label": "Farmers Targeted", "desc": "" },
+    { "value": "2 Yrs", "label": "Project Duration", "desc": "" }
   ],
   "highlightCards": [
     {
@@ -141,34 +141,69 @@
   "teamMembers": [
     {
       "title": "Dr. Nazrul Islam",
-      "subtitle": "PRINCIPAL INVESTIGATOR & PROFESSOR",
-      "desc": "Academic expert leading CSE research in natural language processing and computer vision applications at MBSTU. Ex-academic coordinator of ICSETEP initiative.",
+      "subtitle": "ASSOCIATE PROFESSOR & PRINCIPAL INVESTIGATOR",
+      "desc": "Academic expert in optical sensors and machine learning at Mawlana Bhashani Science and Technology University (MBSTU). Leads core research and deep learning models.",
       "tag": "Principal Investigator",
       "role": "PI",
       "avatar": "nazrul.jpg",
-      "org": "MBSTU CSE Division",
-      "email": "nazrul_cse@mbstu.ac.bd",
-      "phone": "+880 1712-345678"
+      "org": "MBSTU ICT Division",
+      "email": "nazrul@mbstu.ac.bd",
+      "phone": "01721-259140"
     },
     {
-      "title": "Intellectual NLP Lab",
-      "subtitle": "RESEARCH COORDINATORS & SPEAKERS",
-      "desc": "Assisting post-graduate researchers, speech engineers, and field annotators capturing audio data, compiling dialect corpus catalogs and fine-tuning models.",
-      "tag": "Research Coordinators",
-      "role": "NL",
-      "org": "MBSTU NLP Group",
-      "email": "nlp_lab@mbstu.ac.bd",
-      "phone": "+880 1723-456789"
+      "title": "Afsana Akter Mim",
+      "subtitle": "UNDERGRADUATE RESEARCHER",
+      "desc": "Final-year B.Sc. student specializing in full-stack MERN/Django application development and machine learning for sentiment analysis.",
+      "tag": "Software & ML Developer",
+      "role": "RM",
+      "avatar": "mim.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "it21004@mbstu.ac.bd",
+      "phone": "+880 1775-959760"
     },
     {
-      "title": "External Advisory",
-      "subtitle": "AGRONOMIC EVALUATORS & AGENTS",
-      "desc": "Expert extension officers and regional agronomists conducting field validation tests, verifying prompt accuracy and leaf rust diagnostics pipelines.",
-      "tag": "Agronomic Evaluators",
-      "role": "EB",
-      "org": "Agronomy Advisors",
-      "email": "agri_advisory@mbstu.ac.bd",
-      "phone": "+880 1734-567890"
+      "title": "Md. Lutfor Rahaman",
+      "subtitle": "POST-GRADUATE RESEARCHER",
+      "desc": "M.Sc. student focusing on Bioinformatics, Explainable AI, and IoT-enabled smart biomedical healthcare ecosystems.",
+      "tag": "Bioinformatics Researcher",
+      "role": "RM",
+      "avatar": "lutfor.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "it21047@mbstu.ac.bd",
+      "phone": "+880 1735-637626"
+    },
+    {
+      "title": "Md. Shafi Mahmud",
+      "subtitle": "UNDERGRADUATE RESEARCHER",
+      "desc": "Competitive programmer and ML enthusiast with expertise in generative AI, algorithmic data structures, and natural language processing.",
+      "tag": "AI & Algorithmic Specialist",
+      "role": "RM",
+      "avatar": "shafi.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "it21001@mbstu.ac.bd",
+      "phone": "+880 1769-175695"
+    },
+    {
+      "title": "Sagor Roy",
+      "subtitle": "UNDERGRADUATE RESEARCHER",
+      "desc": "Final-year student bridging machine learning and bioinformatics for biomarker discovery and IoT-based smart implementations.",
+      "tag": "AI & IoT Researcher",
+      "role": "RM",
+      "avatar": "sagor.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "it21044@mbstu.ac.bd",
+      "phone": "+880 1798-864872"
+    },
+    {
+      "title": "Swapnil Saha",
+      "subtitle": "UNDERGRADUATE RESEARCHER",
+      "desc": "Final-year B.Sc. student specializing in artificial intelligence, NLP, and bioinformatics-driven research for computational healthcare solutions[cite: 8].",
+      "tag": "AI & Bioinformatics Researcher",
+      "role": "RM",
+      "avatar": "swapnil.jpg",
+      "org": "MBSTU ICT Division",
+      "email": "it21028@mbstu.ac.bd[cite: 8]",
+      "phone": "+880 1784-797944[cite: 8]"
     }
   ],
   "aboutUs": {
@@ -191,7 +226,7 @@
     ],
     "partners": [
       {
-        "name": "MBSTU Computer Science and Engineering",
+        "name": "MBSTU Information and Communication Technology",
         "role": "Primary Academic and Research Host"
       },
       {
@@ -206,44 +241,211 @@
   },
   "publications": [
     {
-      "title": "Dialect-Robust Automatic Speech Recognition for Rural Bangla Agrarian Communities",
-      "authors": "N. Islam, M. Rahman, S. Akter",
-      "venue": "IEEE Transactions on Audio, Speech, and Language Processing",
+      "title": "Artificial Neural Network-Assisted Confinement Loss Prediction of D-Shaped PCF-SPR Biosensor",
+      "authors": "Nazrul Islam, Mia Mohammad Shoaib Hasan, Md. Nahid Hasan, Imam Hossain Shibly, Mohammad Abu Yousuf, Md Zia Uddin",
+      "venue": "2024 IEEE International Humanitarian Technologies Conference (IHTC)",
+      "year": "2024",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Artificial+Neural+Network-Assisted+Confinement+Loss+Prediction+of+D-Shaped+PCF-SPR+Biosensor",
+      "tags": ["Neural Networks", "Confinement Loss", "SPR Biosensor"]
+    },
+    {
+      "title": "Dual-core silver-coated plasmonic sensor modeling with machine learning",
+      "authors": "Chanchal Saha, Farzana Haque, Nazrul Islam, Muhammad Minoar Hossain, Md. Easin Arafat, Mohammad Abu Yousuf, Mohammad Motiur Rahman",
+      "venue": "Heliyon",
+      "year": "2024",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Dual-core+silver-coated+plasmonic+sensor+modeling+with+machine+learning",
+      "tags": ["Plasmonic Sensor", "Machine Learning", "Bio-sensing"]
+    },
+    {
+      "title": "Plasmonic sensor using generative adversarial networks integration",
+      "authors": "Nazrul Islam, Mia Mohammad Shoaib Hasan, Imam Hossain Shibly, Md. Bajlur Rashid, Mohammad Abu Yousuf, Firoz Haider, Rifat Ahmed Aoni, Rajib Ahmed",
+      "venue": "Optics Express",
+      "year": "2024",
+      "type": "Journal",
+      "link": "https://opg.optica.org/oe/abstract.cfm?uri=oe-32-19-33519",
+      "tags": ["GAN", "Optics Express", "Plasmonic Sensor"]
+    },
+    {
+      "title": "Multiple Fano Resonance Modes based Plasmonic Refractive Index Sensor for Edible Oil Adulteration Detection",
+      "authors": "Sabiha Sharmin, Mohammad Abu Yousuf, Nazrul Islam",
+      "venue": "Optik",
+      "year": "2024",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Multiple+Fano+Resonance+Modes+based+Plasmonic+Refractive+Index+Sensor+for+Edible+Oil+Adulteration+Detection",
+      "tags": ["Fano Resonance", "Adulteration Detection", "Refractive Index"]
+    },
+    {
+      "title": "Machine Learning Classification Approach for Refractive Index Prediction of D-Shape Plasmonic Biosensor",
+      "authors": "Nazrul Islam, Md. Nahid Hasan, Mia Mohammad Shoaib Hasan, Imam Hossain Shibly, Mohammad Abu Yousuf, Md. Zia Uddin",
+      "venue": "2024 IEEE 3rd Conference on Information Technology and Data Science (CITDS)",
+      "year": "2024",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Machine+Learning+Classification+Approach+for+Refractive+Index+Prediction+of+D-Shape+Plasmonic+Biosensor",
+      "tags": ["Machine Learning", "Refractive Index", "Biosensor"]
+    },
+    {
+      "title": "Accurate Prediction of Lysine Methylation Sites Using Evolutionary and Structural-Based Information",
+      "authors": "Md. Easin Arafat, Md. Wakil Ahmad, S. M. Shovan, Towhid Ul Haq, Nazrul Islam, Mufti Mahmud, M. Shamim Kaiser",
+      "venue": "Cognitive Computation",
+      "year": "2024",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Accurate+Prediction+of+Lysine+Methylation+Sites+Using+Evolutionary+and+Structural-Based+Information",
+      "tags": ["Bioinformatics", "Lysine Methylation", "Cognitive Computation"]
+    },
+    {
+      "title": "Computing Confinement Loss of Open-Channels Based PCF-SPR Sensor with ANN Approach",
+      "authors": "Nazrul Islam, Md. Saikat Islam Khan, Md. Nahid Hasan, Mohammad Abu Yousuf",
+      "venue": "2023 IEEE International Conference on Telecommunications and Photonics (ICTP)",
+      "year": "2023",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Computing+Confinement+Loss+of+Open-Channels+Based+PCF-SPR+Sensor+with+ANN+Approach",
+      "tags": ["Neural Networks", "Confinement Loss", "PCF-SPR Sensor"]
+    },
+    {
+      "title": "Computing Optical Properties of Open-Channels Based Plasmonic Biosensor Employing Plasmonic Materials with ML Approach",
+      "authors": "Nazrul Islam, Imam Hossain Shibly, Mia Mohammad Shoaib Hasan, Md. Nahid Hasan, Mohammad Abu Yousuf",
+      "venue": "2023 26th International Conference on Computer and Information Technology (ICCIT)",
+      "year": "2023",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Computing+Optical+Properties+of+Open-Channels+Based+Plasmonic+Biosensor+Employing+Plasmonic+Materials+with+ML+Approach",
+      "tags": ["Machine Learning", "Plasmonic Material", "Biosensor"]
+    },
+    {
+      "title": "Highly sensitive open channel based PCF-SPR sensor for analyte refractive index sensing",
+      "authors": "Nazrul Islam, Md. Faizul Huq Arif, Mohammad Abu Yousuf, Sayed Asaduzzaman",
+      "venue": "Results in Physics",
+      "year": "2023",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Highly+sensitive+open+channel+based+PCF-SPR+sensor+for+analyte+refractive+index+sensing",
+      "tags": ["Results in Physics", "Refractive Index", "PCF-SPR Sensor"]
+    },
+    {
+      "title": "Water quality prediction and classification based on principal component regression and gradient boosting classifier approach",
+      "authors": "Md. Saikat Islam Khan, Jia Uddin, Sifatul Islam, Mostofa Kamal Nasir, Nazrul Islam",
+      "venue": "Journal of King Saud University - Computer and Information Sciences",
+      "year": "2022",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Water+quality+prediction+and+classification+based+on+principal+component+regression+and+gradient+boosting+classifier+approach",
+      "tags": ["Regression", "Gradient Boosting", "Water Quality"]
+    },
+    {
+      "title": "Enhanced Sensitivity of Open Channel SPR-Based PCF Sensor Employing Plasmonic Materials for Analyte Sensing",
+      "authors": "Nazrul Islam, Md. Mohi Uddin Masum, Md. Faizul Huq Arif, Sayed Asaduzzaman, Monoranjon Roy, Mohammad Abu Yousuf, Md. Zia Uddin",
+      "venue": "Plasmonics",
+      "year": "2022",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Enhanced+Sensitivity+of+Open+Channel+SPR-Based+PCF+Sensor+Employing+Plasmonic+Materials+for+Analyte+Sensing",
+      "tags": ["Plasmonics", "Open Channel", "Acoustics"]
+    },
+    {
+      "title": "Gastrointestinal polyp detection through a fusion of contourlet transform and Neural features",
+      "authors": "Md. Mahmudul Hasan, Nazrul Islam, Mohammad Motiur Rahman",
+      "venue": "Journal of King Saud University - Computer and Information Sciences",
+      "year": "2022",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Gastrointestinal+polyp+detection+through+a+fusion+of+contourlet+transform+and+Neural+features",
+      "tags": ["Polyp Detection", "Neural Features", "Contourlet Transform"]
+    },
+    {
+      "title": "Node to Node Performance Evaluation through RYU SDN Controller",
+      "authors": "Md. Tariqul Islam, Nazrul Islam, Md. Al Refat",
+      "venue": "Wireless Personal Communications",
+      "year": "2020",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=Node+to+Node+Performance+Evaluation+through+RYU+SDN+Controller",
+      "tags": ["RYU SDN", "Software Defined Network", "Routing"]
+    },
+    {
+      "title": "Performance analysis of OpenFlow based software defined wired and wireless network",
+      "authors": "Mehedy Hasan Rafsan Jany, Nazrul Islam, Rahmatullah Khondoker, Md. Ahsan Habib",
+      "venue": "2017 20th International Conference of Computer and Information Technology (ICCIT)",
+      "year": "2017",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Performance+analysis+of+OpenFlow+based+software+defined+wired+and+wireless+network",
+      "tags": ["OpenFlow", "SDN Wireless", "Performance Analysis"]
+    },
+    {
+      "title": "Queue management of RED enabled ZigBee network based on packet size variations and distribution techniques",
+      "authors": "Md. Jaminul Haque Biddut, Md. Faizul Huq Arif, Nazrul Islam",
+      "venue": "2017 International Conference on Electrical, Computer and Communication Engineering (ECCE)",
+      "year": "2017",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Queue+management+of+RED+enabled+ZigBee+network+based+on+packet+size+variations+and+distribution+techniques",
+      "tags": ["ZigBee Network", "Queue Management", "RED Algorithm"]
+    },
+    {
+      "title": "An Analysis of QoS in ZigBee Network Based on Deviated Node Priority",
+      "authors": "Md. Jaminul Haque Biddut, Nazrul Islam, Md. Maksudul Karim, Mohammad Badrul Alam Miah",
+      "venue": "Journal of Electrical and Computer Engineering",
+      "year": "2016",
+      "type": "Journal",
+      "link": "https://scholar.google.com/scholar?q=An+Analysis+of+QoS+in+ZigBee+Network+Based+on+Deviated+Node+Priority",
+      "tags": ["ZigBee QoS", "Node Priority", "Wired/Wireless"]
+    },
+    {
+      "title": "An analytical study to minimize load of ZigBee network based on statistical modeling",
+      "authors": "Nazrul Islam, Md. Jaminul Haque Biddut, Asma Islam Swapna, Mohammad Motiur Rahman",
+      "venue": "2015 IEEE International Conference on Electrical and Computer Engineering (WIECON-ECE)",
+      "year": "2015",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=An+analytical+study+to+minimize+load+of+ZigBee+network+based+on+statistical+modeling",
+      "tags": ["Statistical Modeling", "Load Minimization", "ZigBee Network"]
+    },
+    {
+      "title": "A new approach of ZigBee MAC layer design based on security enhancement",
+      "authors": "Md. Jaminul Haque Biddut, Nazrul Islam, Rucksana Safa Sultana, Angona Sarker, Mohammad Motiur Rahman",
+      "venue": "2015 IEEE International Conference on Telecommunications and Photonics (ICTP)",
+      "year": "2015",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=A+new+approach+of+ZigBee+MAC+layer+design+based+on+security+enhancement",
+      "tags": ["MAC Layer Design", "Security Enhancement", "Sensor Network"]
+    },
+    {
+      "title": "Improved Quality of Service in ZigBee network with statistical modeling",
+      "authors": "Nazrul Islam, Md. Jaminul Haque Biddut, Asma Islam Swapna, Sayed Asaduzzaman",
+      "venue": "2015 International Conference on Advances in Electrical Engineering (ICAEE)",
+      "year": "2015",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Improved+Quality+of+Service+in+ZigBee+network+with+statistical+modeling",
+      "tags": ["QoS Optimization", "Statistical Modeling", "Sensor Network"]
+    },
+    {
+      "title": "Performance Analysis of large scale ZigBee network design through geometric structure",
+      "authors": "Jaminul Haque Biddut, Nazrul Islam, Mehedy Hasan Rafsan Jany, Asma Islam Swapna",
+      "venue": "2015 2nd International Conference on Electrical Information and Communication Technologies (EICT)",
+      "year": "2015",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Performance+Analysis+of+large+scale+ZigBee+network+design+through+geometric+structure",
+      "tags": ["Geometric Structure", "ZigBee Network", "Large-scale Routing"]
+    },
+    {
+      "title": "Randomly encrypted key generation algorithm against side channel attack in cloud computing",
+      "authors": "Md. Bajlur Rashid, Nazrul Islam, Abdullah Al Mahedi Sabuj, Sajjad Waheed, Mohammad Badrul Alam Miah",
+      "venue": "2015 International Conference on Electrical Engineering and Information Communication Technology (ICEEICT)",
+      "year": "2015",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=Randomly+encrypted+key+generation+algorithm+against+side+channel+attack+in+cloud+computing",
+      "tags": ["Key Generation", "Side Channel Attack", "Cloud Security"]
+    },
+    {
+      "title": "In small chunks or all at once? User preferences of network delays in web browsing sessions",
+      "authors": "Nazrul Islam, Vijaya John David Elepe, Junaid Shaikh, Markus Fiedler",
+      "venue": "2014 IEEE International Conference on Communications Workshops (ICC)",
+      "year": "2014",
+      "type": "Conference",
+      "link": "https://scholar.google.com/scholar?q=In+small+chunks+or+all+at+once%3F+User+preferences+of+network+delays+in+web+browsing+sessions",
+      "tags": ["Network Delay", "QoE Evaluation", "Web Browsing"]
+    },
+    {
+      "title": "DeepTranSeq: an image-based approach for bacterial sigma70 promoter sequence identification using deep learning techniques.",
+      "authors": "Billah, Mustain, Md Easin Arafat, Nazrul Islam, Al Imtiaz, Swakkhar Shatabda, M. Shamim Kaiser, Tamás Orosz",
+      "venue": "Network Modeling Analysis in Health Informatics and Bioinformatics",
       "year": "2025",
       "type": "Journal",
-      "link": "https://doi.org/10.1109/TASLP.2025.12345",
-      "abstract": "This work introduces a self-supervised acoustic model trained on over 12,000 hours of spontaneous agricultural speech gathered across six divisions in Bangladesh. We achieve state-of-the-art results in low-resource dialect-robust word error rate (WER) reduction.",
-      "tags": ["ASR", "Bilingual Speech", "Wav2Vec 2.0"]
-    },
-    {
-      "title": "Heterogeneous Knowledge Graphs for Multi-Vector Crop Disease Inference in Low-Bandwidth Networks",
-      "authors": "N. Islam, K. Hasan, T. Chowdhury",
-      "venue": "International Conference on Computer Vision and Pattern Recognition (CVPR) - Agri-AI Workshop",
-      "year": "2024",
-      "type": "Conference",
-      "link": "https://doi.org/10.1109/CVPRW.2024.56789",
-      "abstract": "We present a unified graph neural network architecture that maps crop-to-disease, weather-to-risk, and treatment-to-ecology dependencies. The lightweight network allows offline RAG inference with minimal latency on mid-range Android devices.",
-      "tags": ["Graph Neural Networks", "Knowledge Graphs", "Edge Inference"]
-    },
-    {
-      "title": "YOLOv8-Leaf: Mobile-Optimized Convolutional Neural Networks for Fungal Leaf Disease Diagnostics",
-      "authors": "S. Sultana, N. Islam, A. K. Azad",
-      "venue": "Journal of Agricultural Electronics and Informatics",
-      "year": "2024",
-      "type": "Journal",
-      "link": "https://doi.org/10.1016/j.jaei.2024.10123",
-      "abstract": "This study details the construction and pruning of a highly compressed convolutional network designed to segment leaf rust and spot lesions in real-world lighting conditions without server-side processing pipelines.",
-      "tags": ["Computer Vision", "Plant Pathology", "Pruning"]
-    },
-    {
-      "title": "A Dialect-Inclusive Agri-Corpus Catalog of Rural Bangladesh: Collection, Annotation, and Validation",
-      "authors": "M. S. Hossain, F. T. Johra, N. Islam",
-      "venue": "Language Resources and Evaluation Conference (LREC-COLING)",
-      "year": "2024",
-      "type": "Conference",
-      "link": "https://aclanthology.org/2024.lrec-coling.45",
-      "abstract": "We detail the curation and validation process of our regional agrarian speech repository. We discuss the linguistic challenges of term mapping and phonology across diverse farming districts in North and South Bengal.",
-      "tags": ["Corpus Linguistics", "Dialectology", "Bangla Speech"]
+      "link": "https://scholar.google.com/scholar?q=DeepTranSeq%3A+an+image-based+approach+for+bacterial+sigma70+promoter+sequence+identification+using+deep+learning+techniques",
+      "tags": ["Deep Learning", "Bioinformatics", "DNA Promoter Sequence"]
     }
   ]
 }

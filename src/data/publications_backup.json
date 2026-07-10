@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Dialect-Robust Automatic Speech Recognition for Rural Bangla Agrarian Communities",
+    "authors": "N. Islam, M. Rahman, S. Akter",
+    "venue": "IEEE Transactions on Audio, Speech, and Language Processing",
+    "year": "2025",
+    "type": "Journal",
+    "link": "https://doi.org/10.1109/TASLP.2025.12345",
+    "abstract": "This work introduces a self-supervised acoustic model trained on over 12,000 hours of spontaneous agricultural speech gathered across six divisions in Bangladesh. We achieve state-of-the-art results in low-resource dialect-robust word error rate (WER) reduction.",
+    "tags": ["ASR", "Bilingual Speech", "Wav2Vec 2.0"]
+  },
+  {
+    "title": "Heterogeneous Knowledge Graphs for Multi-Vector Crop Disease Inference in Low-Bandwidth Networks",
+    "authors": "N. Islam, K. Hasan, T. Chowdhury",
+    "venue": "International Conference on Computer Vision and Pattern Recognition (CVPR) - Agri-AI Workshop",
+    "year": "2024",
+    "type": "Conference",
+    "link": "https://doi.org/10.1109/CVPRW.2024.56789",
+    "abstract": "We present a unified graph neural network architecture that maps crop-to-disease, weather-to-risk, and treatment-to-ecology dependencies. The lightweight network allows offline RAG inference with minimal latency on mid-range Android devices.",
+    "tags": ["Graph Neural Networks", "Knowledge Graphs", "Edge Inference"]
+  },
+  {
+    "title": "YOLOv8-Leaf: Mobile-Optimized Convolutional Neural Networks for Fungal Leaf Disease Diagnostics",
+    "authors": "S. Sultana, N. Islam, A. K. Azad",
+    "venue": "Journal of Agricultural Electronics and Informatics",
+    "year": "2024",
+    "type": "Journal",
+    "link": "https://doi.org/10.1016/j.jaei.2024.10123",
+    "abstract": "This study details the construction and pruning of a highly compressed convolutional network designed to segment leaf rust and spot lesions in real-world lighting conditions without server-side processing pipelines.",
+    "tags": ["Computer Vision", "Plant Pathology", "Pruning"]
+  },
+  {
+    "title": "A Dialect-Inclusive Agri-Corpus Catalog of Rural Bangladesh: Collection, Annotation, and Validation",
+    "authors": "M. S. Hossain, F. T. Johra, N. Islam",
+    "venue": "Language Resources and Evaluation Conference (LREC-COLING)",
+    "year": "2024",
+    "type": "Conference",
+    "link": "https://aclanthology.org/2024.lrec-coling.45",
+    "abstract": "We detail the curation and validation process of our regional agrarian speech repository. We discuss the linguistic challenges of term mapping and phonology across diverse farming districts in North and South Bengal.",
+    "tags": ["Corpus Linguistics", "Dialectology", "Bangla Speech"]
+  }
+]

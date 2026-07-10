@@ -1,0 +1,276 @@
+{
+  "name": "Dr. Nazrul Islam",
+  "designation": "Associate Professor",
+  "department": "Information and Communication Technology",
+  "email": "nazrul@mbstu.ac.bd",
+  "phone": "01721-259140",
+  "location": "Santosh, Tangail",
+  "longBio": "Dr. Nazrul Islam is an Associate Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University, Bangladesh, where he has been serving since 2014 and currently contributes to academic leadership as Deputy Director of the Students' Welfare and Counseling Centre. He earned his PhD in Information Technology from Jahangirnagar University and holds an MSc in Electrical Engineering with a specialization in Telecommunication Systems from Blekinge Institute of Technology, Sweden. His research interests span machine learning, plasmonic and SPR biosensors, and communication networks, with a strong focus on applying intelligent computational techniques to sensing and biomedical applications. Dr. Islam has published extensively in high-impact international journals and IEEE conferences and is actively involved in funded research projects related to biosensor development and smart grid-IoT technologies and reflecting his engagement with both the global research community and national academic development.",
+  "researchInterests": [
+    "Machine Learning",
+    "SPR Biosensor",
+    "Communication Networks"
+  ],
+  "education": [
+    {
+      "degree": "PhD",
+      "institute": "Institute of Information Technology (IIT)",
+      "address": "Jahangirnagar university, Savar, Dhaka-1342, Bangladesh.",
+      "year": "2025"
+    },
+    {
+      "degree": "Master of Science",
+      "institute": "Electrical Engineering with emphasis on Telecommunication Systems",
+      "address": "Blekinge Institute of Technology (BTH), 371 79 Karlskrona, Sweden.",
+      "year": "2014"
+    },
+    {
+      "degree": "Bachelor of Science (Engineering)",
+      "institute": "Information and Communication Technology (ICT), Department of Information and Communication Technology (ICT)",
+      "address": "Mawlana Bhashani Science and Technology University, Tangail-1902, Bangladesh.",
+      "year": ""
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "title": "Artificial Neural Network-Assisted Confinement Loss Prediction of D-Shaped PCF-SPR Biosensor",
+      "authors": "Nazrul Islam, Mia Mohammad Shoaib Hasan, Md. Nahid Hasan, Imam Hossain Shibly, Mohammad Abu Yousuf, Md Zia Uddin",
+      "venue": "2024 IEEE International Humanitarian Technologies Conference (IHTC)",
+      "type": "proceedings-article",
+      "date": "2024-11-27",
+      "status": "published"
+    },
+    {
+      "id": 2,
+      "title": "Dual-core silver-coated plasmonic sensor modeling with machine learning",
+      "authors": "Chanchal Saha, Farzana Haque, Nazrul Islam, Muhammad Minoar Hossain, Md. Easin Arafat, Mohammad Abu Yousuf, Mohammad Motiur Rahman",
+      "venue": "Heliyon",
+      "type": "journal-article",
+      "date": "2024-10-01",
+      "status": "published"
+    },
+    {
+      "id": 3,
+      "title": "Plasmonic sensor using generative adversarial networks integration",
+      "authors": "Nazrul Islam, Mia Mohammad Shoaib Hasan, Imam Hossain Shibly, Md. Bajlur Rashid, Mohammad Abu Yousuf, Firoz Haider, Rifat Ahmed Aoni, Rajib Ahmed",
+      "venue": "Optics Express",
+      "type": "journal-article",
+      "date": "2024-09-09",
+      "status": "published"
+    },
+    {
+      "id": 4,
+      "title": "Multiple Fano Resonance Modes based Plasmonic Refractive Index Sensor for Edible Oil Adulteration Detection",
+      "authors": "Sabiha Sharmin, Mohammad Abu Yousuf, Nazrul Islam",
+      "venue": "Optik",
+      "type": "journal-article",
+      "date": "2024-09-01",
+      "status": "published"
+    },
+    {
+      "id": 5,
+      "title": "Machine Learning Classification Approach for Refractive Index Prediction of D-Shape Plasmonic Biosensor",
+      "authors": "Nazrul Islam, Md. Nahid Hasan, Mia Mohammad Shoaib Hasan, Imam Hossain Shibly, Mohammad Abu Yousuf, Md. Zia Uddin",
+      "venue": "2024 IEEE 3rd Conference on Information Technology and Data Science (CITDS)",
+      "type": "proceedings-article",
+      "date": "2024-08-26",
+      "status": "published"
+    },
+    {
+      "id": 6,
+      "title": "Accurate Prediction of Lysine Methylation Sites Using Evolutionary and Structural-Based Information",
+      "authors": "Md. Easin Arafat, Md. Wakil Ahmad, S. M. Shovan, Towhid Ul Haq, Nazrul Islam, Mufti Mahmud, M. Shamim Kaiser",
+      "venue": "Cognitive Computation",
+      "type": "journal-article",
+      "date": "2024-05-01",
+      "status": "published"
+    },
+    {
+      "id": 7,
+      "title": "Computing Confinement Loss of Open-Channels Based PCF-SPR Sensor with ANN Approach",
+      "authors": "Nazrul Islam, Md. Saikat Islam Khan, Md. Nahid Hasan, Mohammad Abu Yousuf",
+      "venue": "2023 IEEE International Conference on Telecommunications and Photonics (ICTP)",
+      "type": "proceedings-article",
+      "date": "2023-12-21",
+      "status": "published"
+    },
+    {
+      "id": 8,
+      "title": "Computing Optical Properties of Open-Channels Based Plasmonic Biosensor Employing Plasmonic Materials with ML Approach",
+      "authors": "Nazrul Islam, Imam Hossain Shibly, Mia Mohammad Shoaib Hasan, Md. Nahid Hasan, Mohammad Abu Yousuf",
+      "venue": "2023 26th International Conference on Computer and Information Technology (ICCIT)",
+      "type": "proceedings-article",
+      "date": "2023-12-13",
+      "status": "published"
+    },
+    {
+      "id": 9,
+      "title": "Highly sensitive open channel based PCF-SPR sensor for analyte refractive index sensing",
+      "authors": "Nazrul Islam, Md. Faizul Huq Arif, Mohammad Abu Yousuf, Sayed Asaduzzaman",
+      "venue": "Results in Physics",
+      "type": "journal-article",
+      "date": "2023-03-01",
+      "status": "published"
+    },
+    {
+      "id": 10,
+      "title": "Water quality prediction and classification based on principal component regression and gradient boosting classifier approach",
+      "authors": "Md. Saikat Islam Khan, Jia Uddin, Sifatul Islam, Mostofa Kamal Nasir, Nazrul Islam",
+      "venue": "Journal of King Saud University - Computer and Information Sciences",
+      "type": "journal-article",
+      "date": "2022-09-01",
+      "status": "published"
+    },
+    {
+      "id": 11,
+      "title": "Enhanced Sensitivity of Open Channel SPR-Based PCF Sensor Employing Plasmonic Materials for Analyte Sensing",
+      "authors": "Nazrul Islam, Md. Mohi Uddin Masum, Md. Faizul Huq Arif, Sayed Asaduzzaman, Monoranjon Roy, Mohammad Abu Yousuf, Md. Zia Uddin",
+      "venue": "Plasmonics",
+      "type": "journal-article",
+      "date": "2022-08-18",
+      "status": "published"
+    },
+    {
+      "id": 12,
+      "title": "Gastrointestinal polyp detection through a fusion of contourlet transform and Neural features",
+      "authors": "Md. Mahmudul Hasan, Nazrul Islam, Mohammad Motiur Rahman",
+      "venue": "Journal of King Saud University - Computer and Information Sciences",
+      "type": "journal-article",
+      "date": "2022-03-01",
+      "status": "published"
+    },
+    {
+      "id": 13,
+      "title": "Gastrointestinal polyp detection through a fusion of contourlet transform and Neural features (Duplicate entry)",
+      "authors": "Md. Mahmudul Hasan, Nazrul Islam, Mohammad Motiur Rahman",
+      "venue": "Journal of King Saud University - Computer and Information Sciences",
+      "type": "journal-article",
+      "date": "2022-03-01",
+      "status": "published"
+    },
+    {
+      "id": 14,
+      "title": "Node to Node Performance Evaluation through RYU SDN Controller",
+      "authors": "Md. Tariqul Islam, Nazrul Islam, Md. Al Refat",
+      "venue": "Wireless Personal Communications",
+      "type": "journal-article",
+      "date": "2020-01-20",
+      "status": "published"
+    },
+    {
+      "id": 15,
+      "title": "Performance analysis of OpenFlow based software defined wired and wireless network",
+      "authors": "Mehedy Hasan Rafsan Jany, Nazrul Islam, Rahmatullah Khondoker, Md. Ahsan Habib",
+      "venue": "2017 20th International Conference of Computer and Information Technology (ICCIT)",
+      "type": "proceedings-article",
+      "date": "2017-12-01",
+      "status": "published"
+    },
+    {
+      "id": 16,
+      "title": "Queue management of RED enabled ZigBee network based on packet size variations and distribution techniques",
+      "authors": "Md. Jaminul Haque Biddut, Md. Faizul Huq Arif, Nazrul Islam",
+      "venue": "2017 International Conference on Electrical, Computer and Communication Engineering (ECCE)",
+      "type": "proceedings-article",
+      "date": "2017-02-01",
+      "status": "published"
+    },
+    {
+      "id": 17,
+      "title": "An Analysis of QoS in ZigBee Network Based on Deviated Node Priority",
+      "authors": "Md. Jaminul Haque Biddut, Nazrul Islam, Md. Maksudul Karim, Mohammad Badrul Alam Miah",
+      "venue": "Journal of Electrical and Computer Engineering",
+      "type": "journal-article",
+      "date": "2016-01-01",
+      "status": "published"
+    },
+    {
+      "id": 18,
+      "title": "An analytical study to minimize load of ZigBee network based on statistical modeling",
+      "authors": "Nazrul Islam, Md. Jaminul Haque Biddut, Asma Islam Swapna, Mohammad Motiur Rahman",
+      "venue": "2015 IEEE International Conference on Electrical and Computer Engineering (WIECON-ECE)",
+      "type": "proceedings-article",
+      "date": "2015-12-01",
+      "status": "published"
+    },
+    {
+      "id": 19,
+      "title": "A new approach of ZigBee MAC layer design based on security enhancement",
+      "authors": "Md. Jaminul Haque Biddut, Nazrul Islam, Rucksana Safa Sultana, Angona Sarker, Mohammad Motiur Rahman",
+      "venue": "2015 IEEE International Conference on Telecommunications and Photonics (ICTP)",
+      "type": "proceedings-article",
+      "date": "2015-12-01",
+      "status": "published"
+    },
+    {
+      "id": 20,
+      "title": "Improved Quality of Service in ZigBee network with statistical modeling",
+      "authors": "Nazrul Islam, Md. Jaminul Haque Biddut, Asma Islam Swapna, Sayed Asaduzzaman",
+      "venue": "2015 International Conference on Advances in Electrical Engineering (ICAEE)",
+      "type": "proceedings-article",
+      "date": "2015-12-01",
+      "status": "published"
+    },
+    {
+      "id": 21,
+      "title": "Performance Analysis of large scale ZigBee network design through geometric structure",
+      "authors": "Jaminul Haque Biddut, Nazrul Islam, Mehedy Hasan Rafsan Jany, Asma Islam Swapna",
+      "venue": "2015 2nd International Conference on Electrical Information and Communication Technologies (EICT)",
+      "type": "proceedings-article",
+      "date": "2015-12-01",
+      "status": "published"
+    },
+    {
+      "id": 22,
+      "title": "Randomly encrypted key generation algorithm against side channel attack in cloud computing",
+      "authors": "Md. Bajlur Rashid, Nazrul Islam, Abdullah Al Mahedi Sabuj, Sajjad Waheed, Mohammad Badrul Alam Miah",
+      "venue": "2015 International Conference on Electrical Engineering and Information Communication Technology (ICEEICT)",
+      "type": "proceedings-article",
+      "date": "2015-05-01",
+      "status": "published"
+    },
+    {
+      "id": 23,
+      "title": "In small chunks or all at once? User preferences of network delays in web browsing sessions",
+      "authors": "Nazrul Islam, Vijaya John David Elepe, Junaid Shaikh, Markus Fiedler",
+      "venue": "2014 IEEE International Conference on Communications Workshops (ICC)",
+      "type": "proceedings-article",
+      "date": "2014-06-01",
+      "status": "published"
+    },
+    {
+      "id": 24,
+      "title": "DeepTranSeq: an image-based approach for bacterial sigma70 promoter sequence identification using deep learning techniques.",
+      "authors": "Billah, Mustain, Md Easin Arafat, Nazrul Islam, Al Imtiaz, Swakkhar Shatabda, M. Shamim Kaiser, Tamás Orosz",
+      "venue": "Network Modeling Analysis in Health Informatics and Bioinformatics 14, no. 1 (2025): 68, Springer, IF=2.0, Q3",
+      "type": "journal-article",
+      "date": "2025-01-01",
+      "status": "completed"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Development of High-Sensitivity Plasmonic and SPR Biosensors",
+      "role": "Principal Investigator",
+      "funding": "Funded Research Grant",
+      "desc": "Focuses on developing refractive index prediction and confinement loss models for D-shaped photonic crystal fiber surface plasmon resonance (PCF-SPR) biosensors. Incorporates machine learning (such as artificial neural networks and gradient boosting) and deep generative adversarial networks (GANs) to design optimal, highly-sensitive biomedical sensors."
+    }
+  ],
+  "teaching": {
+    "graduate": [
+      {
+        "code": "ICT-5101",
+        "title": "Advanced Cryptography and Network Security",
+        "level": "M.Sc. in ICT"
+      }
+    ],
+    "undergraduate": [
+      {
+        "code": "ICT-3101",
+        "title": "Database Management Systems",
+        "level": "B.Sc. Engg. in ICT"
+      }
+    ]
+  }
+}

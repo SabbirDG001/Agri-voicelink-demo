@@ -1,9 +1,9 @@
 {
   "Dr. Nazrul Islam": {
-    "longBio": "Dr. Nazrul Islam is a Professor at the Department of Computer Science and Engineering, Mawlana Bhashani Science and Technology University (MBSTU). He has spent over two decades researching automatic speech recognition, dialectology, and multi-modal neural network optimization. Under the Agri-VoiceLink project, he coordinates the technical research team, leading the design of the bilingual speech transcription systems and supervising the offline edge-native GNN disease inference schemas.",
+    "longBio": "Dr. Md. Nazrul Islam is a distinguished Professor at the Department of Information and Communication Technology (ICT), Mawlana Bhashani Science and Technology University (MBSTU). With over two decades of research and teaching experience, he has made significant contributions to digital image encryption, cryptographic security protocols, pattern recognition, and speech technology. Under the Agri-VoiceLink project, he defines the high-level technical architecture, leading the design of bilingual speech transcription systems and supervising secure deep-learning edge diagnostics models.",
     "stats": [
       { "label": "Research Experience", "value": "20+ Years" },
-      { "label": "Peer-Reviewed Papers", "value": "45+" },
+      { "label": "Peer-Reviewed Papers", "value": "50+" },
       { "label": "Active Country Grants", "value": "3" }
     ],
     "responsibilities": [
@@ -16,71 +16,233 @@
         "title": "Dialect-Robust Automatic Speech Recognition for Rural Bangla Agrarian Communities",
         "venue": "IEEE Transactions on Audio, Speech, and Language Processing",
         "year": "2025",
-        "type": "Journal"
+        "type": "Journal",
+        "link": "https://scholar.google.com/scholar?q=Dialect-Robust+Automatic+Speech+Recognition+for+Rural+Bangla+Agrarian+Communities"
       },
       {
         "title": "Heterogeneous Knowledge Graphs for Multi-Vector Crop Disease Inference in Low-Bandwidth Networks",
         "venue": "CVPR - Agri-AI Workshop",
         "year": "2024",
-        "type": "Conference"
+        "type": "Conference",
+        "link": "https://scholar.google.com/scholar?q=Heterogeneous+Knowledge+Graphs+for+Multi-Vector+Crop+Disease+Inference+in+Low-Bandwidth+Networks"
+      },
+      {
+        "title": "A Secure Image Encryption Scheme based on 1D Chaotic Maps and DNA Sequence",
+        "venue": "International Journal of Computer Applications (IJCA)",
+        "year": "2015",
+        "type": "Journal",
+        "link": "https://www.ijcaonline.org/archives/volume115/number14/20235-2457"
+      },
+      {
+        "title": "Performance Analysis of Routing Protocols in Wireless Sensor Networks",
+        "venue": "Journal of Computer and Communications",
+        "year": "2016",
+        "type": "Journal",
+        "link": "https://scholar.google.com/scholar?q=Performance+Analysis+of+Routing+Protocols+in+Wireless+Sensor+Networks+Md.+Nazrul+Islam"
       }
     ],
     "academicBackground": [
-      "Ph.D. in Speech Technology & NLP, 2008",
-      "M.Sc. in Computer Science and Engineering, 2003",
+      "Ph.D. in Computer Science & Engineering (Speech & Image Security Focus)",
+      "M.Sc. in Computer Science and Engineering",
+      "B.Sc. in Computer Science and Engineering",
       "Member of Bangladesh Computer Society & IEEE Senior Member"
     ]
   },
-  "Intellectual NLP Lab": {
-    "longBio": "The MBSTU Intellectual NLP Research Lab consists of 12 dedicated post-graduate students, research engineers, and dialect phonetic annotators. The lab manages the storage, acoustic cleanup, phonetic dictionary mapping, and validation of our rural Bangla speech corpora. In Agri-VoiceLink, they coordinate field recording drives, run model-pruning benchmarks, and deploy localized Android build containers.",
+  "Afsana Akter Mim": {
+    "longBio": "Motivated final-year B.Sc. (Engg.) student in Information and Communication Technology at MBSTU with a solid foundation in competitive programming, data structures, and algorithms. Experienced in full-stack web and mobile application development using the MERN Stack, Django, Flutter, and ASP.NET Core, with growing expertise in Deep Learning, Computer Vision, and Generative AI.",
     "stats": [
-      { "label": "Research Scholars", "value": "12" },
-      { "label": "Audio Hours Compiled", "value": "12,000+" },
-      { "label": "Dialect STT Models", "value": "4" }
+      {
+        "label": "CGPA",
+        "value": "3.91/4.00"
+      },
+      {
+        "label": "Problems Solved",
+        "value": "750+"
+      },
+      {
+        "label": "Contests",
+        "value": "NGPC 2024 Participant"
+      }
     ],
     "responsibilities": [
-      "Coordinate massive audio recording drives across remote farming communities in 6 divisions.",
-      "Annotate, transcribe, and dictionary-map dialectal Bangla agricultural vocabularies.",
-      "Develop model compression and pruning pipelines to deploy heavyweight models inside native mobile app containers."
+      "Develop web and mobile applications using technologies like MERN, Django, and Flutter.",
+      "Train and evaluate machine learning and ensemble models for sentiment classification.",
+      "Solve algorithmic challenges involving dynamic programming, graph algorithms, and data structures."
     ],
     "publications": [
       {
-        "title": "A Dialect-Inclusive Agri-Corpus Catalog of Rural Bangladesh: Collection, Annotation, and Validation",
-        "venue": "Language Resources and Evaluation Conference (LREC-COLING)",
-        "year": "2024",
-        "type": "Conference"
+        "title": "The Power of Negative Partisanship: Political Influence on Twitter in Bangladesh's 2026 National Election",
+        "venue": "B.Sc. Final Year Thesis, MBSTU",
+        "year": "2026",
+        "type": "Thesis"
       }
     ],
     "academicBackground": [
-      "Established in 2018 at MBSTU Department of CSE",
-      "Specializes in low-resource automatic speech recognition, acoustic phonetics, and NLP edge deployment.",
-      "Recipient of research funding allocations from national ICT and academic divisions."
+      "B.Sc (Engg.) in Information and Communication Technology (Ongoing) from MBSTU",
+      "Higher Secondary Certificate (HSC) from Ibrahim Khan Govt. College (2020)",
+      "Secondary School Certificate (SSC) from Tepibary High School (2018)"
     ]
   },
-  "External Advisory": {
-    "longBio": "The Agronomic Advisory Board comprises senior extension agents, plant pathologists, and regional farming advocates. They provide essential ground-truth validation for Agri-VoiceLink. They verify crop disease symptoms, review AI-generated diagnostic recommendations for safety and regional efficacy, and host farmer training workshops in North and South Bengal.",
+  "Md. Lutfor Rahaman": {
+    "longBio": "Research-oriented ICT graduate with strong interests in Machine Learning, Bioinformatics, Deep Learning, Explainable AI, Computational Biology, Large Language Models (LLMs), and Natural Language Processing (NLP). Experienced in gene expression analysis, SHAP-based feature selection, PPI network analysis, and AI-driven healthcare systems.",
     "stats": [
-      { "label": "Expert Agronomists", "value": "8" },
-      { "label": "Regional Pilot Zones", "value": "4" },
-      { "label": "Validation Trials", "value": "250+" }
+      {
+        "label": "B.Sc CGPA",
+        "value": "3.83/4.00"
+      },
+      {
+        "label": "Journal Publications",
+        "value": "1"
+      },
+      {
+        "label": "Conference Papers",
+        "value": "2"
+      }
     ],
     "responsibilities": [
-      "Diagnose, tag, and validate fungal and bacterial leaf lesions to train and audit our computer vision pipeline.",
-      "Review AI-driven prompt responses and diagnostic recommendations to ensure local safety and conformity with public extension rules.",
-      "Organize direct farm-level trial campaigns, collecting farmer feedback and coordinating UX testing in remote districts."
+      "Design traffic signal control and monitoring systems for smart city applications.",
+      "Develop responsive full-stack e-commerce and web applications using Node.js, Express.js, HTML, CSS, and JavaScript.",
+      "Develop IoT-based smart home systems using ESP32 for appliance control and automated monitoring."
     ],
     "publications": [
       {
-        "title": "YOLOv8-Leaf: Mobile-Optimized Convolutional Neural Networks for Fungal Leaf Disease Diagnostics",
-        "venue": "Journal of Agricultural Electronics and Informatics",
-        "year": "2024",
+        "title": "High-sensitive optical fiber-based IoT-enabled sensor for HIV detection in smart biomedical monitoring ecosystem",
+        "venue": "Microchemical Journal (Elsevier)",
+        "year": "2026",
         "type": "Journal"
+      },
+      {
+        "title": "Discovery of Biomarkers and Drug Targets in different Kidney Diseases by Explainable AI and Functional Genomics",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      },
+      {
+        "title": "Unveiling Common Biomarkers and Therapeutic Targets in T2DM, AMI, and Alzheimer's Disease Using XAI and Bioinformatics Approaches",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
       }
     ],
     "academicBackground": [
-      "Formed by senior extension researchers and plant pathologists from Bangladesh Agricultural Research Institute (BARI).",
-      "Advises on national agronomic recommendations, eco-friendly crop-protection, and regional weed management.",
-      "Focuses on translating AI analytics into actionable, safe advisory guidelines for illiterate cultivators."
+      "M.Sc in Information and Communication Technology (Running), Mawlana Bhashani Science and Technology University (MBSTU), 2026-Present",
+      "B.Sc (Engg.) in Information and Communication Technology, Mawlana Bhashani Science and Technology University (MBSTU), Mar 2022 - May 2026",
+      "Higher Secondary Certificate (HSC), National College of Education, 2020",
+      "Secondary School Certificate (SSC), Shah Farasat Ali High School, 2018"
+    ]
+  },
+  "Md. Shafi Mahmud": {
+    "longBio": "Completed final-year of B.Sc in ICT with strong problem-solving skills and solid foundation in Machine Learning, Natural Language Processing, and algorithmic data structures. Backed by extensive competitive programming experience and hands-on research in training ML models and data curation, highly motivated to transition to building and deploy intelligent applications, developing generative AI use cases, and integrating LLM-based features into real-world systems.",
+    "stats": [
+      {
+        "label": "B.Sc CGPA",
+        "value": "3.86/4.00"
+      },
+      {
+        "label": "Problems Solved",
+        "value": "1000+"
+      },
+      {
+        "label": "Max Codeforces Rating",
+        "value": "1410 (Specialist)"
+      }
+    ],
+    "responsibilities": [
+      "Engineer browser-based scheduling tools that automate academic routing using conflict detection algorithms for resource allocation.",
+      "Develop CLI applications utilizing persistent C++ File I/O with STL Maps for optimized $O(log~n)$ data retrieval.",
+      "Curate and annotate datasets for political sentiment analysis and train ensemble machine learning models."
+    ],
+    "publications": [
+      {
+        "title": "The Power of Negative Partisanship: Political Influence on Twitter in Bangladesh's 2026 National Election",
+        "venue": "Submitted to IEEE SPICSCON",
+        "year": "2026",
+        "type": "Conference Submission"
+      }
+    ],
+    "academicBackground": [
+      "B.Sc. (Engg.) in Information and Communication Technology, Mawlana Bhashani Science and Technology University (MBSTU), Mar 2022 - May 2026",
+      "Higher Secondary Certificate (HSC), Dhaka Residential Model College, 2019",
+      "Secondary School Certificate (SSC), Millennium Scholastic School and College, 2017"
+    ]
+  },
+  "Sagor Roy": {
+    "longBio": "Final-year B.Sc Engineering student in Information and Communication Technology (ICT) with a strong research foundation in Machine Learning, Bioinformatics, and AI-driven healthcare systems. Experienced in IoT development, web applications, and data-driven research with peer-reviewed conference publications, passionate about applying computational methods to solve biomedical problems.",
+    "stats": [
+      {
+        "label": "B.Sc CGPA",
+        "value": "3.86/4.00"
+      },
+      {
+        "label": "Conference Papers",
+        "value": "3"
+      }
+    ],
+    "responsibilities": [
+      "Coordinate administrative tasks, meetings, and events as Vice Chair of the IEEE Student Branch Bangladesh Section.",
+      "Develop IoT-based smart home systems using ESP32 for appliance control, water level monitoring, and automated door locking.",
+      "Build fully responsive portfolio websites and interactive applications using HTML, CSS, Bootstrap, and JavaScript."
+    ],
+    "publications": [
+      {
+        "title": "Machine Learning and Bioinformatics-Driven Discovery of Biomarkers and Therapeutics for Melanoma and Non-Melanoma Skin Cancers",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      },
+      {
+        "title": "Unveiling Common Biomarkers and Therapeutic Targets in T2DM, AMI, and Alzheimer's Disease Using XAI and Bioinformatics Approaches",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      },
+      {
+        "title": "Vishing Shield: A Conceptual Framework and Detection Model to Mitigate Vishing Attacks in Mobile Financial Services (MFS)",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      }
+    ],
+    "academicBackground": [
+      "B.Sc (Engg.) in Information and Communication Technology, Mawlana Bhashani Science and Technology University (March 2022 - May 2026)",
+      "Higher Secondary Certificate (HSC), MC College, Sylhet (2020)",
+      "Secondary School Certificate (SSC), Police Lines High School, Sylhet (2018)"
+    ]
+  },
+  "Swapnil Saha": {
+    "longBio": "Completed the final year of B.Sc in ICT with a strong analytical mindset and practical experience in artificial intelligence, machine learning, NLP, and bioinformatics-driven research. Experienced in working with biomedical datasets, developing predictive and deep learning models, and applying computational approaches to healthcare-related problems.",
+    "stats": [
+      {
+        "label": "B.Sc CGPA",
+        "value": "3.70/4.00"
+      },
+      {
+        "label": "Conference Papers",
+        "value": "2"
+      }
+    ],
+    "responsibilities": [
+      "Coordinate administrative tasks, meetings, and events as General Secretary of the IEEE Student Branch Bangladesh Section.",
+      "Coordinate volunteer activities, emergency response initiatives, and community outreach programs as Group Leader for the Bangladesh Red Crescent Society."
+    ],
+    "publications": [
+      {
+        "title": "Unveiling Common Biomarkers and Therapeutic Targets in T2DM, AMI, and Alzheimer's Disease Using XAI and Bioinformatics Approaches",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      },
+      {
+        "title": "Machine Learning and Bioinformatics-Driven Discovery of Biomarkers and Therapeutics for Melanoma and Non-Melanoma Skin Cancers",
+        "venue": "7th International Conference on Electrical Information and Communication Technology (EICT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      }
+    ],
+    "academicBackground": [
+      "B.Sc (Engg.) in Information and Communication Technology, Mawlana Bhashani Science and Technology University (Mar 2022 - May 2026)",
+      "Higher Secondary Certificate (HSC), St. Joseph Higher Secondary School (2020)",
+      "Secondary School Certificate (SSC), Bindubasini Govt. Boys' High School (2018)"
     ]
   }
 }

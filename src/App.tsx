@@ -9,7 +9,8 @@ import {
   Menu,
   ExternalLink,
   ChevronRight,
-  ArrowUpRight
+  ArrowUpRight,
+  ArrowUp
 } from "lucide-react";
 
 // Data & types
@@ -30,6 +31,26 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<string>("home");
   const [selectedCard, setSelectedCard] = useState<any | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
+  const [initialTeamMember, setInitialTeamMember] = useState<string | null>(null);
+
+  // Monitor scroll height to toggle Back to Top visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   // Cast JSON data to typed object
   const data = projectData as ProjectData;
@@ -38,9 +59,16 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace("#", "");
+      const [basePage, subPage] = hash.split("/");
       const validPages = ["home", "objectives", "technology", "roadmap", "impact", "team", "about", "publications"];
-      if (hash && validPages.includes(hash)) {
-        setCurrentPage(hash);
+      
+      if (basePage && validPages.includes(basePage)) {
+        setCurrentPage(basePage);
+        if (basePage === "team" && subPage) {
+          setInitialTeamMember(decodeURIComponent(subPage).replace(/-/g, " "));
+        } else if (basePage === "team") {
+          setInitialTeamMember(null);
+        }
       } else {
         setCurrentPage("home");
         window.location.hash = "home";
@@ -159,7 +187,7 @@ export default function App() {
         badge: card.id,
         description: card.desc,
         details: card.points.map((pt: string, idx: number) => ({ name: `Action Target 0${idx + 1}`, value: pt })),
-        extra: "UGC Grant-allocated milestone under regular monitoring. Academic research outputs published in collaborative CSE bulletins."
+        extra: "UGC Grant-allocated milestone under regular monitoring. Academic research outputs published in collaborative ICT bulletins."
       };
     }
     // If we have tech details
@@ -209,7 +237,7 @@ export default function App() {
       description: card.desc || "Collaborator, researcher, or evaluator contributing to the Agri-VoiceLink academic study.",
       details: [
         { name: "Affiliation", value: "Mawlana Bhashani Science and Technology University (MBSTU)" },
-        { name: "Division", value: "Dept. of Computer Science & Engineering" }
+        { name: "Division", value: "Department of Information and Communication Technology" }
       ],
       extra: "Research affiliates and team members work on cross-disciplinary data gathering, algorithmic modeling, and rural testing pilots."
     };
@@ -229,7 +257,15 @@ export default function App() {
       case "impact":
         return <Impact data={data} onCardClick={setSelectedCard} onNavigate={navigateToPage} />;
       case "team":
-        return <Team data={data} onCardClick={setSelectedCard} onNavigate={navigateToPage} />;
+        return (
+          <Team
+            data={data}
+            onCardClick={setSelectedCard}
+            onNavigate={navigateToPage}
+            initialMemberName={initialTeamMember}
+            onClearInitialMember={() => setInitialTeamMember(null)}
+          />
+        );
       case "about":
         return <About data={data} onNavigate={navigateToPage} />;
       case "publications":
@@ -254,7 +290,7 @@ export default function App() {
     <div className="min-h-screen bg-cream font-sans text-charcoal selection:bg-brand-sage/40 overflow-x-hidden flex flex-col justify-between">
       
       {/* Dynamic Header */}
-      <header className="sticky top-0 z-40 bg-cream/80 backdrop-blur-md border-b border-brand-green/10">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-cream/80 backdrop-blur-md border-b border-brand-green/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             
@@ -376,7 +412,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Main Multi-page content wrapper */}
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
@@ -433,7 +469,7 @@ export default function App() {
               <h4 className="font-mono text-xs uppercase tracking-widest text-white font-bold">Coordinates</h4>
               <ul className="space-y-2 text-xs text-brand-sage/75">
                 <li>Intellectual NLP Lab</li>
-                <li>Dept. of Computer Science & Engineering</li>
+                <li>Department of Information and Communication Technology</li>
                 <li>Mawlana Bhashani Science & Tech University</li>
                 <li className="text-[10px] font-mono tracking-wide text-brand-green">Tangail-1902, Bangladesh</li>
               </ul>
@@ -551,6 +587,24 @@ export default function App() {
             </div>
           );
         })()}
+      </AnimatePresence>
+
+      {/* Back to top button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            id="back-to-top-btn"
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 z-40 p-3.5 bg-brand-green hover:bg-brand-dark text-white rounded-full shadow-lg transition-all cursor-pointer group hover:scale-110 active:scale-95 flex items-center justify-center border border-white/10"
+            aria-label="Back to top"
+            title="Scroll to Top"
+          >
+            <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
+          </motion.button>
+        )}
       </AnimatePresence>
 
     </div>

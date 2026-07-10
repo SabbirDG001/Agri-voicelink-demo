@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Sprout, ChevronRight, Info, Award, Globe, BookOpen, ArrowUpRight, CheckCircle, Target, Cpu, Calendar, FileText, Activity, Users } from "lucide-react";
 import { ProjectData, StatItem, HighlightCardItem } from "../types";
+import ppNiImage from "../images/nazrul.jpg";
 
 interface HomeProps {
   data: ProjectData;
@@ -158,28 +159,22 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
             </div>
           </div>
 
-          {/* Row of 4 Stats - Monospace numbers (Clickable) */}
+          {/* Row of 4 Stats - Monospace numbers */}
           <div className="reveal border-t border-white/10 pt-10 grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {data.stats.map((stat, idx) => (
               <div
                 key={idx}
-                className="space-y-1 cursor-pointer hover:bg-white/5 hover:scale-[1.02] p-4 rounded-xl border border-transparent hover:border-white/10 transition-all group/stat relative overflow-hidden"
-                onClick={() => onCardClick(stat)}
-                title="Click to view metric details"
+                className="space-y-1 hover:bg-white/5 hover:scale-[1.02] p-4 rounded-xl border border-transparent hover:border-white/10 transition-all group/stat relative overflow-hidden"
               >
                 <div className="font-mono text-3xl md:text-5xl font-bold text-brand-green tracking-tight group-hover/stat:text-white transition-colors">
                   {stat.value}
                 </div>
-                <div className="text-sm font-semibold text-white/90 flex items-center gap-1">
+                <div className="text-sm font-semibold text-white/90">
                   {stat.label}
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/stat:opacity-100 transition-all text-brand-sage" />
                 </div>
                 <div className="text-xs text-brand-sage/80 font-light">
                   {stat.desc}
                 </div>
-                <span className="absolute bottom-2 right-2 text-[8px] font-mono tracking-widest text-brand-sage/20 uppercase group-hover/stat:text-brand-sage/60 transition-colors">
-                  Specs
-                </span>
               </div>
             ))}
           </div>
@@ -202,7 +197,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   <Award className="w-5 h-5 text-brand-green" />
                 </div>
                 <div>
-                  <div className="font-serif text-sm font-bold leading-tight">UGC Bangladesh</div>
+                  <div className="font-serif text-sm font-bold leading-tight">University Grants Commission, Bangladesh</div>
                   <div className="text-[9px] font-mono uppercase tracking-wider text-muted-gray">Govt. Commission</div>
                 </div>
               </div>
@@ -216,7 +211,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   <Globe className="w-5 h-5 text-brand-green" />
                 </div>
                 <div>
-                  <div className="font-serif text-sm font-bold leading-tight">Asian Dev Bank</div>
+                  <div className="font-serif text-sm font-bold leading-tight">Asian Development Bank</div>
                   <div className="text-[9px] font-mono uppercase tracking-wider text-muted-gray">Strategic Support</div>
                 </div>
               </div>
@@ -230,7 +225,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   <BookOpen className="w-5 h-5 text-brand-green" />
                 </div>
                 <div>
-                  <div className="font-serif text-sm font-bold leading-tight">MBSTU University</div>
+                  <div className="font-serif text-sm font-bold leading-tight">Mawlana Bhashani Science & Technology University</div>
                   <div className="text-[9px] font-mono uppercase tracking-wider text-muted-gray">Executing Institution</div>
                 </div>
               </div>
@@ -247,7 +242,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
               <div className="relative">
                 {!imageError ? (
                   <img
-                    src="nazrul.jpg"
+                    src={ppNiImage}
                     alt="Dr. Nazrul Islam"
                     onError={() => setImageError(true)}
                     className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-brand-green/30 bg-cream shadow-md"
@@ -272,10 +267,10 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   Dr. Nazrul Islam
                 </h3>
                 <p className="text-sm text-brand-green font-medium mb-1">
-                  Professor & Chairman, Dept. of CSE
+                  Associate Professor, Department of ICT
                 </p>
                 <p className="text-xs text-muted-gray max-w-xl leading-relaxed">
-                  Mawlana Bhashani Science and Technology University (MBSTU). Leading advanced natural language and spatial agronomy research in Tangail, Bangladesh.
+                  Mawlana Bhashani Science and Technology University (MBSTU). Leading advanced natural language and spatial agronomy research in MBSTU, Tangail, Bangladesh.
                 </p>
               </div>
             </div>
@@ -284,8 +279,16 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
               <div className="bg-brand-green/5 border border-brand-green/10 rounded-lg p-4 text-center sm:text-left">
                 <div className="text-[10px] font-mono uppercase text-muted-gray tracking-widest mb-1">Affiliated Lab</div>
                 <div className="font-serif text-sm font-bold text-brand-dark">Intellectual NLP Research Lab</div>
-                <div className="text-xs text-brand-green">MBSTU CSE Division</div>
+                <div className="text-xs text-brand-green">MBSTU ICT Division</div>
               </div>
+
+              <button
+                onClick={() => onNavigate("team/Dr.-Nazrul-Islam")}
+                className="bg-brand-dark hover:bg-brand-green hover:scale-[1.02] text-white text-xs uppercase tracking-widest font-extrabold py-4 px-6 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer shrink-0"
+              >
+                <span>View Bio</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
@@ -325,7 +328,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                 </div>
                 <div>
                   <h4 className="font-sans font-bold text-sm text-slate-900">Academic Pioneers</h4>
-                  <p className="text-xs text-muted-gray mt-1">Housed within the Department of Computer Science and Engineering at MBSTU, Tangail.</p>
+                  <p className="text-xs text-muted-gray mt-1">Housed within the Department of Information and Communication Technology at MBSTU, Tangail.</p>
                 </div>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex gap-4 items-start text-left">
