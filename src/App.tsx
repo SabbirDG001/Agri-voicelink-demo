@@ -26,6 +26,7 @@ import Impact from "./pages/Impact";
 import Team from "./pages/Team";
 import About from "./pages/About";
 import Publications from "./pages/Publications";
+import News from "./pages/News";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<string>("home");
@@ -60,7 +61,7 @@ export default function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.replace("#", "");
       const [basePage, subPage] = hash.split("/");
-      const validPages = ["home", "objectives", "technology", "roadmap", "impact", "team", "about", "publications"];
+      const validPages = ["home", "objectives", "technology", "roadmap", "impact", "team", "about", "publications", "news"];
       
       if (basePage && validPages.includes(basePage)) {
         setCurrentPage(basePage);
@@ -270,6 +271,8 @@ export default function App() {
         return <About data={data} onNavigate={navigateToPage} />;
       case "publications":
         return <Publications data={data} />;
+      case "news":
+        return <News />;
       default:
         return <Home data={data} onCardClick={setSelectedCard} onNavigate={navigateToPage} />;
     }
@@ -277,13 +280,14 @@ export default function App() {
 
   const navLinks = [
     { name: "Home", page: "home" },
-    { name: "About Us", page: "about" },
+    { name: "About Our Project", page: "about" },
     { name: "Publications", page: "publications" },
+    { name: "News", page: "news" },
     { name: "Objectives", page: "objectives" },
     { name: "Technology", page: "technology" },
     { name: "Roadmap", page: "roadmap" },
     { name: "SDG Impact", page: "impact" },
-    { name: "Our Team", page: "team" }
+    { name: "Team", page: "team" }
   ];
 
   return (

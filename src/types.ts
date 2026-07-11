@@ -81,6 +81,18 @@ export interface PublicationItem {
   tags: string[];
 }
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  date: string;
+  author: string;
+  category: "Milestone" | "Publication" | "Event" | "Field Trial";
+  summary: string;
+  content: string;
+  thumbnail: string;
+  tags: string[];
+}
+
 export interface ProjectData {
   stats: StatItem[];
   highlightCards: HighlightCardItem[];

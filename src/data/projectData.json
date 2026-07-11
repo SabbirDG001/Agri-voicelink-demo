@@ -151,6 +151,17 @@
       "phone": "01721-259140"
     },
     {
+      "title": "Nargis Akter",
+      "subtitle": "PROFESSOR & CO-INVESTIGATOR",
+      "desc": "Academic researcher in machine learning and data science at Mawlana Bhashani Science and Technology University (MBSTU). Collaborates on multilingual speech and multi-modal agricultural system designs.",
+      "tag": "Co-Investigator",
+      "role": "Co-PI",
+      "avatar": "",
+      "org": "MBSTU ICT Division",
+      "email": "nargis@mbstu.ac.bd",
+      "phone": "+880 1234-567890"
+    },
+    {
       "title": "Afsana Akter Mim",
       "subtitle": "UNDERGRADUATE RESEARCHER",
       "desc": "Final-year B.Sc. student specializing in full-stack MERN/Django application development and machine learning for sentiment analysis.",
@@ -197,13 +208,35 @@
     {
       "title": "Swapnil Saha",
       "subtitle": "UNDERGRADUATE RESEARCHER",
-      "desc": "Final-year B.Sc. student specializing in artificial intelligence, NLP, and bioinformatics-driven research for computational healthcare solutions[cite: 8].",
+      "desc": "Final-year B.Sc. student specializing in artificial intelligence, NLP, and bioinformatics-driven research for computational healthcare solutions.",
       "tag": "AI & Bioinformatics Researcher",
       "role": "RM",
       "avatar": "swapnil.jpeg",
       "org": "MBSTU ICT Division",
-      "email": "it21028@mbstu.ac.bd[cite: 8]",
-      "phone": "+880 1784-797944[cite: 8]"
+      "email": "it21028@mbstu.ac.bd",
+      "phone": "+880 1784-797944"
+    },
+    {
+      "title": "Md. Nafis Fuad",
+      "subtitle": "DATA COLLECTOR",
+      "desc": "Focuses on gathering rural crop-pathology speech annotations, coordinating field trials, and validating voice-first diagnostic inputs.",
+      "tag": "Data Collector",
+      "role": "DC",
+      "avatar": "nafis.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "nafis@mbstu.ac.bd",
+      "phone": "+880 1712-345678"
+    },
+    {
+      "title": "Nadim Chowdhury",
+      "subtitle": "DATA COLLECTOR",
+      "desc": "Drives community outreach, records local agricultural dialect accents, and handles photographic compilation for model training.",
+      "tag": "Data Collector",
+      "role": "DC",
+      "avatar": "nadim.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "nadim@mbstu.ac.bd",
+      "phone": "+880 1789-012345"
     }
   ],
   "aboutUs": {

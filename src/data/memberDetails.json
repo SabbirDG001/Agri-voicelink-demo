@@ -244,5 +244,73 @@
       "Higher Secondary Certificate (HSC), St. Joseph Higher Secondary School (2020)",
       "Secondary School Certificate (SSC), Bindubasini Govt. Boys' High School (2018)"
     ]
+  },
+  "Nargis Akter": {
+    "longBio": "Nargis Akter is an Assistant Professor at the Department of Information and Communication Technology (ICT), Mawlana Bhashani Science and Technology University (MBSTU). She possesses deep expertise in data science, intelligent systems, and computational modeling. In the Agri-VoiceLink project, she serves as a Co-Investigator, contributing to linguistic corpus curation, acoustic mapping of local dialects, and localized model diagnostics validation.",
+    "stats": [
+      { "label": "Research Experience", "value": "10+ Years" },
+      { "label": "Peer-Reviewed Papers", "value": "15+" },
+      { "label": "Active Projects", "value": "2" }
+    ],
+    "responsibilities": [
+      "Collaborate on the development of voice-first agricultural dialect mapping algorithms.",
+      "Support standard and colloquial corpus verification and text transcript processing.",
+      "Lead field diagnostic validation and usability studies with local farming communities in northern regions."
+    ],
+    "publications": [
+      {
+        "title": "Acoustic Feature Alignment and Dialect Adaptation for Low-Resource Bengali Agricultural Speech",
+        "venue": "International Conference on Computer and Information Technology (ICCIT)",
+        "year": "2025",
+        "type": "Conference Paper"
+      },
+      {
+        "title": "A Hybrid Deep Learning Architecture for Soil Moisture and Agronomic Yield Predictions",
+        "venue": "Journal of Agricultural Informatics",
+        "year": "2024",
+        "type": "Journal"
+      }
+    ],
+    "academicBackground": [
+      "M.Sc. in Computer Science and Engineering",
+      "B.Sc. in Computer Science and Engineering",
+      "Member of IEEE & Bangladesh Computer Society (BCS)"
+    ]
+  },
+  "Md. Nafis Fuad": {
+    "longBio": "Md. Nafis Fuad is an active researcher and field assistant at the Department of ICT, Mawlana Bhashani Science and Technology University (MBSTU). He specializes in coordinating physical survey activities, engaging with regional rural farming communities, collecting and verifying dialect-rich vocal annotations, and establishing crop-growth dataset metadata repositories.",
+    "stats": [
+      { "label": "Surveys Completed", "value": "35+" },
+      { "label": "Farmers Interviewed", "value": "150+" },
+      { "label": "Audio Records Cleaned", "value": "400+ Hours" }
+    ],
+    "responsibilities": [
+      "Coordinate administrative and logistical tasks for on-ground agricultural field surveys.",
+      "Collect, audit, and annotate dialect vocal samples directly from agricultural sites in Tangail.",
+      "Assist in training data collation and labeling of disease-stricken crop leaf images."
+    ],
+    "publications": [],
+    "academicBackground": [
+      "B.Sc. (Engg.) in Information and Communication Technology (Ongoing), Mawlana Bhashani Science and Technology University (MBSTU)",
+      "Higher Secondary Certificate (HSC), Government Science College, Dhaka (2021)"
+    ]
+  },
+  "Nadim Chowdhury": {
+    "longBio": "Nadim Chowdhury is a highly motivated field coordinator and data collector for the Agri-VoiceLink project under the Department of ICT, MBSTU. His research interests focus on Human-Computer Interaction (HCI) in agricultural tech, community outreach, and the design of localized speech-to-intent applications to increase digital literacy among marginalized rural farmers.",
+    "stats": [
+      { "label": "Field Operations", "value": "1.5 Years" },
+      { "label": "Workshops Organised", "value": "8" },
+      { "label": "Linguistic Samples", "veb": "2000+" }
+    ],
+    "responsibilities": [
+      "Organize community outreach workshops and explain the voice-first application benefits directly to farmers.",
+      "Record dialect-specific speech variations under various background noise settings to train robust model encoders.",
+      "Compile agricultural taxonomy terms and disease labels with expert help."
+    ],
+    "publications": [],
+    "academicBackground": [
+      "B.Sc. (Engg.) in Information and Communication Technology (Ongoing), Mawlana Bhashani Science and Technology University (MBSTU)",
+      "Higher Secondary Certificate (HSC), Cantonment Public School and College, Jessore (2021)"
+    ]
   }
 }

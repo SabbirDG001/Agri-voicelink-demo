@@ -1,5 +1,5 @@
 import { useState, FormEvent, useEffect } from "react";
-import { ExternalLink, Award, Users, BookOpen, Facebook, Twitter, Linkedin, Globe, ArrowLeft, Mail, Phone, MapPin, Send, Check, Sparkles, MessageSquare, ArrowUpRight, Search } from "lucide-react";
+import { ExternalLink, Award, Users, BookOpen, Facebook, Twitter, Linkedin, Globe, ArrowLeft, Mail, Phone, MapPin, Send, Check, Sparkles, MessageSquare, ArrowUpRight, Search, Github, Fingerprint } from "lucide-react";
 import { ProjectData, TeamMemberItem } from "../types";
 import ppNiImage from "../images/nazrul.jpg";
 
@@ -14,6 +14,7 @@ interface TeamProps {
 // Custom detail registries for dynamic profile views
 import memberDetailsMapData from "../data/memberDetails.json";
 import drNazrulProfile from "../data/drNazrulProfile.json";
+import nargisAkterProfile from "../data/nargisAkterProfile.json";
 
 const memberDetailsMap = memberDetailsMapData as Record<string, {
   longBio: string;
@@ -100,6 +101,22 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
   const [queryMessage, setQueryMessage] = useState<string>("");
   const [querySubmitted, setQuerySubmitted] = useState<boolean>(false);
 
+  // Publication filtering states
+  const [pubTypeFilter, setPubTypeFilter] = useState<string>("all"); // "all" | "conference" | "journal"
+  const [pubStartMonth, setPubStartMonth] = useState<string>("");
+  const [pubStartYear, setPubStartYear] = useState<string>("");
+  const [pubEndMonth, setPubEndMonth] = useState<string>("");
+  const [pubEndYear, setPubEndYear] = useState<string>("");
+
+  const resetPubFilters = () => {
+    setProfileSearchQuery("");
+    setPubTypeFilter("all");
+    setPubStartMonth("");
+    setPubStartYear("");
+    setPubEndMonth("");
+    setPubEndYear("");
+  };
+
   // Sync state when initialMemberName prop updates (e.g. on direct navigation)
   useEffect(() => {
     if (initialMemberName) {
@@ -113,6 +130,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
         setQueryEmail("");
         setQueryMessage("");
         setQuerySubmitted(false);
+        resetPubFilters();
         return;
       }
     }
@@ -122,7 +140,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
   const handleSelectMember = (member: TeamMemberItem) => {
     setSelectedMember(member);
     setActiveProfileTab("about");
-    setProfileSearchQuery("");
+    resetPubFilters();
     setQueryName("");
     setQueryEmail("");
     setQueryMessage("");
@@ -137,6 +155,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
     setQueryEmail("");
     setQueryMessage("");
     setQuerySubmitted(false);
+    resetPubFilters();
     if (onClearInitialMember) {
       onClearInitialMember();
     }
@@ -145,12 +164,55 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
   // If a member profile is selected, render their beautiful, dynamic detailed page
   if (selectedMember) {
-    if (selectedMember.title === "Dr. Nazrul Islam") {
-      const filteredDrPubs = drNazrulProfile.publications.filter(pub => 
-        pub.title.toLowerCase().includes(profileSearchQuery.toLowerCase()) ||
-        pub.authors.toLowerCase().includes(profileSearchQuery.toLowerCase()) ||
-        pub.venue.toLowerCase().includes(profileSearchQuery.toLowerCase())
-      );
+    const isCustomProfile = selectedMember.title === "Dr. Nazrul Islam" || selectedMember.title === "Nargis Akter";
+    if (isCustomProfile) {
+      const activeProfile = selectedMember.title === "Dr. Nazrul Islam" ? drNazrulProfile : nargisAkterProfile;
+      const filteredDrPubs = activeProfile.publications.filter(pub => {
+        // 1. Search filter
+        const matchesSearch = !profileSearchQuery ||
+          pub.title.toLowerCase().includes(profileSearchQuery.toLowerCase()) ||
+          (pub.authors && pub.authors.toLowerCase().includes(profileSearchQuery.toLowerCase())) ||
+          (pub.venue && pub.venue.toLowerCase().includes(profileSearchQuery.toLowerCase()));
+
+        // 2. Type filter
+        const typeLower = pub.type ? pub.type.toLowerCase() : "";
+        const isConference = (
+          typeLower.includes("conference") || 
+          typeLower.includes("proceeding") || 
+          typeLower.includes("submission") || 
+          typeLower.includes("paper") ||
+          typeLower === "proceedings-article"
+        ) && !typeLower.includes("journal");
+
+        const isJournal = (
+          typeLower.includes("journal") || 
+          typeLower.includes("article") ||
+          typeLower === "journal-article"
+        ) && !typeLower.includes("conference") && !typeLower.includes("proceeding");
+        
+        let matchesType = true;
+        if (pubTypeFilter === "conference") {
+          matchesType = isConference;
+        } else if (pubTypeFilter === "journal") {
+          matchesType = isJournal;
+        }
+
+        // 3. Date range filter
+        const pubYear = pub.date ? parseInt(pub.date.substring(0, 4), 10) : 0;
+        const pubMonth = pub.date ? parseInt(pub.date.substring(5, 7), 10) : 1;
+        const pubScore = pubYear * 12 + pubMonth;
+
+        const startScore = pubStartYear 
+          ? (parseInt(pubStartYear, 10) * 12 + (pubStartMonth ? parseInt(pubStartMonth, 10) : 1))
+          : 0;
+        const endScore = pubEndYear
+          ? (parseInt(pubEndYear, 10) * 12 + (pubEndMonth ? parseInt(pubEndMonth, 10) : 12))
+          : 999999;
+
+        const matchesDateRange = pubScore >= startScore && pubScore <= endScore;
+
+        return matchesSearch && matchesType && matchesDateRange;
+      });
 
       return (
         <div className="py-12 md:py-20 bg-cream text-charcoal min-h-screen">
@@ -165,7 +227,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>← Back to Team Directory</span>
               </button>
-              <span className="text-xs font-mono text-slate-400">University Faculty // {drNazrulProfile.name}</span>
+              <span className="text-xs font-mono text-slate-400">University Faculty // {activeProfile.name}</span>
             </div>
 
             {/* Main Profile Grid Layout */}
@@ -186,13 +248,13 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 {/* Profile Details */}
                 <div className="mt-6 space-y-2 w-full">
                   <h1 className="font-serif text-2xl font-extrabold text-brand-dark tracking-tight">
-                    {drNazrulProfile.name}
+                    {activeProfile.name}
                   </h1>
                   <p className="text-xs font-mono font-bold text-brand-green uppercase tracking-wider">
-                    {drNazrulProfile.designation}
+                    {activeProfile.designation}
                   </p>
                   <p className="text-xs text-slate-500 font-sans font-medium">
-                    Department of {drNazrulProfile.department}
+                    Department of {activeProfile.department}
                   </p>
                   <p className="text-xs text-slate-400 font-sans">
                     Mawlana Bhashani Science & Technology University
@@ -201,23 +263,23 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
                 {/* Contact Card */}
                 <div className="w-full mt-6 pt-6 border-t border-slate-100 space-y-3.5 text-left text-xs text-slate-600">
-                  <a href={`mailto:${drNazrulProfile.email}`} className="flex items-center gap-3 hover:text-brand-green transition-colors group">
+                  <a href={`mailto:${activeProfile.email}`} className="flex items-center gap-3 hover:text-brand-green transition-colors group">
                     <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-green group-hover:bg-brand-green/10 transition-colors">
                       <Mail className="w-3.5 h-3.5" />
                     </div>
                     <div>
                       <div className="font-mono text-[9px] uppercase text-slate-400 font-bold">Email Address</div>
-                      <span className="font-sans font-semibold select-all text-slate-700">{drNazrulProfile.email}</span>
+                      <span className="font-sans font-semibold select-all text-slate-700">{activeProfile.email}</span>
                     </div>
                   </a>
 
-                  <a href={`tel:${drNazrulProfile.phone}`} className="flex items-center gap-3 hover:text-brand-green transition-colors group flex-nowrap">
+                  <a href={`tel:${activeProfile.phone}`} className="flex items-center gap-3 hover:text-brand-green transition-colors group flex-nowrap">
                     <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-green group-hover:bg-brand-green/10 transition-colors shrink-0">
                       <Phone className="w-3.5 h-3.5" />
                     </div>
                     <div>
                       <div className="font-mono text-[9px] uppercase text-slate-400 font-bold">Phone Connection</div>
-                      <span className="font-sans font-semibold select-all text-slate-700">{drNazrulProfile.phone}</span>
+                      <span className="font-sans font-semibold select-all text-slate-700">{activeProfile.phone}</span>
                     </div>
                   </a>
 
@@ -227,21 +289,24 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                     </div>
                     <div>
                       <div className="font-mono text-[9px] uppercase text-slate-400 font-bold">Office Location</div>
-                      <span className="font-sans font-semibold text-slate-700">{drNazrulProfile.location}</span>
+                      <span className="font-sans font-semibold text-slate-700">{activeProfile.location}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Academic Networks Links */}
                 <div className="flex items-center justify-center gap-3 mt-6 pt-4 border-t border-slate-100 w-full">
-                  <a href="https://scholar.google.com/citations?user=L-2Y7aUAAAAJ" target="_blank" rel="noopener noreferrer" title="Google Scholar Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <a href={activeProfile.name.includes("Nazrul") ? "https://scholar.google.com/citations?user=L-2Y7aUAAAAJ" : `https://scholar.google.com/scholar?q=${encodeURIComponent(activeProfile.name)}`} target="_blank" rel="noopener noreferrer" title="Google Scholar Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                     <Globe className="w-4 h-4" />
-                  </a>
-                  <a href="https://www.researchgate.net/profile/Nazrul-Islam-22" target="_blank" rel="noopener noreferrer" title="ResearchGate Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-brand-green hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
-                    <BookOpen className="w-4 h-4" />
                   </a>
                   <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#0077B5] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                     <Linkedin className="w-4 h-4" />
+                  </a>
+                  <a href={`https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(activeProfile.name)}`} target="_blank" rel="noopener noreferrer" title="ORCID Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#A6CE39] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                    <Fingerprint className="w-4 h-4" />
+                  </a>
+                  <a href={`https://github.com/search?q=${encodeURIComponent(activeProfile.name)}&type=users`} target="_blank" rel="noopener noreferrer" title="GitHub Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#24292e] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                    <Github className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -253,7 +318,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 <div className="bg-white border border-slate-200 rounded-2xl p-2 shadow-sm flex flex-wrap gap-1">
                   {[
                     { id: "about", label: "About Me" },
-                    { id: "publications", label: "Publications (" + drNazrulProfile.publications.length + ")" },
+                    { id: "publications", label: "Publications (" + activeProfile.publications.length + ")" },
                     { id: "projects", label: "Projects" },
                     { id: "teaching", label: "Teaching" },
                     { id: "contact", label: "Contact" }
@@ -283,7 +348,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                       <div className="space-y-4">
                         <h2 className="font-serif text-xl font-bold text-brand-dark pb-3 border-b border-slate-100">Academic & Research Bio</h2>
                         <p className="text-sm text-slate-600 leading-relaxed font-sans font-medium whitespace-pre-line">
-                          {drNazrulProfile.longBio}
+                          {activeProfile.longBio}
                         </p>
                       </div>
 
@@ -294,11 +359,11 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                           Primary Research Interests
                         </h3>
                         <p className="text-xs text-slate-500 leading-relaxed">
-                          Click any research interest card below to dynamically redirect to Dr. Nazrul Islam's relevant research publications and papers on Google Scholar:
+                          Click any research interest card below to dynamically redirect to {activeProfile.name}'s relevant research publications and papers on Google Scholar:
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          {drNazrulProfile.researchInterests.map((interest, idx) => {
-                            const scholarQuery = `https://scholar.google.com/scholar?q=Nazrul+Islam+MBSTU+${encodeURIComponent(interest)}`;
+                          {activeProfile.researchInterests.map((interest, idx) => {
+                            const scholarQuery = `https://scholar.google.com/scholar?q=${encodeURIComponent(activeProfile.name)}+MBSTU+${encodeURIComponent(interest)}`;
                             return (
                               <a
                                 key={idx}
@@ -326,7 +391,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                           Academic Credentials
                         </h3>
                         <div className="relative border-l border-slate-200 pl-6 ml-2 space-y-6">
-                          {drNazrulProfile.education.map((edu, idx) => (
+                          {activeProfile.education.map((edu, idx) => (
                             <div key={idx} className="relative">
                               <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-green border-4 border-white shadow-sm"></div>
                               {edu.year && (
@@ -348,19 +413,132 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
                   {activeProfileTab === "publications" && (
                     <div className="space-y-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-slate-100">
+                      <div className="pb-3 border-b border-slate-100 text-left">
                         <h2 className="font-serif text-xl font-bold text-brand-dark">Complete Publication List</h2>
-                        
-                        {/* Search input for filter */}
-                        <div className="relative w-full sm:max-w-xs">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5" />
-                          <input
-                            type="text"
-                            placeholder="Filter publications..."
-                            value={profileSearchQuery}
-                            onChange={(e) => setProfileSearchQuery(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-1.5 pl-9 pr-3 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
-                          />
+                        <p className="text-xs text-slate-500 mt-1">Filter {activeProfile.name}'s research publications and conference proceedings by type, date, or title keywords.</p>
+                      </div>
+
+                      {/* Interactive Filter Panel */}
+                      <div className="bg-slate-50/60 border border-slate-150 rounded-2xl p-4 space-y-3.5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Search Bar */}
+                          <div className="relative">
+                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5" />
+                            <input
+                              type="text"
+                              placeholder="Search publications by title, authors, venue..."
+                              value={profileSearchQuery}
+                              onChange={(e) => setProfileSearchQuery(e.target.value)}
+                              className="w-full bg-white border border-slate-200 rounded-xl py-2 pl-9 pr-4 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
+                            />
+                          </div>
+
+                          {/* Type Filters Button style */}
+                          <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-1.5 flex-wrap sm:flex-nowrap">
+                            <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider shrink-0">Type:</span>
+                            <div className="flex bg-slate-100 p-0.5 rounded-lg w-full sm:w-auto">
+                              <button
+                                type="button"
+                                onClick={() => setPubTypeFilter("all")}
+                                className={`flex-1 sm:flex-initial px-4 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                                  pubTypeFilter === "all"
+                                    ? "bg-brand-green text-white shadow-sm"
+                                    : "text-slate-600 hover:text-slate-950 hover:bg-white/40"
+                                }`}
+                              >
+                                All
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setPubTypeFilter("conference")}
+                                className={`flex-1 sm:flex-initial px-4 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                                  pubTypeFilter === "conference"
+                                    ? "bg-brand-green text-white shadow-sm"
+                                    : "text-slate-600 hover:text-slate-950 hover:bg-white/40"
+                                }`}
+                              >
+                                Conference
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setPubTypeFilter("journal")}
+                                className={`flex-1 sm:flex-initial px-4 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                                  pubTypeFilter === "journal"
+                                    ? "bg-brand-green text-white shadow-sm"
+                                    : "text-slate-600 hover:text-slate-950 hover:bg-white/40"
+                                }`}
+                              >
+                                Journal
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Date Range selectors and Reset */}
+                        <div className="flex flex-wrap items-center gap-3 bg-white border border-slate-200 rounded-xl p-3 text-xs">
+                          <span className="font-mono text-xs font-bold text-slate-400 uppercase tracking-wider">Date Range:</span>
+                          
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
+                              <select 
+                                value={pubStartMonth} 
+                                onChange={(e) => setPubStartMonth(e.target.value)}
+                                className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                              >
+                                <option value="">MM</option>
+                                {["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].map(m => (
+                                  <option key={m} value={m}>{m}</option>
+                                ))}
+                              </select>
+                              <span className="text-slate-300">/</span>
+                              <select 
+                                value={pubStartYear} 
+                                onChange={(e) => setPubStartYear(e.target.value)}
+                                className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                              >
+                                <option value="">YYYY</option>
+                                {Array.from({ length: 18 }, (_, i) => String(2010 + i)).map(y => (
+                                  <option key={y} value={y}>{y}</option>
+                                ))}
+                              </select>
+                            </div>
+
+                            <span className="text-slate-400 font-medium font-sans">to</span>
+
+                            <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
+                              <select 
+                                value={pubEndMonth} 
+                                onChange={(e) => setPubEndMonth(e.target.value)}
+                                className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                              >
+                                <option value="">MM</option>
+                                {["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].map(m => (
+                                  <option key={m} value={m}>{m}</option>
+                                ))}
+                              </select>
+                              <span className="text-slate-300">/</span>
+                              <select 
+                                value={pubEndYear} 
+                                onChange={(e) => setPubEndYear(e.target.value)}
+                                className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                              >
+                                <option value="">YYYY</option>
+                                {Array.from({ length: 18 }, (_, i) => String(2010 + i)).map(y => (
+                                  <option key={y} value={y}>{y}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+
+                          {/* Reset & active filters info */}
+                          {(pubStartYear || pubEndYear || pubTypeFilter !== "all" || profileSearchQuery) && (
+                            <button 
+                              onClick={resetPubFilters}
+                              className="text-xs font-mono font-bold text-brand-green hover:text-brand-green/80 hover:underline cursor-pointer ml-auto"
+                            >
+                              Clear Filters
+                            </button>
+                          )}
                         </div>
                       </div>
 
@@ -416,7 +594,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                     <div className="space-y-6">
                       <h2 className="font-serif text-xl font-bold text-brand-dark pb-3 border-b border-slate-100">Funded & Academic Research Projects</h2>
                       <div className="space-y-5">
-                        {drNazrulProfile.projects.map((proj, idx) => (
+                        {activeProfile.projects.map((proj, idx) => (
                           <div key={idx} className="p-5 rounded-2xl bg-slate-50 border border-slate-150 relative overflow-hidden text-left">
                             <div className="absolute top-0 left-0 h-full w-1 bg-brand-green"></div>
                             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -444,7 +622,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                       <div className="space-y-4">
                         <h2 className="font-serif text-xl font-bold text-brand-dark pb-3 border-b border-slate-100">Academic Lecture Allocations</h2>
                         <p className="text-xs text-slate-500 leading-relaxed">
-                          Courses instructed by Dr. Nazrul Islam within the undergraduate and postgraduate curriculum of the Department of ICT at MBSTU:
+                          Courses instructed by {activeProfile.name} within the undergraduate and postgraduate curriculum of the Department of ICT at MBSTU:
                         </p>
                       </div>
 
@@ -452,7 +630,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                       <div className="space-y-3">
                         <h3 className="text-xs font-mono font-bold text-brand-green uppercase tracking-widest">Postgraduate Programs (M.Sc.)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {drNazrulProfile.teaching.graduate.map((course, idx) => (
+                          {activeProfile.teaching.graduate.map((course, idx) => (
                             <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-100 text-left">
                               <span className="font-mono text-[10px] text-slate-400 font-bold">{course.code}</span>
                               <h4 className="font-serif text-sm font-bold text-slate-800 mt-1 leading-snug">{course.title}</h4>
@@ -466,7 +644,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                       <div className="space-y-3 pt-4">
                         <h3 className="text-xs font-mono font-bold text-brand-green uppercase tracking-widest">Undergraduate Programs (B.Sc. Engg.)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {drNazrulProfile.teaching.undergraduate.map((course, idx) => (
+                          {activeProfile.teaching.undergraduate.map((course, idx) => (
                             <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-100 text-left">
                               <span className="font-mono text-[10px] text-slate-400 font-bold">{course.code}</span>
                               <h4 className="font-serif text-sm font-bold text-slate-800 mt-1 leading-snug">{course.title}</h4>
@@ -545,7 +723,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 <div className="p-5 rounded-2xl bg-cream border border-slate-200/80 text-[11px] text-slate-500 leading-relaxed flex gap-3 text-left">
                   <Award className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
                   <p>
-                    Dr. Nazrul Islam directs core computing assets and field data collections. All local vocal annotations and sensory crop trials are conducted in strict compliance with university scientific evaluation ethics.
+                    {activeProfile.name} directs core computing assets and field data collections. All local vocal annotations and sensory crop trials are conducted in strict compliance with university scientific evaluation ethics.
                   </p>
                 </div>
 
@@ -570,8 +748,9 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
     };
 
     const scholarLink = `https://scholar.google.com/scholar?q=${encodeURIComponent(selectedMember.title)}`;
-    const researchGateLink = `https://www.researchgate.net/search?q=${encodeURIComponent(selectedMember.title)}`;
     const linkedinLink = `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(selectedMember.title.split(' ')[0])}&lastName=${encodeURIComponent(selectedMember.title.split(' ').slice(1).join(' '))}`;
+    const orcidLink = `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(selectedMember.title)}`;
+    const githubLink = `https://github.com/search?q=${encodeURIComponent(selectedMember.title)}&type=users`;
 
     const profileTabs = [
       { id: "about", label: "About Me" },
@@ -582,11 +761,52 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
     }
     profileTabs.push({ id: "contact", label: "Contact" });
 
-    const filteredPubs = (extraDetails.publications || []).filter((pub: any) => 
-      pub.title.toLowerCase().includes(profileSearchQuery.toLowerCase()) ||
-      (pub.venue && pub.venue.toLowerCase().includes(profileSearchQuery.toLowerCase())) ||
-      (pub.authors && pub.authors.toLowerCase().includes(profileSearchQuery.toLowerCase()))
-    );
+    const filteredPubs = (extraDetails.publications || []).filter((pub: any) => {
+      // 1. Search filter
+      const matchesSearch = !profileSearchQuery ||
+        pub.title.toLowerCase().includes(profileSearchQuery.toLowerCase()) ||
+        (pub.venue && pub.venue.toLowerCase().includes(profileSearchQuery.toLowerCase())) ||
+        (pub.authors && pub.authors.toLowerCase().includes(profileSearchQuery.toLowerCase()));
+
+      // 2. Type filter
+      const typeLower = pub.type ? pub.type.toLowerCase() : "";
+      const isConference = (
+        typeLower.includes("conference") || 
+        typeLower.includes("proceeding") || 
+        typeLower.includes("submission") || 
+        typeLower.includes("paper") ||
+        typeLower === "proceedings-article"
+      ) && !typeLower.includes("journal");
+
+      const isJournal = (
+        typeLower.includes("journal") || 
+        typeLower.includes("article") ||
+        typeLower === "journal-article"
+      ) && !typeLower.includes("conference") && !typeLower.includes("proceeding");
+
+      let matchesType = true;
+      if (pubTypeFilter === "conference") {
+        matchesType = isConference;
+      } else if (pubTypeFilter === "journal") {
+        matchesType = isJournal;
+      }
+
+      // 3. Date range filter
+      const pubYear = pub.date ? parseInt(pub.date.substring(0, 4), 10) : (pub.year ? parseInt(pub.year, 10) : 0);
+      const pubMonth = pub.date ? parseInt(pub.date.substring(5, 7), 10) : 1;
+      const pubScore = pubYear * 12 + pubMonth;
+
+      const startScore = pubStartYear 
+        ? (parseInt(pubStartYear, 10) * 12 + (pubStartMonth ? parseInt(pubStartMonth, 10) : 1))
+        : 0;
+      const endScore = pubEndYear
+        ? (parseInt(pubEndYear, 10) * 12 + (pubEndMonth ? parseInt(pubEndMonth, 10) : 12))
+        : 999999;
+
+      const matchesDateRange = pubScore >= startScore && pubScore <= endScore;
+
+      return matchesSearch && matchesType && matchesDateRange;
+    });
 
     return (
       <div className="py-12 md:py-20 bg-cream text-charcoal min-h-screen">
@@ -670,11 +890,14 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 <a href={scholarLink} target="_blank" rel="noopener noreferrer" title="Google Scholar Search" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                   <Globe className="w-4 h-4" />
                 </a>
-                <a href={researchGateLink} target="_blank" rel="noopener noreferrer" title="ResearchGate Search" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-brand-green hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
-                  <BookOpen className="w-4 h-4" />
-                </a>
                 <a href={linkedinLink} target="_blank" rel="noopener noreferrer" title="LinkedIn Search" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#0077B5] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                   <Linkedin className="w-4 h-4" />
+                </a>
+                <a href={orcidLink} target="_blank" rel="noopener noreferrer" title="ORCID Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#A6CE39] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <Fingerprint className="w-4 h-4" />
+                </a>
+                <a href={githubLink} target="_blank" rel="noopener noreferrer" title="GitHub Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#24292e] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <Github className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -775,19 +998,132 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
                 {activeProfileTab === "publications" && (
                   <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-slate-100">
+                    <div className="pb-3 border-b border-slate-100 text-left">
                       <h2 className="font-serif text-xl font-bold text-brand-dark">Connected Publications & Thesis</h2>
-                      
-                      {/* Search input for filter */}
-                      <div className="relative w-full sm:max-w-xs">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5" />
-                        <input
-                          type="text"
-                          placeholder="Filter papers..."
-                          value={profileSearchQuery}
-                          onChange={(e) => setProfileSearchQuery(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl py-1.5 pl-9 pr-3 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
-                        />
+                      <p className="text-xs text-slate-500 mt-1">Filter {selectedMember.title}'s publications and thesis papers by type, date, or keywords.</p>
+                    </div>
+
+                    {/* Interactive Filter Panel */}
+                    <div className="bg-slate-50/60 border border-slate-150 rounded-2xl p-4 space-y-3.5">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Search Bar */}
+                        <div className="relative">
+                          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5" />
+                          <input
+                            type="text"
+                            placeholder="Search publications by title, authors, venue..."
+                            value={profileSearchQuery}
+                            onChange={(e) => setProfileSearchQuery(e.target.value)}
+                            className="w-full bg-white border border-slate-200 rounded-xl py-2 pl-9 pr-4 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
+                          />
+                        </div>
+
+                        {/* Type Filters Button style */}
+                        <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-1.5 flex-wrap sm:flex-nowrap">
+                          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider shrink-0">Type:</span>
+                          <div className="flex bg-slate-100 p-0.5 rounded-lg w-full sm:w-auto">
+                            <button
+                              type="button"
+                              onClick={() => setPubTypeFilter("all")}
+                              className={`flex-1 sm:flex-initial px-4 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                                pubTypeFilter === "all"
+                                  ? "bg-brand-green text-white shadow-sm"
+                                  : "text-slate-600 hover:text-slate-950 hover:bg-white/40"
+                              }`}
+                            >
+                              All
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setPubTypeFilter("conference")}
+                              className={`flex-1 sm:flex-initial px-4 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                                pubTypeFilter === "conference"
+                                  ? "bg-brand-green text-white shadow-sm"
+                                  : "text-slate-600 hover:text-slate-950 hover:bg-white/40"
+                              }`}
+                            >
+                              Conference
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setPubTypeFilter("journal")}
+                              className={`flex-1 sm:flex-initial px-4 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                                pubTypeFilter === "journal"
+                                  ? "bg-brand-green text-white shadow-sm"
+                                  : "text-slate-600 hover:text-slate-950 hover:bg-white/40"
+                              }`}
+                            >
+                              Journal
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Date Range selectors and Reset */}
+                      <div className="flex flex-wrap items-center gap-3 bg-white border border-slate-200 rounded-xl p-3 text-xs">
+                        <span className="font-mono text-xs font-bold text-slate-400 uppercase tracking-wider">Date Range:</span>
+                        
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
+                            <select 
+                              value={pubStartMonth} 
+                              onChange={(e) => setPubStartMonth(e.target.value)}
+                              className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                            >
+                              <option value="">MM</option>
+                              {["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].map(m => (
+                                <option key={m} value={m}>{m}</option>
+                              ))}
+                            </select>
+                            <span className="text-slate-300">/</span>
+                            <select 
+                              value={pubStartYear} 
+                              onChange={(e) => setPubStartYear(e.target.value)}
+                              className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                            >
+                              <option value="">YYYY</option>
+                              {Array.from({ length: 18 }, (_, i) => String(2010 + i)).map(y => (
+                                  <option key={y} value={y}>{y}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <span className="text-slate-400 font-medium font-sans">to</span>
+
+                          <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
+                            <select 
+                              value={pubEndMonth} 
+                              onChange={(e) => setPubEndMonth(e.target.value)}
+                              className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                            >
+                              <option value="">MM</option>
+                              {["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].map(m => (
+                                <option key={m} value={m}>{m}</option>
+                              ))}
+                            </select>
+                            <span className="text-slate-300">/</span>
+                            <select 
+                              value={pubEndYear} 
+                              onChange={(e) => setPubEndYear(e.target.value)}
+                              className="bg-transparent font-medium text-slate-700 focus:outline-none cursor-pointer"
+                            >
+                              <option value="">YYYY</option>
+                              {Array.from({ length: 18 }, (_, i) => String(2010 + i)).map(y => (
+                                  <option key={y} value={y}>{y}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+
+                        {/* Reset & active filters info */}
+                        {(pubStartYear || pubEndYear || pubTypeFilter !== "all" || profileSearchQuery) && (
+                          <button 
+                            onClick={resetPubFilters}
+                            className="text-xs font-mono font-bold text-brand-green hover:text-brand-green/80 hover:underline cursor-pointer ml-auto"
+                          >
+                            Clear Filters
+                          </button>
+                        )}
                       </div>
                     </div>
 
@@ -990,6 +1326,120 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
     );
   }
 
+  // Categorise members
+  const professors = data.teamMembers.filter(m => 
+    m.title.toLowerCase().includes("nazrul") || m.title.toLowerCase().includes("nargis")
+  );
+
+  const researchAssistants = data.teamMembers.filter(m => 
+    m.title.toLowerCase().includes("sagor")
+  );
+
+  const mscStudents = data.teamMembers.filter(m => 
+    m.title.toLowerCase().includes("shafi") || m.title.toLowerCase().includes("mim") || m.title.toLowerCase().includes("lutfor") || m.title.toLowerCase().includes("swapnil")
+  );
+
+  const dataCollectors = data.teamMembers.filter(m => 
+    m.title.toLowerCase().includes("nafis") || m.title.toLowerCase().includes("nadim")
+  );
+
+  // Helper to render grids with up to 4 cards in a row
+  const renderMemberGrid = (members: typeof data.teamMembers) => (
+    <div className="flex flex-wrap gap-6 justify-center">
+      {members.map((member, idx) => (
+        <div
+          key={member.title}
+          className="reveal bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group/team cursor-pointer w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-sm"
+          onClick={() => handleSelectMember(member)}
+          title={`Click to view research bio for ${member.title}`}
+        >
+          {/* Centered Circle Avatar Header */}
+          <div className="relative w-full bg-slate-50 border-b border-slate-100 py-10 flex justify-center items-center shrink-0">
+            <div className="relative">
+              <TeamAvatar member={member} />
+              
+              {/* Title Badge positioned at bottom-center of the profile image */}
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-brand-green text-white font-mono text-[9px] uppercase tracking-widest px-3.5 py-1.5 rounded-full font-extrabold shadow-md whitespace-nowrap z-10 border border-white">
+                {member.tag || member.role}
+              </div>
+            </div>
+          </div>
+
+          {/* Info section */}
+          <div className="p-6 flex flex-col flex-grow text-center justify-between">
+            <div>
+              {/* Title (Bold, uppercase) */}
+              <h3 className="font-sans font-extrabold text-lg text-slate-900 uppercase tracking-tight leading-snug group-hover/team:text-brand-green transition-colors duration-200">
+                {member.title}
+              </h3>
+              
+              {/* Subtitle / Role (Muted uppercase) */}
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mt-1 mb-4">
+                {member.subtitle}
+              </p>
+
+              {/* Social Icons row */}
+              {(() => {
+                const isNazrul = member.title.toLowerCase().includes("nazrul");
+                const cardScholarLink = isNazrul
+                  ? "https://scholar.google.com/citations?user=L-2Y7aUAAAAJ"
+                  : `https://scholar.google.com/scholar?q=${encodeURIComponent(member.title)}`;
+                
+                const cardLinkedinLink = isNazrul
+                  ? "https://www.linkedin.com"
+                  : `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(member.title.split(' ')[0])}&lastName=${encodeURIComponent(member.title.split(' ').slice(1).join(' '))}`;
+                
+                const cardOrcidLink = `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(member.title)}`;
+                const cardGithubLink = `https://github.com/search?q=${encodeURIComponent(member.title)}&type=users`;
+
+                return (
+                  <div className="flex items-center justify-center gap-3 mb-5" onClick={(e) => e.stopPropagation()}>
+                    <a href={cardScholarLink} target="_blank" rel="noopener noreferrer" title="Google Scholar" className="w-9 h-9 rounded-full bg-[#DB4437] hover:opacity-95 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
+                      <Globe className="w-4 h-4" />
+                    </a>
+                    <a href={cardLinkedinLink} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-9 h-9 rounded-full bg-[#0077B5] hover:opacity-95 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                    <a href={cardOrcidLink} target="_blank" rel="noopener noreferrer" title="ORCID Profile" className="w-9 h-9 rounded-full bg-[#A6CE39] hover:opacity-95 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
+                      <Fingerprint className="w-4 h-4" />
+                    </a>
+                    <a href={cardGithubLink} target="_blank" rel="noopener noreferrer" title="GitHub Profile" className="w-9 h-9 rounded-full bg-[#24292e] hover:opacity-95 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
+                      <Github className="w-4 h-4" />
+                    </a>
+                  </div>
+                );
+              })()}
+
+              {/* Contact details */}
+              <div className="space-y-1 text-xs text-slate-600 font-sans mt-1 mb-5 border-t border-slate-100 pt-4">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="font-semibold text-slate-900">Email:</span>
+                  <span className="truncate text-slate-700 hover:text-brand-green select-all">{member.email || "nargis_ict@mbstu.ac.bd"}</span>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="font-semibold text-slate-900">Phone:</span>
+                  <span className="text-slate-700 select-all">{member.phone || "01701876194"}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* View Profile Button at the bottom */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedMember(member);
+              }}
+              className="mt-2 w-full bg-[#111111] hover:bg-[#222222] active:bg-[#000000] text-white uppercase text-xs tracking-widest font-extrabold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 group-hover/team:shadow-md hover:scale-[1.01] cursor-pointer"
+            >
+              <span>View Profile</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-80 group-hover/team:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   // Fallback default view: Grid of Team members
   return (
     <div className="py-12 md:py-20 bg-cream text-charcoal">
@@ -1006,83 +1456,51 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
           </p>
         </div>
 
-        {/* Team Members Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {data.teamMembers.map((member, idx) => (
-            <div
-              key={idx}
-              className="reveal bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group/team cursor-pointer"
-              onClick={() => handleSelectMember(member)}
-              title={`Click to view research bio for ${member.title}`}
-            >
-              {/* Centered Circle Avatar Header */}
-              <div className="relative w-full bg-slate-50 border-b border-slate-100 py-10 flex justify-center items-center shrink-0">
-                <div className="relative">
-                  <TeamAvatar member={member} />
-                  
-                  {/* Title Badge positioned at bottom-center of the profile image */}
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-brand-green text-white font-mono text-[9px] uppercase tracking-widest px-3.5 py-1.5 rounded-full font-extrabold shadow-md whitespace-nowrap z-10 border border-white">
-                    {member.tag || member.role}
-                  </div>
-                </div>
+        {/* Categorized Team Sections */}
+        <div className="space-y-16 mb-16">
+          {/* Professors Category */}
+          {professors.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Professors</h2>
+                <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{professors.length}</span>
               </div>
-
-              {/* Info section */}
-              <div className="p-6 flex flex-col flex-grow text-center justify-between">
-                <div>
-                  {/* Title (Bold, uppercase) */}
-                  <h3 className="font-sans font-extrabold text-lg text-slate-900 uppercase tracking-tight leading-snug group-hover/team:text-brand-green transition-colors duration-200">
-                    {member.title}
-                  </h3>
-                  
-                  {/* Subtitle / Role (Muted uppercase) */}
-                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mt-1 mb-4">
-                    {member.subtitle}
-                  </p>
-
-                  {/* Social Icons row */}
-                  <div className="flex items-center justify-center gap-3 mb-5" onClick={(e) => e.stopPropagation()}>
-                    <a href="#facebook" title="Facebook Profile" className="w-9 h-9 rounded-full bg-[#3B5998] hover:opacity-90 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
-                      <Facebook className="w-4 h-4" />
-                    </a>
-                    <a href="#twitter" title="Twitter Profile" className="w-9 h-9 rounded-full bg-[#1DA1F2] hover:opacity-90 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
-                      <Twitter className="w-4 h-4" />
-                    </a>
-                    <a href="#google" title="Google Scholar" className="w-9 h-9 rounded-full bg-[#DB4437] hover:opacity-90 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
-                      <Globe className="w-4 h-4" />
-                    </a>
-                    <a href="#linkedin" title="LinkedIn Profile" className="w-9 h-9 rounded-full bg-[#0077B5] hover:opacity-90 hover:scale-105 transition-all flex items-center justify-center text-white shadow-sm">
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                  </div>
-
-                  {/* Contact details */}
-                  <div className="space-y-1 text-xs text-slate-600 font-sans mt-1 mb-5 border-t border-slate-100 pt-4">
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="font-semibold text-slate-900">Email:</span>
-                      <span className="truncate text-slate-700 hover:text-brand-green select-all">{member.email || "nagis_ict@mbstu.ac.bd"}</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="font-semibold text-slate-900">Phone:</span>
-                      <span className="text-slate-700 select-all">{member.phone || "01701876194"}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* View Profile Button at the bottom */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedMember(member);
-                  }}
-                  className="mt-2 w-full bg-[#111111] hover:bg-[#222222] active:bg-[#000000] text-white uppercase text-xs tracking-widest font-extrabold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 group-hover/team:shadow-md hover:scale-[1.01] cursor-pointer"
-                >
-                  <span>View Profile</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-80 group-hover/team:translate-x-0.5 transition-transform" />
-                </button>
-              </div>
+              {renderMemberGrid(professors)}
             </div>
-          ))}
+          )}
+
+          {/* Research Assistants Category */}
+          {researchAssistants.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Research Assistants</h2>
+                <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{researchAssistants.length}</span>
+              </div>
+              {renderMemberGrid(researchAssistants)}
+            </div>
+          )}
+
+          {/* MSc Students Category */}
+          {mscStudents.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">MSc Students</h2>
+                <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{mscStudents.length}</span>
+              </div>
+              {renderMemberGrid(mscStudents)}
+            </div>
+          )}
+
+          {/* Data Collectors Category */}
+          {dataCollectors.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Data Collectors</h2>
+                <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{dataCollectors.length}</span>
+              </div>
+              {renderMemberGrid(dataCollectors)}
+            </div>
+          )}
         </div>
 
         {/* Institutional Affiliations info box */}

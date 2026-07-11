@@ -1,0 +1,91 @@
+{
+  "name": "Nargis Akter",
+  "designation": "Professor",
+  "department": "Information and Communication Technology",
+  "email": "nargis@mbstu.ac.bd",
+  "phone": "+880 1234-567890",
+  "location": "Santosh, Tangail, Bangladesh",
+  "longBio": "Nargis Akter is a Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU). She possesses deep expertise in data science, machine learning, intelligent systems, and computational modeling. In the Agri-VoiceLink project, she serves as a Co-Investigator, leading linguistic corpus curation, acoustic mapping of local dialects, and localized model diagnostics validation.",
+  "researchInterests": [
+    "Machine Learning",
+    "Natural Language Processing",
+    "Data Science",
+    "Acoustic Modeling"
+  ],
+  "education": [
+    {
+      "degree": "M.Sc. in Computer Science and Engineering",
+      "institute": "Jahangirnagar University",
+      "address": "Savar, Dhaka, Bangladesh.",
+      "year": "2010"
+    },
+    {
+      "degree": "B.Sc. in Computer Science and Engineering",
+      "institute": "Mawlana Bhashani Science and Technology University",
+      "address": "Tangail, Bangladesh.",
+      "year": "2008"
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "title": "Acoustic Feature Alignment and Dialect Adaptation for Low-Resource Bengali Agricultural Speech",
+      "authors": "Nargis Akter, Nazrul Islam, Md. Shafiul Islam",
+      "venue": "2025 International Conference on Computer and Information Technology (ICCIT)",
+      "type": "proceedings-article",
+      "date": "2025-06-15",
+      "status": "published"
+    },
+    {
+      "id": 2,
+      "title": "A Hybrid Deep Learning Architecture for Soil Moisture and Agronomic Yield Predictions",
+      "authors": "Nargis Akter, Md. Shafiul Islam, Afsana Akter Mim",
+      "venue": "Journal of Agricultural Informatics",
+      "type": "journal-article",
+      "date": "2024-10-01",
+      "status": "published"
+    },
+    {
+      "id": 3,
+      "title": "Machine Learning-Based Semantic Parsing for Low-Resource Bengali Dialects",
+      "authors": "Nargis Akter, Nazrul Islam, Chanchal Saha",
+      "venue": "2024 IEEE 4th International Conference on Computing and Communication",
+      "type": "proceedings-article",
+      "date": "2024-03-12",
+      "status": "published"
+    },
+    {
+      "id": 4,
+      "title": "Deep Learning Approaches to Automatic Speech Recognition in Bengali Rural Dialects",
+      "authors": "Nargis Akter, Md. Shafiul Islam, Mohammad Abu Yousuf",
+      "venue": "IEEE Access",
+      "type": "journal-article",
+      "date": "2023-11-20",
+      "status": "published"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Low-Resource Speech Processing and Dialectal ASR Systems",
+      "role": "Co-Investigator",
+      "funding": "ICT Division Grant",
+      "desc": "Developing robust semantic alignment, acoustic features extraction, and deep neural models tailored for low-resource Bengali and regional dialects."
+    }
+  ],
+  "teaching": {
+    "graduate": [
+      {
+        "code": "ICT-5105",
+        "title": "Natural Language Processing & Speech Synthesis",
+        "level": "M.Sc. in ICT"
+      }
+    ],
+    "undergraduate": [
+      {
+        "code": "ICT-3203",
+        "title": "Artificial Intelligence & Expert Systems",
+        "level": "B.Sc. Engg. in ICT"
+      }
+    ]
+  }
+}

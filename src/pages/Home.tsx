@@ -237,66 +237,105 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
       {/* PI / Team Strip */}
       <section className="bg-brand-green/5 py-10 border-b border-brand-green/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-6 md:p-8 rounded-2xl border border-brand-green/10 shadow-sm">
-            <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-              <div className="relative">
-                {!imageError ? (
-                  <img
-                    src={ppNiImage}
-                    alt="Dr. Nazrul Islam"
-                    onError={() => setImageError(true)}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-brand-green/30 bg-cream shadow-md"
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-brand-dark text-white flex flex-col items-center justify-center border-2 border-brand-green/30 shadow-md">
-                    <span className="font-serif text-xl md:text-2xl font-bold">Dr. NI</span>
-                    <span className="text-[8px] font-mono uppercase tracking-wider opacity-80">MBSTU</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Dr. Nazrul Islam Card */}
+            <div className="flex flex-col justify-between bg-white p-6 md:p-8 rounded-2xl border border-brand-green/10 shadow-sm transition-all duration-300 hover:shadow-md h-full">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left mb-6">
+                <div className="relative shrink-0">
+                  {!imageError ? (
+                    <img
+                      src={ppNiImage}
+                      alt="Dr. Nazrul Islam"
+                      onError={() => setImageError(true)}
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-brand-green/30 bg-cream shadow-md"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-brand-dark text-white flex flex-col items-center justify-center border-2 border-brand-green/30 shadow-md">
+                      <span className="font-serif text-xl md:text-2xl font-bold">Dr. NI</span>
+                      <span className="text-[8px] font-mono uppercase tracking-wider opacity-80">MBSTU</span>
+                    </div>
+                  )}
+                  <div className="absolute -bottom-1 -right-1 bg-brand-green text-white rounded-full p-1 border border-white shadow">
+                    <Award className="w-4 h-4 text-white" />
                   </div>
-                )}
-                <div className="absolute -bottom-1 -right-1 bg-brand-green text-white rounded-full p-1 border border-white shadow">
-                  <Award className="w-4 h-4 text-white" />
+                </div>
+
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-dark text-white mb-2">
+                    Principal Investigator
+                  </div>
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark">
+                    Dr. Nazrul Islam
+                  </h3>
+                  <p className="text-sm text-brand-green font-medium mb-1">
+                    Associate Professor, Department of ICT
+                  </p>
+                  <p className="text-xs text-muted-gray leading-relaxed">
+                    Mawlana Bhashani Science and Technology University (MBSTU). Leading advanced natural language and spatial agronomy research in MBSTU, Tangail, Bangladesh.
+                  </p>
                 </div>
               </div>
 
-              <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-dark text-white mb-2">
-                  Principal Investigator
+              <div className="mt-auto pt-4 border-t border-slate-100 flex justify-start">
+                <button
+                  onClick={() => onNavigate("team/Dr.-Nazrul-Islam")}
+                  className="bg-brand-dark hover:bg-brand-green hover:scale-[1.02] text-white text-xs uppercase tracking-widest font-extrabold py-3 px-5 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto shrink-0"
+                >
+                  <span>View Bio</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Nargis Akter Card */}
+            <div className="flex flex-col justify-between bg-white p-6 md:p-8 rounded-2xl border border-brand-green/10 shadow-sm transition-all duration-300 hover:shadow-md h-full">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left mb-6">
+                <div className="relative shrink-0">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#EBF1F5] text-brand-dark flex flex-col items-center justify-center border-2 border-brand-green/30 shadow-md">
+                    <span className="font-serif text-xl md:text-2xl font-bold text-brand-dark">NA</span>
+                    <span className="text-[8px] font-mono uppercase tracking-wider opacity-85 text-brand-green font-semibold">MBSTU</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 bg-brand-green text-white rounded-full p-1 border border-white shadow">
+                    <Award className="w-4 h-4 text-white" />
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark">
-                  Dr. Nazrul Islam
-                </h3>
-                <p className="text-sm text-brand-green font-medium mb-1">
-                  Associate Professor, Department of ICT
-                </p>
-                <p className="text-xs text-muted-gray max-w-xl leading-relaxed">
-                  Mawlana Bhashani Science and Technology University (MBSTU). Leading advanced natural language and spatial agronomy research in MBSTU, Tangail, Bangladesh.
-                </p>
+
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-green text-white mb-2">
+                    Co-Investigator
+                  </div>
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark">
+                    Nargis Akter
+                  </h3>
+                  <p className="text-sm text-brand-green font-medium mb-1">
+                    Professor, Department of ICT
+                  </p>
+                  <p className="text-xs text-muted-gray leading-relaxed">
+                    Mawlana Bhashani Science and Technology University (MBSTU). Expert in machine learning, data science, and advanced spatial agricultural model architectures.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-auto pt-4 border-t border-slate-100 flex justify-start">
+                <button
+                  onClick={() => onNavigate("team/Nargis-Akter")}
+                  className="bg-brand-dark hover:bg-brand-green hover:scale-[1.02] text-white text-xs uppercase tracking-widest font-extrabold py-3 px-5 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto shrink-0"
+                >
+                  <span>View Bio</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
 
-            <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-              <div className="bg-brand-green/5 border border-brand-green/10 rounded-lg p-4 text-center sm:text-left">
-                <div className="text-[10px] font-mono uppercase text-muted-gray tracking-widest mb-1">Affiliated Lab</div>
-                <div className="font-serif text-sm font-bold text-brand-dark">Intellectual NLP Research Lab</div>
-                <div className="text-xs text-brand-green">MBSTU ICT Division</div>
-              </div>
-
-              <button
-                onClick={() => onNavigate("team/Dr.-Nazrul-Islam")}
-                className="bg-brand-dark hover:bg-brand-green hover:scale-[1.02] text-white text-xs uppercase tracking-widest font-extrabold py-4 px-6 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer shrink-0"
-              >
-                <span>View Bio</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </button>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Alternating Sequential Page Sections */}
       
-      {/* 1. ABOUT US */}
+      {/* 1. ABOUT OUR PROJECT */}
       <section className="py-20 md:py-24 bg-cream border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -315,7 +354,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   onClick={() => onNavigate("about")}
                   className="inline-flex items-center gap-2 bg-brand-dark hover:bg-[#1c2e24] text-white text-xs uppercase tracking-widest font-extrabold py-3.5 px-8 rounded-xl transition-all duration-200 shadow-md cursor-pointer"
                 >
-                  <span>Learn More About Us</span>
+                  <span>Learn More About Our Project</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
