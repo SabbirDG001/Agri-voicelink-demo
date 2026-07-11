@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Sprout, ChevronRight, Info, Award, Globe, BookOpen, ArrowUpRight, CheckCircle, Target, Cpu, Calendar, FileText, Activity, Users } from "lucide-react";
 import { ProjectData, StatItem, HighlightCardItem } from "../types";
 import ppNiImage from "../images/nazrul.jpg";
+import bgHeroImage from "../images/bgimg.jpg";
 
 interface HomeProps {
   data: ProjectData;
@@ -10,118 +11,23 @@ interface HomeProps {
 }
 
 export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [imageError, setImageError] = useState(false);
-
-  // Particle canvas animation in the Hero section
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animationId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
-
-    interface Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      color: string;
-      alpha: number;
-    }
-
-    const particles: Particle[] = [];
-
-    const createParticle = (): Particle => {
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        radius: Math.random() * 2.5 + 0.5,
-        color: Math.random() > 0.65 ? "#27AE60" : "#B4DFCD",
-        alpha: Math.random() * 0.4 + 0.1,
-      };
-    };
-
-    const particleCount = Math.min(Math.floor(width / 30), 50);
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(createParticle());
-    }
-
-    const handleResize = () => {
-      if (!canvas || !canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = canvas.parentElement.clientHeight;
-    };
-    window.addEventListener("resize", handleResize);
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      // Draw subtle connections
-      ctx.strokeStyle = "rgba(168, 197, 160, 0.05)";
-      ctx.lineWidth = 0.5;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.save();
-        ctx.globalAlpha = p.alpha;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = p.color;
-        ctx.fill();
-        ctx.restore();
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <div className="space-y-0">
       
       {/* Hero Section */}
-      <section className="relative bg-brand-dark text-white pt-16 pb-20 md:py-28 overflow-hidden">
-        {/* Canvas Background */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-40 mix-blend-screen"
-        />
+      <section className="relative bg-brand-dark text-white pt-20 pb-24 md:py-32 overflow-hidden">
+        {/* Background Image with agricultural vibe & dark overlay for high readability */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={bgHeroImage}
+            alt="Agri-VoiceLink agricultural background"
+            className="w-full h-full object-cover opacity-35 object-center"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/70 to-brand-dark" />
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="max-w-3xl text-left">

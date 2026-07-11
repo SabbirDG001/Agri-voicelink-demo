@@ -1504,6 +1504,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
         </div>
 
         {/* Institutional Affiliations info box */}
+        {/* 
         <div className="reveal bg-white border border-brand-green/10 rounded-2xl p-6 sm:p-10 shadow-sm">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="space-y-3">
@@ -1526,6 +1527,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
             </div>
           </div>
         </div>
+        */}
 
       </div>
     </div>
