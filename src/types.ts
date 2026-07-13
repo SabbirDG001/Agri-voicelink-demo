@@ -50,6 +50,10 @@ export interface TeamMemberItem {
   org: string;
   email?: string;
   phone?: string;
+  scholar?: string;
+  linkedin?: string;
+  orcid?: string;
+  github?: string;
 }
 
 export interface AboutValueItem {
@@ -86,11 +90,12 @@ export interface NewsItem {
   title: string;
   date: string;
   author: string;
-  category: "Milestone" | "Publication" | "Event" | "Field Trial";
+  category: "News" | "Notice";
   summary: string;
   content: string;
   thumbnail: string;
   tags: string[];
+  link?: string;
 }
 
 export interface ProjectData {

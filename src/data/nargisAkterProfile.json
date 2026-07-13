@@ -1,29 +1,41 @@
 {
-  "name": "Nargis Akter",
+  "name": "Professor Dr. Mst. Nargis Akter",
   "designation": "Professor",
   "department": "Information and Communication Technology",
-  "email": "nargis@mbstu.ac.bd",
-  "phone": "+880 1234-567890",
+  "email": "nargis_ict@mbstu.ac.bd",
+  "phone": "+8801701-876194",
   "location": "Santosh, Tangail, Bangladesh",
-  "longBio": "Nargis Akter is a Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU). She possesses deep expertise in data science, machine learning, intelligent systems, and computational modeling. In the Agri-VoiceLink project, she serves as a Co-Investigator, leading linguistic corpus curation, acoustic mapping of local dialects, and localized model diagnostics validation.",
+  "scholar": "",
+  "linkedin": "",
+  "orcid": "",
+  "github": "",
+  "longBio": "Professor Dr. Mst Nargis Aktar is a Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU), Tangail, Bangladesh, where she has been a faculty member since March 2008. Over her distinguished tenure at MBSTU, she has progressed from Lecturer (2008–2011) to Assistant Professor (2011–2018), Associate Professor (2018–2022), and was promoted to Professor in April 2022. She earned her PhD from The University of New South Wales (UNSW), Australia, in 2017, focusing on multi-modal medical image registration and fusion algorithms. She holds both an M.Sc. (Engg.) in EEE (2009) and a B.Sc. (Engg.) in EEE (2007) from Rajshahi University of Engineering and Technology (RUET), Bangladesh. Her research spans deep learning, medical image processing, federated learning, explainable AI, biosensors, and IoT systems. In the Agri-VoiceLink project, she serves as a Co-Principal Investigator, contributing her extensive research expertise to acoustic modeling, linguistic corpus design, and deep learning diagnostics validation.",
   "researchInterests": [
     "Machine Learning",
-    "Natural Language Processing",
-    "Data Science",
-    "Acoustic Modeling"
+    "Deep Learning",
+    "Medical Image Fusion",
+    "Federated Learning",
+    "Explainable AI (XAI)",
+    "IoT & Fiber Optic Biosensors"
   ],
   "education": [
     {
-      "degree": "M.Sc. in Computer Science and Engineering",
-      "institute": "Jahangirnagar University",
-      "address": "Savar, Dhaka, Bangladesh.",
-      "year": "2010"
+      "degree": "PhD",
+      "institute": "The University of New South Wales (UNSW)",
+      "address": "Sydney, Australia.",
+      "year": "2017"
     },
     {
-      "degree": "B.Sc. in Computer Science and Engineering",
-      "institute": "Mawlana Bhashani Science and Technology University",
-      "address": "Tangail, Bangladesh.",
-      "year": "2008"
+      "degree": "M.Sc. (Engg.) in Electrical & Electronic Engineering (EEE)",
+      "institute": "Rajshahi University of Engineering and Technology (RUET)",
+      "address": "Rajshahi, Bangladesh.",
+      "year": "2009"
+    },
+    {
+      "degree": "B.Sc. (Engg.) in Electrical & Electronic Engineering (EEE)",
+      "institute": "Rajshahi University of Engineering and Technology (RUET)",
+      "address": "Rajshahi, Bangladesh.",
+      "year": "2007"
     }
   ],
   "publications": [
@@ -66,10 +78,40 @@
   ],
   "projects": [
     {
-      "title": "Low-Resource Speech Processing and Dialectal ASR Systems",
-      "role": "Co-Investigator",
-      "funding": "ICT Division Grant",
-      "desc": "Developing robust semantic alignment, acoustic features extraction, and deep neural models tailored for low-resource Bengali and regional dialects."
+      "title": "Agri-VoiceLink: Multimodal Conversational AI & Graph Neural Network Pricing Integrity Ecosystem",
+      "role": "Co-Principal Investigator",
+      "funding": "UGC-ICSETEP Research Grant",
+      "desc": "Collaborates on building and optimizing the dialect-robust Bangla ASR and handwritten OCR models, validating semantic parsing algorithms, and deploying the systems to empower smallholders."
+    },
+    {
+      "title": "Brain Tumor Detection using Vision Transformer (ViT) Learning and Attention Rollout from MRI Image",
+      "role": "Principal Investigator (PI)",
+      "funding": "UGC through University",
+      "desc": "Developing advanced vision transformer (ViT) architecture coupled with customized attention rollout networks to detect and segment brain tumors from multi-sequence MRI datasets."
+    },
+    {
+      "title": "FLPneXAINet: Federated Deep Learning and Explainable AI Approaches for Pneumonia Prediction on GAN-Augmented Dataset",
+      "role": "Principal Investigator (PI)",
+      "funding": "UGC through University",
+      "desc": "Conducted research on federated learning architectures and explainable AI metrics for localized medical diagnosis of pneumonia based on generative adversarial network (GAN) augmented chest radiography."
+    },
+    {
+      "title": "Blockchain-Based Federated Learning: Breast Cancer Detection using Histopathological Images",
+      "role": "Principal Investigator (PI)",
+      "funding": "UGC through University",
+      "desc": "Investigated secure distributed model updating mechanisms through blockchain consensus layers, enabling privacy-preserved machine learning classification for oncology."
+    },
+    {
+      "title": "Design a SpR Based Fiber Optic Sensor for the Development of Internet of Things (IoT) based Technology",
+      "role": "Principal Investigator (PI)",
+      "funding": "UGC",
+      "desc": "Developed fiber optic surface plasmon resonance (SPR) sensing layers optimized for real-time edge streaming within IoT monitoring nodes."
+    },
+    {
+      "title": "Registration and Fusion of Multi-modal Medical Images",
+      "role": "PhD Researcher",
+      "funding": "UNSW, Australia",
+      "desc": "Researched novel rigid and non-rigid 3D registration, partial volume interpolation, and joint image alignment optimization techniques at the University of New South Wales."
     }
   ],
   "teaching": {

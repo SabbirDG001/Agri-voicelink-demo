@@ -7,54 +7,54 @@
   ],
   "highlightCards": [
     {
-      "title": "Linguistic Equity",
-      "desc": "Recognizing and translating nuanced regional agricultural dialects across Bangladesh, ensuring no farmer is left behind due to terminology.",
-      "tag": "Speech Processing"
+      "title": "Information Asymmetry",
+      "desc": "Syndicate intermediaries consistently suppress farmgate prices and inflate retail prices. Agri-VoiceLink's GNN engine detects and exposes these price manipulation networks in real time.",
+      "tag": "Supply Chain"
     },
     {
-      "title": "Empirical Multimodality",
-      "desc": "Combining optical symptom scanning (OCR) with deep conversational queries to deliver immediate, multi-vector agricultural diagnostics.",
-      "tag": "ASR + Vision"
+      "title": "Digital Inclusion by Design",
+      "desc": "Voice input in native Bangla dialects and OCR for handwritten text ensure that non-literate and low-literacy farmers are not left behind by the digital transition.",
+      "tag": "Linguistic Equity"
     },
     {
-      "title": "Edge Resilience",
-      "desc": "Architected to perform in low-bandwidth, rural fields with highly compressed offline models that execute without active internet pipelines.",
-      "tag": "Offline-First AI"
+      "title": "Transparent Digital Marketplace",
+      "desc": "Beyond price data, Agri-VoiceLink creates a competing transparent network — a structural intervention that directly undermines syndicate market power.",
+      "tag": "Market Dynamics"
     }
   ],
   "objectives": [
     {
       "id": "SO-01",
-      "title": "Technical Frontier",
-      "subtitle": "Multi-Modal AI Architecture",
-      "desc": "To develop state-of-the-art Bangla Automatic Speech Recognition (ASR) coupled with lightweight, agriculture-tuned Large Language Models (LLMs) and Graph Neural Networks (GNNs) for highly accurate knowledge retrieval.",
+      "title": "Technical Development & Model Validation",
+      "subtitle": "Hybrid AI Architecture",
+      "desc": "Build and validate the hybrid LLM-GNN architecture integrating specialized Bangla ASR and OCR modules capable of analyzing and disseminating agricultural market dynamics at scale.",
       "points": [
+        "Target: >95% ASR & OCR accuracy",
         "Robust regional dialect modeling",
-        "Sparse agricultural knowledge graphs",
-        "Edge-optimized inference structures"
+        "Sparse agricultural knowledge graphs"
       ],
       "color": "border-brand-green bg-white text-charcoal"
     },
     {
       "id": "SO-02",
-      "title": "Farmer Empowerment",
-      "subtitle": "Natural Conversational Interface",
-      "desc": "To bridge the digital literacy divide by creating intuitive, voice-based conversational channels allowing smallholder farmers to seek real-time, expert-level cultivation advice in their native vernacular.",
+      "title": "Farmer Empowerment & Access",
+      "subtitle": "Frictionless Voice Channel",
+      "desc": "Conduct a structured pilot program onboarding 5,000 farmers across two distinct agricultural districts, ensuring an intuitive, frictionless experience for non-digital-native users.",
       "points": [
+        "Target: 5,000 farmers onboarded",
         "Hands-free voice querying",
-        "Locally validated agricultural advice",
-        "Inclusive audio-first response output"
+        "Locally validated agricultural advice"
       ],
       "color": "border-harvest-gold bg-white text-charcoal"
     },
     {
       "id": "SO-03",
-      "title": "Market & Climate Impact",
-      "subtitle": "Dynamic Decision Pipelines",
-      "desc": "To integrate local weather datasets, real-time market pricing dynamics, and rapid crop disease OCR identification to guide resilient farming decisions and boost household income.",
+      "title": "Market Impact & Economic Metrics",
+      "subtitle": "Socio-Economic Contribution",
+      "desc": "Quantitatively demonstrate platform impact through measurable increases in gross farmer income and verifiable reduction in post-harvest losses by project completion.",
       "points": [
+        "Target: >10% income increase",
         "Real-time crop market alerts",
-        "Predictive climate-crop planning",
         "Direct visual leaf-lesion diagnosis"
       ],
       "color": "border-terracotta bg-white text-charcoal"
@@ -62,53 +62,53 @@
   ],
   "techDetails": [
     {
-      "title": "Bangla Speech (ASR)",
-      "desc": "Highly-calibrated speech acoustic modeling fine-tuned on diverse rural regional Bangla dialects. Incorporates noise-robust feature layers to filter ambient farming and environmental noise.",
-      "tags": ["Wav2Vec 2.0", "Dialect-Robust", "CTC Loss"],
-      "icon": "Mic"
-    },
-    {
-      "title": "Agriculture LLM",
-      "desc": "An encoder-decoder Transformer framework loaded with validated scientific crop agronomy, soil chemistry, pest vector workflows, and organic cultivation guidelines.",
-      "tags": ["Llama-3-Agri", "QLoRA Fine-Tune", "RAG Pipeline"],
+      "title": "Large Language Model (LLM)",
+      "desc": "A fine-tuned open-source LLM serves as the conversational front-end, processing natural-language queries in spoken or written Bangla and translating them into structured data requests for the analytical engine.",
+      "tags": ["Conversational Interface", "RAG Pipeline", "Natural Bangla"],
       "icon": "Cpu"
     },
     {
-      "title": "Knowledge Graphs (GNN)",
-      "desc": "A heterogeneous entity-relationship graph network mapping crop-to-disease, weather-to-risk, and treatment-to-ecology dependencies to prevent model hallucinations.",
-      "tags": ["Heterogeneous Graphs", "Node Classification", "DGL Network"],
+      "title": "Graph Neural Network (GNN)",
+      "desc": "The analytical core models the supply chain as a complex graph — farmers, markets, commodities, and buyers as nodes; transactions and goods flow as edges. Detects syndicate sub-graphs and price manipulation patterns invisible to traditional methods.",
+      "tags": ["Market Intelligence", "Graph Analytics", "Heterogeneous Graphs"],
       "icon": "Network"
     },
     {
-      "title": "Agri-OCR & Leaf Vision",
-      "desc": "Mobile-optimized vision model that recognizes printed seed labels, chemical composition instructions, and detects physical fungal or pest lesions on crop leaves.",
-      "tags": ["YOLOv8-Leaf", "Tesseract-Custom", "CNN Classification"],
+      "title": "Bangla ASR Pipeline",
+      "desc": "Built on a fine-tuned Whisper-based model trained on a custom corpus of agricultural vocabulary and local dialects, achieving >95% speech-to-text accuracy across a diverse farmer demographic.",
+      "tags": ["Voice Input · Bangla", "Whisper", "Dialect-Robust"],
+      "icon": "Mic"
+    },
+    {
+      "title": "Bangla OCR Pipeline",
+      "desc": "A modified ResNet-34 architecture handles handwritten Bangla market board images through binarization, character segmentation, and classification — achieving >97% accuracy on handwritten characters and numerics.",
+      "tags": ["Image Input · Handwritten", "ResNet-34", "Character Segmentation"],
       "icon": "Eye"
     }
   ],
   "timelineQuarters": [
     {
-      "phase": "Phase I (Q1 - Q2)",
-      "title": "Corpus & Dialect Harvesting",
-      "desc": "Comprehensive speech corpus collection in targeted agro-ecological regions. Initial cataloging of disease vectors and knowledge graph entity construction.",
+      "phase": "Year 1 · Q1–Q2 · Jan–Jun 2026",
+      "title": "Foundation & Data Acquisition",
+      "desc": "Literature review of Bangla OCR/ASR and GNNs. Field interviews with farmers. Collection of historical market price data and annotated voice/handwritten datasets for model fine-tuning.",
       "status": "Active Research"
     },
     {
-      "phase": "Phase II (Q3 - Q4)",
-      "title": "Acoustic & Agronomy Training",
-      "desc": "Base model training of Bangla dialect ASR. Fine-tuning the localized agriculture-specific LLM parameters with synthetic and curated agrarian datasets.",
+      "phase": "Year 1 · Q3–Q4 · Jul–Dec 2026",
+      "title": "Hybrid Model & Prototype Development",
+      "desc": "Core LLM-GNN architecture development. Training and fine-tuning of Bangla ASR and OCR modules. Integration and internal testing of functional alpha prototype.",
       "status": "Upcoming"
     },
     {
-      "phase": "Phase III (Q5 - Q6)",
-      "title": "Multimodal Synthesis & App Beta",
-      "desc": "Synthesizing ASR and OCR capabilities. Packaging the model into lightweight edge-runtime wrappers. Launching pilot testing with 200 partner smallholders.",
+      "phase": "Year 2 · Q5–Q6 · Jan–Jun 2027",
+      "title": "Pilot Deployment & Optimization",
+      "desc": "Onboard and train 5,000 farmers in two districts. Deploy beta platform. Collect user feedback, transactional data, and analyze market syndicate patterns in real-world conditions.",
       "status": "Upcoming"
     },
     {
-      "phase": "Phase IV (Q7 - Q8)",
-      "title": "Dynamic Scaling & API Release",
-      "desc": "Full rollout across major agricultural zones. Exposing modular microservices as public research APIs for academic, government, and NGO extension workers.",
+      "phase": "Year 2 · Q7–Q8 · Jul–Dec 2027",
+      "title": "Impact Assessment & Commercialization",
+      "desc": "Final quantitative and qualitative analysis of pilot data. Develop scalable commercialization strategy. Establish formal partnerships for post-grant sustainability and nationwide scale.",
       "status": "Future Scope"
     }
   ],
@@ -116,31 +116,31 @@
     {
       "num": "SDG 1",
       "title": "No Poverty",
-      "desc": "Reducing vulnerability of smallholders to crop failure and market manipulation by delivering immediate, actionable technical agricultural advice directly to their fields.",
+      "desc": "Enhances farmer incomes and reduces economic vulnerability in rural areas by eliminating price exploitation by intermediaries.",
       "color": "bg-amber-50/80 border-amber-200 text-amber-900"
     },
     {
       "num": "SDG 2",
       "title": "Zero Hunger",
-      "desc": "Improving agricultural productivity and sustainable food production systems through smart pest forecasting, soil health planning, and localized resilient guidelines.",
+      "desc": "Reduces post-harvest losses and stabilizes market prices through efficient, AI-driven supply chain management.",
       "color": "bg-emerald-50/80 border-emerald-200 text-emerald-900"
     },
     {
       "num": "SDG 8",
-      "title": "Decent Work",
-      "desc": "Increasing economic productivity by upgrading manual decision-making with cutting-edge AI guidance, securing smallholder incomes, and supporting resilient rural labor.",
+      "title": "Decent Work & Growth",
+      "desc": "Promotes fair trade practices, curbs market manipulation, and fosters equitable income distribution for smallholder farmers.",
       "color": "bg-blue-50/80 border-blue-200 text-blue-900"
     },
     {
       "num": "SDG 9",
-      "title": "Industry & Innovation",
-      "desc": "Fostering regional academic innovation by developing country-specific, dialect-inclusive AI assets that set a new benchmark for Southern linguistic empowerment.",
+      "title": "Innovation & Infrastructure",
+      "desc": "Demonstrates the transformative power of AI and digital infrastructure in modernizing agriculture and driving rural development.",
       "color": "bg-rose-50/80 border-rose-200 text-rose-900"
     }
   ],
   "teamMembers": [
     {
-      "title": "Dr. Nazrul Islam",
+      "title": "Professor Dr. Nazrul Islam",
       "subtitle": "ASSOCIATE PROFESSOR & PRINCIPAL INVESTIGATOR",
       "desc": "Academic expert in optical sensors and machine learning at Mawlana Bhashani Science and Technology University (MBSTU). Leads core research and deep learning models.",
       "tag": "Principal Investigator",
@@ -148,18 +148,26 @@
       "avatar": "nazrul.jpg",
       "org": "MBSTU ICT Division",
       "email": "nazrul@mbstu.ac.bd",
-      "phone": "01721-259140"
+      "phone": "01721-259140",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
-      "title": "Nargis Akter",
-      "subtitle": "PROFESSOR & CO-INVESTIGATOR",
+      "title": "Professor Dr. Mst. Nargis Akter",
+      "subtitle": "PROFESSOR & CO-PRINCIPAL INVESTIGATOR",
       "desc": "Academic researcher in machine learning and data science at Mawlana Bhashani Science and Technology University (MBSTU). Collaborates on multilingual speech and multi-modal agricultural system designs.",
-      "tag": "Co-Investigator",
+      "tag": "Co-Principal Investigator",
       "role": "Co-PI",
-      "avatar": "",
+      "avatar": "nargis.png",
       "org": "MBSTU ICT Division",
-      "email": "nargis@mbstu.ac.bd",
-      "phone": "+880 1234-567890"
+      "email": "nargis_ict@mbstu.ac.bd",
+      "phone": "+880 1234-567890",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Afsana Akter Mim",
@@ -170,7 +178,11 @@
       "avatar": "mim.jpeg",
       "org": "MBSTU ICT Division",
       "email": "it21004@mbstu.ac.bd",
-      "phone": "+880 1775-959760"
+      "phone": "+880 1775-959760",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Md. Lutfor Rahaman",
@@ -181,7 +193,11 @@
       "avatar": "lutfor.jpeg",
       "org": "MBSTU ICT Division",
       "email": "it21047@mbstu.ac.bd",
-      "phone": "+880 1735-637626"
+      "phone": "+880 1735-637626",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Md. Shafi Mahmud",
@@ -192,7 +208,11 @@
       "avatar": "shafi.jpeg",
       "org": "MBSTU ICT Division",
       "email": "it21001@mbstu.ac.bd",
-      "phone": "+880 1769-175695"
+      "phone": "+880 1769-175695",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Sagor Roy",
@@ -203,7 +223,11 @@
       "avatar": "sagor.jpeg",
       "org": "MBSTU ICT Division",
       "email": "it21044@mbstu.ac.bd",
-      "phone": "+880 1798-864872"
+      "phone": "+880 1798-864872",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Swapnil Saha",
@@ -214,7 +238,11 @@
       "avatar": "swapnil.jpeg",
       "org": "MBSTU ICT Division",
       "email": "it21028@mbstu.ac.bd",
-      "phone": "+880 1784-797944"
+      "phone": "+880 1784-797944",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Md. Nafis Fuad",
@@ -225,7 +253,11 @@
       "avatar": "nafis.jpeg",
       "org": "MBSTU ICT Division",
       "email": "nafis@mbstu.ac.bd",
-      "phone": "+880 1712-345678"
+      "phone": "+880 1712-345678",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     },
     {
       "title": "Nadim Chowdhury",
@@ -236,11 +268,75 @@
       "avatar": "nadim.jpeg",
       "org": "MBSTU ICT Division",
       "email": "nadim@mbstu.ac.bd",
-      "phone": "+880 1789-012345"
+      "phone": "+880 1789-012345",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
+    },
+    {
+      "title": "Tasnim Rahman",
+      "subtitle": "PhD RESEARCHER",
+      "desc": "PhD student focusing on Bengali low-resource Speech-to-Text architectures and automatic accent/dialect alignment.",
+      "tag": "PhD Student",
+      "role": "PhD",
+      "avatar": "",
+      "org": "MBSTU ICT Division",
+      "email": "tasnim@mbstu.ac.bd",
+      "phone": "+880 1711-223344",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
+    },
+    {
+      "title": "Tanvir Hasan",
+      "subtitle": "PhD CANDIDATE",
+      "desc": "Researching lightweight computer vision transformers and embedded edge diagnostics for plant leaf pathology.",
+      "tag": "PhD Candidate",
+      "role": "PhD",
+      "avatar": "",
+      "org": "MBSTU ICT Division",
+      "email": "tanvir@mbstu.ac.bd",
+      "phone": "+880 1722-334455",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
+    },
+    {
+      "title": "Anika Tahsin",
+      "subtitle": "ALUMNA (M.Sc. GRADUATE)",
+      "desc": "Pioneered lightweight NLP frameworks for extracting agricultural intents from unstructured rural dialect phrases.",
+      "tag": "Alumna / ML Engineer",
+      "role": "Alumni",
+      "avatar": "",
+      "org": "ALPRG Alumna",
+      "email": "anika@alprg.org",
+      "phone": "+880 1733-445566",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
+    },
+    {
+      "title": "Faisal Ahmed",
+      "subtitle": "ALUMNUS (M.Sc. GRADUATE)",
+      "desc": "Developed the core ambient acoustic noise cancellation frontend and integrated audio codecs for on-field deployment.",
+      "tag": "Alumnus / ML Engineer",
+      "role": "Alumni",
+      "avatar": "",
+      "org": "ALPRG Alumnus",
+      "email": "faisal@alprg.org",
+      "phone": "+880 1744-556677",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
     }
   ],
   "aboutUs": {
-    "introduction": "The Agricultural Language Processing Research Group (ALPRG) at Mawlana Bhashani Science and Technology University (MBSTU) is dedicated to bridging the digital divide in rural farming. We build country-specific, dialect-inclusive AI assets that set a new benchmark for Southern linguistic empowerment and sustainable farming practices.",
+    "introduction": "Bangladesh's agricultural sector — valued at USD 47.54 billion — is critically hampered by information asymmetry. Over 85% of farmers depend on intermediaries who capture up to 40% of retail prices, leaving farmers earning 20–30% below market value. Post-harvest losses range from 23.6% to 43.5%, often a direct consequence of poor market access and lack of timely information. Agri-VoiceLink addresses this through a multimodal conversational interface accepting spoken Bangla and images of handwritten market boards — making real-time price discovery and supply-chain intelligence accessible to every farmer, regardless of literacy level.",
     "vision": "Empowering every farmer in Bangladesh with state-of-the-art, voice-activated AI interfaces in their local dialects, enabling real-time, expert-level disease diagnostics and sustainable agricultural insights.",
     "mission": "To systematically collect rural speech corpora, train high-accuracy bilingual speech models, and design lightweight multi-modal networks capable of rendering critical agronomic help entirely offline at the field edge.",
     "coreValues": [

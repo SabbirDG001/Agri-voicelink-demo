@@ -52,7 +52,7 @@ export default function News() {
   };
 
   // Categories list
-  const categories = ["All", "Milestone", "Publication", "Field Trial"];
+  const categories = ["All", "News", "Notice"];
 
   // Filtered articles
   const filteredArticles = useMemo(() => {
@@ -171,10 +171,10 @@ export default function News() {
               className="group flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-slate-500 hover:text-brand-green transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span>← Back to News Directory</span>
+              <span>← Back to News & Notice Directory</span>
             </button>
             <span className="text-xs font-mono text-slate-400">
-              News / {activeArticle.category} // ID-{activeArticle.id.slice(0, 6)}
+              News & Notice / {activeArticle.category} // ID-{activeArticle.id.slice(0, 6)}
             </span>
           </div>
 
@@ -182,10 +182,7 @@ export default function News() {
           <article className="bg-white rounded-3xl border border-brand-green/10 shadow-sm overflow-hidden p-6 md:p-10 mb-8">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <span className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
-                activeArticle.category === "Milestone" ? "bg-amber-100 text-amber-800" :
-                activeArticle.category === "Publication" ? "bg-indigo-100 text-indigo-800" :
-                activeArticle.category === "Event" ? "bg-teal-100 text-teal-800" :
-                "bg-emerald-100 text-emerald-800"
+                activeArticle.category === "News" ? "bg-emerald-100 text-emerald-800" : "bg-blue-100 text-blue-800"
               }`}>
                 {activeArticle.category}
               </span>
@@ -247,40 +244,65 @@ export default function News() {
               <span>Other News & Announcements</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {relatedArticles.map((article) => (
-                <div 
-                  key={article.id}
-                  onClick={() => handleSelectArticle(article.id)}
-                  className="bg-white rounded-2xl border border-brand-green/10 p-5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between cursor-pointer group"
-                >
-                  <div>
-                    <div className="aspect-[16/10] w-full rounded-xl overflow-hidden mb-4 border border-slate-100 relative">
-                      <img 
-                        src={article.thumbnail} 
-                        alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        referrerPolicy="no-referrer"
-                      />
+              {relatedArticles.map((article) => {
+                const isNews = article.category === "News";
+                const cardContent = (
+                  <>
+                    <div>
+                      <div className="aspect-[16/10] w-full rounded-xl overflow-hidden mb-4 border border-slate-100 relative">
+                        <img 
+                          src={article.thumbnail} 
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <span className={`text-[9px] font-mono font-bold uppercase tracking-wider block mb-2 ${
+                        isNews ? "text-emerald-600" : "text-blue-600"
+                      }`}>
+                        {article.category}
+                      </span>
+                      <h4 className="font-serif text-base font-bold text-brand-dark group-hover:text-brand-green transition-colors line-clamp-2 leading-snug mb-2">
+                        {article.title}
+                      </h4>
+                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4 font-sans font-medium">
+                        {article.summary}
+                      </p>
                     </div>
-                    <span className="text-[9px] font-mono font-bold uppercase text-brand-green tracking-wider block mb-2">
-                      {article.category}
-                    </span>
-                    <h4 className="font-serif text-base font-bold text-brand-dark group-hover:text-brand-green transition-colors line-clamp-2 leading-snug mb-2">
-                      {article.title}
-                    </h4>
-                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4 font-sans font-medium">
-                      {article.summary}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between pt-3 border-t border-slate-50 text-[10px] text-slate-400 font-mono">
-                    <span>{formatDate(article.date)}</span>
-                    <span className="text-brand-green group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold uppercase tracking-wider">
-                      Read
-                      <ArrowRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
-              ))}
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-50 text-[10px] text-slate-400 font-mono">
+                      <span>{formatDate(article.date)}</span>
+                      <span className="text-brand-green group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold uppercase tracking-wider">
+                        {isNews ? "Read News ↗" : "Read Notice"}
+                        <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </>
+                );
+
+                if (isNews) {
+                  return (
+                    <a
+                      key={article.id}
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white rounded-2xl border border-brand-green/10 p-5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between cursor-pointer group"
+                    >
+                      {cardContent}
+                    </a>
+                  );
+                } else {
+                  return (
+                    <div
+                      key={article.id}
+                      onClick={() => handleSelectArticle(article.id)}
+                      className="bg-white rounded-2xl border border-brand-green/10 p-5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between cursor-pointer group"
+                    >
+                      {cardContent}
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
 
@@ -301,7 +323,7 @@ export default function News() {
             <span>Research Announcements</span>
           </div>
           <h1 className="font-serif text-3xl md:text-5xl font-extrabold text-brand-dark tracking-tight leading-tight">
-            Project News & Media
+            Project News & Notice
           </h1>
           <p className="mt-4 text-sm text-slate-600 leading-relaxed font-sans font-medium max-w-xl mx-auto">
             Stay informed with real-time progress summaries, scholarly achievements, computational milestones, and direct field diagnostics reports from the Agri-VoiceLink research team.
@@ -323,7 +345,7 @@ export default function News() {
                     : "text-slate-500 hover:bg-slate-50 hover:text-brand-dark border border-transparent hover:border-slate-100"
                 }`}
               >
-                {cat === "All" ? "All Updates" : cat + "s"}
+                {cat === "All" ? "All Updates" : cat === "News" ? "News" : "Notices"}
               </button>
             ))}
           </div>
@@ -344,71 +366,88 @@ export default function News() {
         {/* News Directory Grid */}
         {filteredArticles.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredArticles.map((article) => (
-              <article 
-                key={article.id}
-                className="bg-white rounded-3xl border border-brand-green/10 shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full group"
-              >
-                {/* Thumbnail Header */}
-                <div className="aspect-[16/10] w-full overflow-hidden border-b border-slate-100 relative shrink-0">
-                  <img 
-                    src={article.thumbnail} 
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider shadow-sm ${
-                      article.category === "Milestone" ? "bg-amber-100 text-amber-800 border border-amber-200" :
-                      article.category === "Publication" ? "bg-indigo-100 text-indigo-800 border border-indigo-200" :
-                      article.category === "Event" ? "bg-teal-100 text-teal-800 border border-teal-200" :
-                      "bg-emerald-100 text-emerald-800 border border-emerald-200"
-                    }`}>
-                      {article.category}
-                    </span>
-                  </div>
-                </div>
+            {filteredArticles.map((article) => {
+              const isNews = article.category === "News";
+              const badgeStyle = isNews 
+                ? "bg-emerald-100 text-emerald-800 border border-emerald-200" 
+                : "bg-blue-100 text-blue-800 border border-blue-200";
 
-                {/* Card Body */}
-                <div className="p-6 flex flex-col justify-between flex-grow">
-                  <div>
-                    {/* Metadata */}
-                    <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono mb-3">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{formatDate(article.date)}</span>
+              const cardContent = (
+                <article className="flex flex-col h-full w-full">
+                  {/* Thumbnail Header */}
+                  <div className="aspect-[16/10] w-full overflow-hidden border-b border-slate-100 relative shrink-0">
+                    <img 
+                      src={article.thumbnail} 
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider shadow-sm ${badgeStyle}`}>
+                        {article.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-6 flex flex-col justify-between flex-grow">
+                    <div>
+                      {/* Metadata */}
+                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono mb-3">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>{formatDate(article.date)}</span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="font-serif text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors line-clamp-2 leading-snug mb-3">
+                        {article.title}
+                      </h3>
+
+                      {/* Summary */}
+                      <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed font-sans font-medium mb-6">
+                        {article.summary}
+                      </p>
                     </div>
 
-                    {/* Title */}
-                    <h3 
-                      onClick={() => handleSelectArticle(article.id)}
-                      className="font-serif text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors cursor-pointer line-clamp-2 leading-snug mb-3"
-                    >
-                      {article.title}
-                    </h3>
-
-                    {/* Summary */}
-                    <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed font-sans font-medium mb-6">
-                      {article.summary}
-                    </p>
-                  </div>
-
-                  {/* Footer links */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider truncate max-w-[60%]">
-                      <User className="w-3 h-3 text-brand-green" />
-                      <span className="truncate">{article.author}</span>
+                    {/* Footer links */}
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider truncate max-w-[60%]">
+                        <User className="w-3 h-3 text-brand-green" />
+                        <span className="truncate">{article.author}</span>
+                      </div>
+                      <span className="text-xs font-mono font-extrabold uppercase tracking-widest text-brand-dark group-hover:text-brand-green transition-colors flex items-center gap-1">
+                        <span>{isNews ? "Read News ↗" : "Read Notice"}</span>
+                        <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </span>
                     </div>
-                    <button 
-                      onClick={() => handleSelectArticle(article.id)}
-                      className="text-xs font-mono font-extrabold uppercase tracking-widest text-brand-dark group-hover:text-brand-green transition-colors flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>Read Article</span>
-                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+
+              if (isNews) {
+                return (
+                  <a 
+                    key={article.id}
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white rounded-3xl border border-brand-green/10 shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full group cursor-pointer"
+                  >
+                    {cardContent}
+                  </a>
+                );
+              } else {
+                return (
+                  <div 
+                    key={article.id}
+                    onClick={() => handleSelectArticle(article.id)}
+                    className="bg-white rounded-3xl border border-brand-green/10 shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full group cursor-pointer"
+                  >
+                    {cardContent}
+                  </div>
+                );
+              }
+            })}
           </div>
         ) : (
           <div className="bg-white border border-brand-green/10 rounded-3xl p-12 text-center max-w-md mx-auto">

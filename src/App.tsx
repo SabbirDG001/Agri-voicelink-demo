@@ -142,40 +142,40 @@ export default function App() {
       };
     }
     // If we have highlights
-    if (card.tag && (card.title === "Linguistic Equity" || card.title === "Empirical Multimodality" || card.title === "Edge Resilience")) {
+    if (card.tag && (card.title === "Information Asymmetry" || card.title === "Digital Inclusion by Design" || card.title === "Transparent Digital Marketplace")) {
       const extraDetails: Record<string, any> = {
-        "Linguistic Equity": {
+        "Information Asymmetry": {
           category: card.tag,
-          badge: "Acoustic Track",
+          badge: "Market Intel Track",
           description: card.desc,
           details: [
-            { name: "Primary Focal Point", value: "Dialect adaptation without audio loss" },
-            { name: "Acoustic Conformer Heads", value: "Fine-tuned on rural Tangail, Jessore & Mymensingh" },
-            { name: "Character Error Rate (CER)", value: "Reduced from 24.5% to 4.2%" }
+            { name: "Primary Focal Point", value: "Expose price manipulation networks" },
+            { name: "Analytical Engine", value: "Heterogeneous Graph Neural Network (GNN)" },
+            { name: "Detection Goal", value: "Real-time middleman monopoly tracing" }
           ],
-          extra: "Our neural phonetic aligner maps diverse pronunciation clusters onto standardized Bengali semantic structures, empowering rural communities that standard ASR systems ignore."
+          extra: "Our graph neural network maps farmers, market centers, and middlemen to trace hidden pricing networks and alert smallholders to manipulative price disparities."
         },
-        "Empirical Multimodality": {
+        "Digital Inclusion by Design": {
           category: card.tag,
-          badge: "Vision + Voice Track",
+          badge: "Access Track",
           description: card.desc,
           details: [
-            { name: "Visual Pathology Network", value: "CNN Leaf-Lesion detection layers" },
-            { name: "Acoustic Intent Matching", value: "Cross-modality transformer blocks" },
-            { name: "Target Disease Vectors", value: "Leaf rust, brown spot, blast pathology" }
+            { name: "Acoustic System", value: "Whisper-based low-resource dialect model" },
+            { name: "Vision OCR System", value: "Modified ResNet-34 handwritten text pipeline" },
+            { name: "Verification Rates", value: ">95% ASR and >97% OCR precision scores" }
           ],
-          extra: "By fusing speech queries with smartphone leaf snapshots, farmers receive comprehensive botanical diagnoses. The visual and conversational models are co-trained for contextual synergy."
+          extra: "Fusing spontaneous vocal queries with optical market board transcriptions ensures illiterate and low-literate growers have equal access to essential agriculture intelligence."
         },
-        "Edge Resilience": {
+        "Transparent Digital Marketplace": {
           category: card.tag,
-          badge: "System Engineering Track",
+          badge: "Economic Impact Track",
           description: card.desc,
           details: [
-            { name: "Quantization Architecture", value: "4-bit (AWQ) lightweight weights" },
-            { name: "Native Mobile Engine", value: "ONNX Mobile Runtime execution" },
-            { name: "Offline Database footprint", value: "Less than 240MB total storage size" }
+            { name: "Socio-Economic Goal", value: "Direct peer-to-peer price discovery" },
+            { name: "Structural Intervention", value: "Circumvent syndicate pricing nodes" },
+            { name: "Target Farmgate Benefit", value: "Increase local farmer income margin by >10%" }
           ],
-          extra: "Requires no active cellular internet connection once the initial base model is synchronized. Perfectly suited for remote rural deep-cover terrain."
+          extra: "Creating an open-source, highly accurate price index establishes a competing transparent network that directly shifts market power back to local growers."
         }
       };
       return extraDetails[card.title] || { title: card.title, description: card.desc, badge: "Highlight Research" };
@@ -199,7 +199,7 @@ export default function App() {
         badge: "Technical Core",
         description: card.desc,
         details: card.tags.map((tag: string, idx: number) => ({ name: `Stack Module 0${idx + 1}`, value: tag })),
-        extra: "Developed at the MBSTU Intellectual NLP Research Lab under high-performance computing clusters."
+        extra: "Developed at the MBSTU Research lab under high-performance computing clusters."
       };
     }
     // If we have timeline quarters
@@ -280,9 +280,9 @@ export default function App() {
 
   const navLinks = [
     { name: "Home", page: "home" },
-    { name: "About Our Project", page: "about" },
+    { name: "About Project", page: "about" },
     { name: "Publications", page: "publications" },
-    { name: "News", page: "news" },
+    { name: "News & Notice", page: "news" },
     { name: "Objectives", page: "objectives" },
     { name: "Technology", page: "technology" },
     { name: "Roadmap", page: "roadmap" },
@@ -311,7 +311,7 @@ export default function App() {
                   Agri-VoiceLink
                 </h2>
                 <p className="font-mono text-[9px] uppercase tracking-widest text-brand-green font-bold">
-                  Academic Research Portal
+                  Subproject C53
                 </p>
               </div>
             </div>
@@ -443,7 +443,7 @@ export default function App() {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg">Agri-VoiceLink</h3>
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-brand-sage font-bold">Academic Study Project</p>
+                  <p className="font-mono text-[9px] uppercase tracking-widest text-brand-sage font-bold">Subproject C53</p>
                 </div>
               </div>
               <p className="text-xs text-brand-sage/80 leading-relaxed max-w-sm font-light">
@@ -472,7 +472,7 @@ export default function App() {
             <div className="space-y-3">
               <h4 className="font-mono text-xs uppercase tracking-widest text-white font-bold">Coordinates</h4>
               <ul className="space-y-2 text-xs text-brand-sage/75">
-                <li>Intellectual NLP Lab</li>
+                <li>Research lab</li>
                 <li>Department of Information and Communication Technology</li>
                 <li>Mawlana Bhashani Science & Tech University</li>
                 <li className="text-[10px] font-mono tracking-wide text-brand-green">Tangail-1902, Bangladesh</li>

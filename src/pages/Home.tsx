@@ -152,14 +152,14 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   {!imageError ? (
                     <img
                       src={ppNiImage}
-                      alt="Dr. Nazrul Islam"
+                      alt="Professor Dr. Nazrul Islam"
                       onError={() => setImageError(true)}
                       className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-brand-green/30 bg-cream shadow-md"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-brand-dark text-white flex flex-col items-center justify-center border-2 border-brand-green/30 shadow-md">
-                      <span className="font-serif text-xl md:text-2xl font-bold">Dr. NI</span>
+                      <span className="font-serif text-xl md:text-2xl font-bold">Prof. NI</span>
                       <span className="text-[8px] font-mono uppercase tracking-wider opacity-80">MBSTU</span>
                     </div>
                   )}
@@ -173,7 +173,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                     Principal Investigator
                   </div>
                   <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark">
-                    Dr. Nazrul Islam
+                    Professor Dr. Nazrul Islam
                   </h3>
                   <p className="text-sm text-brand-green font-medium mb-1">
                     Associate Professor, Department of ICT
@@ -186,7 +186,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
 
               <div className="mt-auto pt-4 border-t border-slate-100 flex justify-start">
                 <button
-                  onClick={() => onNavigate("team/Dr.-Nazrul-Islam")}
+                  onClick={() => onNavigate("team/Professor-Dr.-Nazrul-Islam")}
                   className="bg-brand-dark hover:bg-brand-green hover:scale-[1.02] text-white text-xs uppercase tracking-widest font-extrabold py-3 px-5 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto shrink-0"
                 >
                   <span>View Bio</span>
@@ -210,10 +210,10 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
 
                 <div>
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-green text-white mb-2">
-                    Co-Investigator
+                    Co-Principal Investigator
                   </div>
                   <h3 className="font-serif text-xl md:text-2xl font-bold text-brand-dark">
-                    Nargis Akter
+                    Professor Dr. Mst. Nargis Akter
                   </h3>
                   <p className="text-sm text-brand-green font-medium mb-1">
                     Professor, Department of ICT
@@ -226,7 +226,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
 
               <div className="mt-auto pt-4 border-t border-slate-100 flex justify-start">
                 <button
-                  onClick={() => onNavigate("team/Nargis-Akter")}
+                  onClick={() => onNavigate("team/Professor-Dr.-Mst.-Nargis-Akter")}
                   className="bg-brand-dark hover:bg-brand-green hover:scale-[1.02] text-white text-xs uppercase tracking-widest font-extrabold py-3 px-5 rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto shrink-0"
                 >
                   <span>View Bio</span>
@@ -260,7 +260,7 @@ export default function Home({ data, onCardClick, onNavigate }: HomeProps) {
                   onClick={() => onNavigate("about")}
                   className="inline-flex items-center gap-2 bg-brand-dark hover:bg-[#1c2e24] text-white text-xs uppercase tracking-widest font-extrabold py-3.5 px-8 rounded-xl transition-all duration-200 shadow-md cursor-pointer"
                 >
-                  <span>Learn More About Our Project</span>
+                  <span>Learn More About Project</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>

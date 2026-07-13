@@ -164,9 +164,9 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
   // If a member profile is selected, render their beautiful, dynamic detailed page
   if (selectedMember) {
-    const isCustomProfile = selectedMember.title === "Dr. Nazrul Islam" || selectedMember.title === "Nargis Akter";
+    const isCustomProfile = selectedMember.title === "Professor Dr. Nazrul Islam" || selectedMember.title === "Professor Dr. Mst. Nargis Akter";
     if (isCustomProfile) {
-      const activeProfile = selectedMember.title === "Dr. Nazrul Islam" ? drNazrulProfile : nargisAkterProfile;
+      const activeProfile = selectedMember.title === "Professor Dr. Nazrul Islam" ? drNazrulProfile : nargisAkterProfile;
       const filteredDrPubs = activeProfile.publications.filter(pub => {
         // 1. Search filter
         const matchesSearch = !profileSearchQuery ||
@@ -296,16 +296,16 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
                 {/* Academic Networks Links */}
                 <div className="flex items-center justify-center gap-3 mt-6 pt-4 border-t border-slate-100 w-full">
-                  <a href={activeProfile.name.includes("Nazrul") ? "https://scholar.google.com/citations?user=L-2Y7aUAAAAJ" : `https://scholar.google.com/scholar?q=${encodeURIComponent(activeProfile.name)}`} target="_blank" rel="noopener noreferrer" title="Google Scholar Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <a href={activeProfile.scholar || (activeProfile.name.includes("Nazrul") ? "https://scholar.google.com/citations?user=L-2Y7aUAAAAJ" : `https://scholar.google.com/scholar?q=${encodeURIComponent(activeProfile.name)}`)} target="_blank" rel="noopener noreferrer" title="Google Scholar Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#DB4437] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                     <Globe className="w-4 h-4" />
                   </a>
-                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#0077B5] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <a href={activeProfile.linkedin || "https://www.linkedin.com"} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#0077B5] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                     <Linkedin className="w-4 h-4" />
                   </a>
-                  <a href={`https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(activeProfile.name)}`} target="_blank" rel="noopener noreferrer" title="ORCID Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#A6CE39] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <a href={activeProfile.orcid || `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(activeProfile.name)}`} target="_blank" rel="noopener noreferrer" title="ORCID Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#A6CE39] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                     <Fingerprint className="w-4 h-4" />
                   </a>
-                  <a href={`https://github.com/search?q=${encodeURIComponent(activeProfile.name)}&type=users`} target="_blank" rel="noopener noreferrer" title="GitHub Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#24292e] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
+                  <a href={activeProfile.github || `https://github.com/search?q=${encodeURIComponent(activeProfile.name)}&type=users`} target="_blank" rel="noopener noreferrer" title="GitHub Profile" className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 hover:bg-[#24292e] hover:text-white hover:scale-105 transition-all flex items-center justify-center text-slate-500 shadow-sm cursor-pointer">
                     <Github className="w-4 h-4" />
                   </a>
                 </div>
@@ -319,7 +319,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                   {[
                     { id: "about", label: "About Me" },
                     { id: "publications", label: "Publications (" + activeProfile.publications.length + ")" },
-                    { id: "projects", label: "Projects" },
+                    { id: "projects", label: "Projects (" + activeProfile.projects.length + ")" },
                     { id: "teaching", label: "Teaching" },
                     { id: "contact", label: "Contact" }
                   ].map(tab => (
@@ -747,10 +747,10 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
       academicBackground: ["Graduate affiliation at Mawlana Bhashani Science and Technology University"]
     };
 
-    const scholarLink = `https://scholar.google.com/scholar?q=${encodeURIComponent(selectedMember.title)}`;
-    const linkedinLink = `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(selectedMember.title.split(' ')[0])}&lastName=${encodeURIComponent(selectedMember.title.split(' ').slice(1).join(' '))}`;
-    const orcidLink = `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(selectedMember.title)}`;
-    const githubLink = `https://github.com/search?q=${encodeURIComponent(selectedMember.title)}&type=users`;
+    const scholarLink = selectedMember.scholar || `https://scholar.google.com/scholar?q=${encodeURIComponent(selectedMember.title)}`;
+    const linkedinLink = selectedMember.linkedin || `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(selectedMember.title.split(' ')[0])}&lastName=${encodeURIComponent(selectedMember.title.split(' ').slice(1).join(' '))}`;
+    const orcidLink = selectedMember.orcid || `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(selectedMember.title)}`;
+    const githubLink = selectedMember.github || `https://github.com/search?q=${encodeURIComponent(selectedMember.title)}&type=users`;
 
     const profileTabs = [
       { id: "about", label: "About Me" },
@@ -1331,6 +1331,10 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
     m.title.toLowerCase().includes("nazrul") || m.title.toLowerCase().includes("nargis")
   );
 
+  const phdStudents = data.teamMembers.filter(m => 
+    m.role === "PhD" || m.title.toLowerCase().includes("tasnim") || m.title.toLowerCase().includes("tanvir")
+  );
+
   const researchAssistants = data.teamMembers.filter(m => 
     m.title.toLowerCase().includes("sagor")
   );
@@ -1341,6 +1345,10 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
   const dataCollectors = data.teamMembers.filter(m => 
     m.title.toLowerCase().includes("nafis") || m.title.toLowerCase().includes("nadim")
+  );
+
+  const alumni = data.teamMembers.filter(m => 
+    m.role === "Alumni" || m.title.toLowerCase().includes("anika") || m.title.toLowerCase().includes("faisal")
   );
 
   // Helper to render grids with up to 4 cards in a row
@@ -1381,16 +1389,16 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
               {/* Social Icons row */}
               {(() => {
                 const isNazrul = member.title.toLowerCase().includes("nazrul");
-                const cardScholarLink = isNazrul
+                const cardScholarLink = member.scholar || (isNazrul
                   ? "https://scholar.google.com/citations?user=L-2Y7aUAAAAJ"
-                  : `https://scholar.google.com/scholar?q=${encodeURIComponent(member.title)}`;
+                  : `https://scholar.google.com/scholar?q=${encodeURIComponent(member.title)}`);
                 
-                const cardLinkedinLink = isNazrul
+                const cardLinkedinLink = member.linkedin || (isNazrul
                   ? "https://www.linkedin.com"
-                  : `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(member.title.split(' ')[0])}&lastName=${encodeURIComponent(member.title.split(' ').slice(1).join(' '))}`;
+                  : `https://www.linkedin.com/pub/dir?firstName=${encodeURIComponent(member.title.split(' ')[0])}&lastName=${encodeURIComponent(member.title.split(' ').slice(1).join(' '))}`);
                 
-                const cardOrcidLink = `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(member.title)}`;
-                const cardGithubLink = `https://github.com/search?q=${encodeURIComponent(member.title)}&type=users`;
+                const cardOrcidLink = member.orcid || `https://orcid.org/orcid-search/search?searchQuery=${encodeURIComponent(member.title)}`;
+                const cardGithubLink = member.github || `https://github.com/search?q=${encodeURIComponent(member.title)}&type=users`;
 
                 return (
                   <div className="flex items-center justify-center gap-3 mb-5" onClick={(e) => e.stopPropagation()}>
@@ -1462,10 +1470,21 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
           {professors.length > 0 && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
-                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Professors</h2>
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Principal Investigators</h2>
                 <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{professors.length}</span>
               </div>
               {renderMemberGrid(professors)}
+            </div>
+          )}
+
+          {/* PhD Students Category */}
+          {phdStudents.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">PhD Students</h2>
+                <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{phdStudents.length}</span>
+              </div>
+              {renderMemberGrid(phdStudents)}
             </div>
           )}
 
@@ -1484,7 +1503,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
           {mscStudents.length > 0 && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
-                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">MSc Students</h2>
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Research Graduate Students(MSc Engg. Students)</h2>
                 <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{mscStudents.length}</span>
               </div>
               {renderMemberGrid(mscStudents)}
@@ -1501,6 +1520,17 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
               {renderMemberGrid(dataCollectors)}
             </div>
           )}
+
+          {/* Alumni Category */}
+          {alumni.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 border-b border-brand-green/10 pb-3">
+                <h2 className="font-serif text-2xl font-bold text-brand-dark tracking-tight">Alumni</h2>
+                <span className="text-xs font-mono font-bold bg-brand-green/10 text-brand-green px-2.5 py-1 rounded-full">{alumni.length}</span>
+              </div>
+              {renderMemberGrid(alumni)}
+            </div>
+          )}
         </div>
 
         {/* Institutional Affiliations info box */}
@@ -1513,7 +1543,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 Academic Cooperation
               </div>
               <h3 className="font-serif text-2xl font-bold text-brand-dark">
-                MBSTU Intellectual NLP Research Lab
+                MBSTU Research lab
               </h3>
               <p className="text-sm text-muted-gray max-w-3xl leading-relaxed">
                 Our lab brings together postgraduate researchers, senior data engineers, and linguistic advisors. We operate computing assets funded by academic allocations, focusing on localized acoustic transcription protocols and language adaptation modules.

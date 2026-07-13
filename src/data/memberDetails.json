@@ -1,5 +1,5 @@
 {
-  "Dr. Nazrul Islam": {
+  "Professor Dr. Nazrul Islam": {
     "longBio": "Dr. Md. Nazrul Islam is a distinguished Professor at the Department of Information and Communication Technology (ICT), Mawlana Bhashani Science and Technology University (MBSTU). With over two decades of research and teaching experience, he has made significant contributions to digital image encryption, cryptographic security protocols, pattern recognition, and speech technology. Under the Agri-VoiceLink project, he defines the high-level technical architecture, leading the design of bilingual speech transcription systems and supervising secure deep-learning edge diagnostics models.",
     "stats": [
       { "label": "Research Experience", "value": "20+ Years" },
@@ -245,8 +245,8 @@
       "Secondary School Certificate (SSC), Bindubasini Govt. Boys' High School (2018)"
     ]
   },
-  "Nargis Akter": {
-    "longBio": "Nargis Akter is an Assistant Professor at the Department of Information and Communication Technology (ICT), Mawlana Bhashani Science and Technology University (MBSTU). She possesses deep expertise in data science, intelligent systems, and computational modeling. In the Agri-VoiceLink project, she serves as a Co-Investigator, contributing to linguistic corpus curation, acoustic mapping of local dialects, and localized model diagnostics validation.",
+  "Professor Dr. Mst. Nargis Akter": {
+    "longBio": "Professor Dr. Mst. Nargis Akter is a Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU), Tangail, Bangladesh. She possesses deep expertise in deep learning, medical image processing, federated learning, explainable AI, biosensors, and IoT systems. In the Agri-VoiceLink project, she serves as a Co-Principal Investigator, contributing her extensive research expertise to acoustic modeling, linguistic corpus design, and deep learning diagnostics validation.",
     "stats": [
       { "label": "Research Experience", "value": "10+ Years" },
       { "label": "Peer-Reviewed Papers", "value": "15+" },
@@ -311,6 +311,106 @@
     "academicBackground": [
       "B.Sc. (Engg.) in Information and Communication Technology (Ongoing), Mawlana Bhashani Science and Technology University (MBSTU)",
       "Higher Secondary Certificate (HSC), Cantonment Public School and College, Jessore (2021)"
+    ]
+  },
+  "Tasnim Rahman": {
+    "longBio": "Tasnim Rahman is a dedicated PhD Student at the Department of ICT, MBSTU. Her research focuses on Bengali Speech-to-Text architectures and automatic identification of regional accent shifts in Bangla dialects, especially for the northern and central regions of Bangladesh.",
+    "stats": [
+      { "label": "PhD Research", "value": "2 Years" },
+      { "label": "Dialect Corpora", "value": "500+ Hrs" },
+      { "label": "Citations", "value": "12" }
+    ],
+    "responsibilities": [
+      "Develop robust phonetic mapping models for regional dialect accents.",
+      "Annotate and clean continuous acoustic speech signals.",
+      "Oversee automated validation of incoming VoiceLink audio queries."
+    ],
+    "publications": [
+      {
+        "title": "Phonetic Alignment and Dialect Classification in Rural Bangla Communities",
+        "venue": "International Conference on NLP & Speech",
+        "year": "2025",
+        "type": "Conference"
+      }
+    ],
+    "academicBackground": [
+      "M.Sc. in Information and Communication Technology, Mawlana Bhashani Science and Technology University (MBSTU)",
+      "B.Sc. in Information and Communication Technology, MBSTU"
+    ]
+  },
+  "Tanvir Hasan": {
+    "longBio": "Tanvir Hasan is a PhD Candidate at MBSTU specializing in computer vision models applied to precision agriculture. His work under Agri-VoiceLink centers on designing lightweight Convolutional Neural Networks and Vision Transformers capable of running locally on low-cost devices to diagnose crop diseases.",
+    "stats": [
+      { "label": "Deep Learning", "value": "4 Years" },
+      { "label": "Image Dataset Size", "value": "15,000+" },
+      { "label": "Publications", "value": "4" }
+    ],
+    "responsibilities": [
+      "Lead the design of edge-deployable image classifiers for plant pathology.",
+      "Curate and label multi-spectral images of crop leaves under varying ambient illumination.",
+      "Optimize model inferencing times on low-power IoT microcontrollers."
+    ],
+    "publications": [
+      {
+        "title": "Vision-Based On-Field Plant Pathology Diagnostics on Mobile Microprocessors",
+        "venue": "Springer Journal of Agritech Solutions",
+        "year": "2024",
+        "type": "Journal"
+      }
+    ],
+    "academicBackground": [
+      "M.Sc. in Computer Science & Engineering, Jahangirnagar University",
+      "B.Sc. in Computer Science & Engineering, Mawlana Bhashani Science and Technology University (MBSTU)"
+    ]
+  },
+  "Anika Tahsin": {
+    "longBio": "Anika Tahsin is a proud Alumna of the Agricultural Language Processing Research Group (ALPRG). She completed her M.Sc. thesis on developing lightweight NLP frameworks for extracting agricultural taxonomy and semantic intents from unstructured dialect inputs. Currently, she serves as a Senior ML Engineer in a leading software firm.",
+    "stats": [
+      { "label": "Alumni Class", "value": "2024" },
+      { "label": "Systems Developed", "value": "2" },
+      { "label": "Industry Experience", "value": "2 Years" }
+    ],
+    "responsibilities": [
+      "Designed the initial semantic parser and intent classifier module for Agri-VoiceLink.",
+      "Created database schemas and metadata repositories for rural dialect transcripts.",
+      "Conducted beta testing of the speech-to-intent engine in Tangail communities."
+    ],
+    "publications": [
+      {
+        "title": "Intent Extraction in Dialectal Bangla: An NLP Framework for Smallholder Farmers",
+        "venue": "IEEE Access",
+        "year": "2024",
+        "type": "Journal"
+      }
+    ],
+    "academicBackground": [
+      "M.Sc. in Information and Communication Technology, Mawlana Bhashani Science and Technology University (MBSTU)",
+      "B.Sc. in Information and Communication Technology, MBSTU"
+    ]
+  },
+  "Faisal Ahmed": {
+    "longBio": "Faisal Ahmed is an alumnus who made pivotal contributions to the core audio preprocessing and acoustic denoising pipelines of Agri-VoiceLink. He specializes in designing robust acoustic encoders that resist severe ambient environmental noises found in open farming fields.",
+    "stats": [
+      { "label": "Alumni Class", "value": "2023" },
+      { "label": "Patents/Prototypes", "value": "1" },
+      { "label": "Higher Studies", "value": "PhD Track" }
+    ],
+    "responsibilities": [
+      "Engineered deep denoising autoencoders to clean recording signals captured in noisy farm terrains.",
+      "Integrated the initial acoustic frontend with mobile app prototypes.",
+      "Collaborated with linguistic experts to map regional phonetic dictionary tables."
+    ],
+    "publications": [
+      {
+        "title": "Robust Audio Denoising in Outdoor Agricultural Scenarios for Mobile Speech Recognition",
+        "venue": "Interspeech Workshop on low-resource speech",
+        "year": "2023",
+        "type": "Conference"
+      }
+    ],
+    "academicBackground": [
+      "M.Sc. in Information and Communication Technology, Mawlana Bhashani Science and Technology University (MBSTU)",
+      "B.Sc. in Information and Communication Technology, MBSTU"
     ]
   }
 }

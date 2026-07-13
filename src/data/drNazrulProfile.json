@@ -1,11 +1,15 @@
 {
-  "name": "Dr. Nazrul Islam",
+  "name": "Professor Dr. Nazrul Islam",
   "designation": "Associate Professor",
   "department": "Information and Communication Technology",
   "email": "nazrul@mbstu.ac.bd",
   "phone": "01721-259140",
   "location": "Santosh, Tangail",
-  "longBio": "Dr. Nazrul Islam is an Associate Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University, Bangladesh, where he has been serving since 2014 and currently contributes to academic leadership as Deputy Director of the Students' Welfare and Counseling Centre. He earned his PhD in Information Technology from Jahangirnagar University and holds an MSc in Electrical Engineering with a specialization in Telecommunication Systems from Blekinge Institute of Technology, Sweden. His research interests span machine learning, plasmonic and SPR biosensors, and communication networks, with a strong focus on applying intelligent computational techniques to sensing and biomedical applications. Dr. Islam has published extensively in high-impact international journals and IEEE conferences and is actively involved in funded research projects related to biosensor development and smart grid-IoT technologies and reflecting his engagement with both the global research community and national academic development.",
+  "scholar": "",
+  "linkedin": "",
+  "orcid": "",
+  "github": "",
+  "longBio": "Dr. Nazrul Islam is an Associate Professor in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU), Tangail, Bangladesh, where he has been serving as a faculty member since May 2014. Throughout his career at MBSTU, he has progressed from Lecturer (2014–2016) to Assistant Professor (2016–2022) and currently serves as an Associate Professor (since May 2022). He also contributes to academic leadership as the Deputy Director of the Students' Welfare and Counseling Centre at MBSTU. He earned his PhD in Information Technology from Jahangirnagar University in 2025. He holds an MSc in Electrical Engineering with a specialization in Telecommunication Systems from Blekinge Institute of Technology (BTH), Sweden (2014) and a B.Sc. (Engineering) in Information and Communication Technology (ICT) from Mawlana Bhashani Science and Technology University (2008). His research interests span machine learning, plasmonic and SPR biosensors, and communication networks, with a strong focus on applying intelligent computational techniques to sensing and biomedical applications.",
   "researchInterests": [
     "Machine Learning",
     "SPR Biosensor",
@@ -13,22 +17,22 @@
   ],
   "education": [
     {
-      "degree": "PhD",
-      "institute": "Institute of Information Technology (IIT)",
-      "address": "Jahangirnagar university, Savar, Dhaka-1342, Bangladesh.",
+      "degree": "PhD in Information Technology",
+      "institute": "Jahangirnagar University",
+      "address": "Savar, Dhaka, Bangladesh.",
       "year": "2025"
     },
     {
       "degree": "Master of Science",
-      "institute": "Electrical Engineering with emphasis on Telecommunication Systems",
-      "address": "Blekinge Institute of Technology (BTH), 371 79 Karlskrona, Sweden.",
+      "institute": "Blekinge Institute of Technology (BTH)",
+      "address": "Karlskrona, Sweden.",
       "year": "2014"
     },
     {
       "degree": "Bachelor of Science (Engineering)",
-      "institute": "Information and Communication Technology (ICT), Department of Information and Communication Technology (ICT)",
-      "address": "Mawlana Bhashani Science and Technology University, Tangail-1902, Bangladesh.",
-      "year": ""
+      "institute": "Mawlana Bhashani Science and Technology University",
+      "address": "Tangail-1902, Bangladesh.",
+      "year": "2008"
     }
   ],
   "publications": [
@@ -246,15 +250,28 @@
       "venue": "Network Modeling Analysis in Health Informatics and Bioinformatics 14, no. 1 (2025): 68, Springer, IF=2.0, Q3",
       "type": "journal-article",
       "date": "2025-01-01",
-      "status": "completed"
+      "status": "published",
+      "link": "https://doi.org/10.1007/s13721-025-00564-8"
     }
   ],
   "projects": [
     {
-      "title": "Development of High-Sensitivity Plasmonic and SPR Biosensors",
+      "title": "Agri-VoiceLink: Multimodal Conversational AI & Graph Neural Network Pricing Integrity Ecosystem",
       "role": "Principal Investigator",
-      "funding": "Funded Research Grant",
-      "desc": "Focuses on developing refractive index prediction and confinement loss models for D-shaped photonic crystal fiber surface plasmon resonance (PCF-SPR) biosensors. Incorporates machine learning (such as artificial neural networks and gradient boosting) and deep generative adversarial networks (GANs) to design optimal, highly-sensitive biomedical sensors."
+      "funding": "UGC-ICSETEP Research Grant",
+      "desc": "Leads a multi-disciplinary research team developing a dialect-robust Automatic Speech Recognition (ASR) system and handwritten market board OCR pipeline integrated with Graph Neural Networks to empower rural Bangladeshi smallholder farmers."
+    },
+    {
+      "title": "Exploring an open channel PCF-SPR bio-sensor employing gold for analyte detection",
+      "role": "PhD Researcher",
+      "funding": "ICTD, Govt. of Bangladesh",
+      "desc": "Conducted fundamental research on open-channel photonic crystal fiber surface plasmon resonance (PCF-SPR) biosensors, utilizing gold analyte sensing, and applying deep neural networks for performance modeling. Resulted in three journals and four conference papers."
+    },
+    {
+      "title": "Smart Grid-IoT In Energy Transformation",
+      "role": "Principal Investigator",
+      "funding": "Research Cell, MBSTU",
+      "desc": "Investigated IoT applications in smart grids and energy transformation systems to optimize local power distribution and communication."
     }
   ],
   "teaching": {
