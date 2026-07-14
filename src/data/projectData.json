@@ -215,21 +215,6 @@
       "github": ""
     },
     {
-      "title": "Sagor Roy",
-      "subtitle": "UNDERGRADUATE RESEARCHER",
-      "desc": "Final-year student bridging machine learning and bioinformatics for biomarker discovery and IoT-based smart implementations.",
-      "tag": "AI & IoT Researcher",
-      "role": "RM",
-      "avatar": "sagor.jpeg",
-      "org": "MBSTU ICT Division",
-      "email": "it21044@mbstu.ac.bd",
-      "phone": "+880 1798-864872",
-      "scholar": "",
-      "linkedin": "",
-      "orcid": "",
-      "github": ""
-    },
-    {
       "title": "Md. Alamin",
       "subtitle": "GRADUATE RESEARCH ASSISTANT",
       "desc": "Graduate Research Assistant focusing on interpretable machine learning, medical image analysis, and deep learning for sequential time-series forecasting.",
@@ -239,6 +224,21 @@
       "org": "MBSTU ICT Division",
       "email": "alamin.it20043@gmail.com",
       "phone": "+880 1780-627740",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
+    },
+    {
+      "title": "Sagor Roy",
+      "subtitle": "UNDERGRADUATE RESEARCHER",
+      "desc": "Final-year student bridging machine learning and bioinformatics for biomarker discovery and IoT-based smart implementations.",
+      "tag": "AI & IoT Researcher",
+      "role": "RM",
+      "avatar": "sagor.jpeg",
+      "org": "MBSTU ICT Division",
+      "email": "it21044@mbstu.ac.bd",
+      "phone": "+880 1798-864872",
       "scholar": "",
       "linkedin": "",
       "orcid": "",
