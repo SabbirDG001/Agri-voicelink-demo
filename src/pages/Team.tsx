@@ -1348,7 +1348,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
   );
 
   const researchAssistants = data.teamMembers.filter(m => 
-    m.title.toLowerCase().includes("sagor")
+    m.title.toLowerCase().includes("sagor") || m.title.toLowerCase().includes("alamin")
   );
 
   const mscStudents = data.teamMembers.filter(m => 

@@ -412,5 +412,31 @@
       "M.Sc. in Information and Communication Technology, Mawlana Bhashani Science and Technology University (MBSTU)",
       "B.Sc. in Information and Communication Technology, MBSTU"
     ]
+  },
+  "Md. Alamin": {
+    "longBio": "Md. Alamin is a Graduate Research Assistant in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU), Tangail, Bangladesh. His research focuses on interpretable machine learning, medical image analysis, and deep learning for sequential time-series forecasting. He is passionate about developing robust, interpretable deep learning models for healthcare and economic applications.",
+    "stats": [
+      { "label": "B.Sc CGPA", "value": "3.29/4.00" },
+      { "label": "Research Experience", "value": "April 2026 - Present" },
+      { "label": "Papers (Under Review)", "value": "1" }
+    ],
+    "responsibilities": [
+      "Engaged in research and development activities involving artificial intelligence, machine learning, data analytics, and software engineering education under the Improving Computer and Software Engineering Education Project (ICESTEP).",
+      "Developed an end-to-end deep learning pipeline for medical image classification with attention mechanisms and interpretability analysis.",
+      "Built an LLM-powered FAQ agent using LangChain and LangGraph, emphasizing modular pipelines and prompt engineering.",
+      "Served as Vice President of IEEE MBSTU Student Branch (Jan 2025 - Dec 2025), coordinating technical workshops, seminars, and research-oriented activities."
+    ],
+    "publications": [
+      {
+        "title": "An Interpretable Hybrid Deep Learning Framework for Automated Cervical Cancer Diagnosis Using an Attention-Based CNN Model",
+        "venue": "Statistics, Optimization & Information Computing (Under Review)",
+        "year": "2025",
+        "type": "Research Paper"
+      }
+    ],
+    "academicBackground": [
+      "M.Sc.(Engg.) in Information and Communication Technology, Mawlana Bhashani Science and Technology University, Tangail (2025 - Present)",
+      "B.Sc.(Engg.) in Information and Communication Technology, Mawlana Bhashani Science and Technology University, Tangail (2020 - 2025)"
+    ]
   }
 }
