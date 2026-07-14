@@ -185,21 +185,6 @@
       "github": ""
     },
     {
-      "title": "Md. Lutfor Rahaman",
-      "subtitle": "POST-GRADUATE RESEARCHER",
-      "desc": "M.Sc. student focusing on Bioinformatics, Explainable AI, and IoT-enabled smart biomedical healthcare ecosystems.",
-      "tag": "Bioinformatics Researcher",
-      "role": "RM",
-      "avatar": "lutfor.jpeg",
-      "org": "MBSTU ICT Division",
-      "email": "it21047@mbstu.ac.bd",
-      "phone": "+880 1735-637626",
-      "scholar": "",
-      "linkedin": "",
-      "orcid": "",
-      "github": ""
-    },
-    {
       "title": "Md. Shafi Mahmud",
       "subtitle": "UNDERGRADUATE RESEARCHER",
       "desc": "Competitive programmer and ML enthusiast with expertise in generative AI, algorithmic data structures, and natural language processing.",
@@ -254,6 +239,21 @@
       "org": "MBSTU ICT Division",
       "email": "it21028@mbstu.ac.bd",
       "phone": "+880 1784-797944",
+      "scholar": "",
+      "linkedin": "",
+      "orcid": "",
+      "github": ""
+    },
+    {
+      "title": "Md. Lutfor Rahaman",
+      "subtitle": "POST-GRADUATE RESEARCHER",
+      "desc": "M.Sc. student focusing on Bioinformatics, Explainable AI, and IoT-enabled smart biomedical healthcare ecosystems.",
+      "tag": "Bioinformatics Researcher",
+      "role": "RM",
+      "avatar": "lutfor.jpg",
+      "org": "MBSTU ICT Division",
+      "email": "it21047@mbstu.ac.bd",
+      "phone": "+880 1735-637626",
       "scholar": "",
       "linkedin": "",
       "orcid": "",
