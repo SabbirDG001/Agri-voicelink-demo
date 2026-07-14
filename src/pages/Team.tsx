@@ -318,6 +318,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                 <div className="bg-white border border-slate-200 rounded-2xl p-2 shadow-sm flex flex-wrap gap-1">
                   {[
                     { id: "about", label: "About Me" },
+                    { id: "education", label: "Education" },
                     { id: "publications", label: "Publications (" + activeProfile.publications.length + ")" },
                     { id: "projects", label: "Projects (" + activeProfile.projects.length + ")" },
                     { id: "teaching", label: "Teaching" },
@@ -383,30 +384,35 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                           })}
                         </div>
                       </div>
+                    </div>
+                  )}
 
-                      {/* Education Details */}
-                      <div className="space-y-4">
-                        <h3 className="font-serif text-lg font-bold text-brand-dark pb-3 border-b border-slate-100 flex items-center gap-2">
-                          <Award className="w-4 h-4 text-brand-green" />
+                  {activeProfileTab === "education" && (
+                    <div className="space-y-6">
+                      <div className="pb-3 border-b border-slate-100 text-left">
+                        <h2 className="font-serif text-xl font-bold text-brand-dark flex items-center gap-2">
+                          <Award className="w-5 h-5 text-brand-green" />
                           Academic Credentials
-                        </h3>
-                        <div className="relative border-l border-slate-200 pl-6 ml-2 space-y-6">
-                          {activeProfile.education.map((edu, idx) => (
-                            <div key={idx} className="relative">
-                              <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-green border-4 border-white shadow-sm"></div>
-                              {edu.year && (
-                                <span className="font-mono text-[10px] text-brand-green font-bold bg-brand-green/10 px-2 py-0.5 rounded">
-                                  {edu.year}
-                                </span>
-                              )}
-                              <h4 className="font-sans font-bold text-sm text-slate-900 mt-1 leading-snug">
-                                {edu.degree}
-                              </h4>
-                              <p className="text-xs text-slate-700 font-medium mt-0.5">{edu.institute}</p>
-                              <p className="text-[11px] text-slate-400 mt-0.5 font-sans leading-relaxed">{edu.address}</p>
-                            </div>
-                          ))}
-                        </div>
+                        </h2>
+                        <p className="text-xs text-slate-500 mt-1">Detailed academic and educational background of {activeProfile.name}.</p>
+                      </div>
+
+                      <div className="relative border-l border-slate-200 pl-6 ml-2 space-y-6">
+                        {activeProfile.education.map((edu, idx) => (
+                          <div key={idx} className="relative">
+                            <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-green border-4 border-white shadow-sm"></div>
+                            {edu.year && (
+                              <span className="font-mono text-[10px] text-brand-green font-bold bg-brand-green/10 px-2 py-0.5 rounded">
+                                {edu.year}
+                              </span>
+                            )}
+                            <h4 className="font-sans font-bold text-sm text-slate-900 mt-1 leading-snug">
+                              {edu.degree}
+                            </h4>
+                            <p className="text-xs text-slate-700 font-medium mt-0.5">{edu.institute}</p>
+                            <p className="text-[11px] text-slate-400 mt-0.5 font-sans leading-relaxed">{edu.address}</p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
@@ -754,6 +760,7 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
 
     const profileTabs = [
       { id: "about", label: "About Me" },
+      { id: "education", label: "Education" },
       { id: "role", label: "Project Role" }
     ];
     if (extraDetails.publications && extraDetails.publications.length > 0) {
@@ -936,23 +943,28 @@ export default function Team({ data, onCardClick, onNavigate, initialMemberName,
                         {extraDetails.longBio}
                       </p>
                     </div>
+                  </div>
+                )}
 
-                    {/* Education Details */}
-                    <div className="space-y-4">
-                      <h3 className="font-serif text-lg font-bold text-brand-dark pb-3 border-b border-slate-100 flex items-center gap-2">
-                        <Award className="w-4 h-4 text-brand-green" />
+                {activeProfileTab === "education" && (
+                  <div className="space-y-6">
+                    <div className="pb-3 border-b border-slate-100 text-left">
+                      <h2 className="font-serif text-xl font-bold text-brand-dark flex items-center gap-2">
+                        <Award className="w-5 h-5 text-brand-green" />
                         Academic & Professional Background
-                      </h3>
-                      <div className="relative border-l border-slate-200 pl-6 ml-2 space-y-6">
-                        {extraDetails.academicBackground.map((bg: string, idx: number) => (
-                          <div key={idx} className="relative">
-                            <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-green border-4 border-white shadow-sm"></div>
-                            <h4 className="font-sans font-bold text-sm text-slate-900 leading-relaxed">
-                              {bg}
-                            </h4>
-                          </div>
-                        ))}
-                      </div>
+                      </h2>
+                      <p className="text-xs text-slate-500 mt-1">Detailed educational history and academic affiliations of {selectedMember.title}.</p>
+                    </div>
+
+                    <div className="relative border-l border-slate-200 pl-6 ml-2 space-y-6">
+                      {extraDetails.academicBackground.map((bg: string, idx: number) => (
+                        <div key={idx} className="relative">
+                          <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-green border-4 border-white shadow-sm"></div>
+                          <h4 className="font-sans font-bold text-sm text-slate-900 leading-relaxed">
+                            {bg}
+                          </h4>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}
